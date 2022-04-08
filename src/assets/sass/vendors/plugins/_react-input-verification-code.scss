@@ -1,0 +1,15 @@
+:root {
+    --ReactInputVerificationCode-itemWidth: 50px !important;
+    --ReactInputVerificationCode-itemHeight: 50px !important;
+    --ReactInputVerificationCode-itemSpacing: 6px !important;
+}
+
+.ReactInputVerificationCode__container {
+    .ReactInputVerificationCode__item {
+        box-shadow: none;
+        border: 1px solid #efefef;
+        &.is-active {
+            box-shadow: 0 10px 24px 0 rgb(0 0 0 / 12%);
+        }
+    }
+}

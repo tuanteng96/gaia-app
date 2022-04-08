@@ -1,0 +1,78 @@
+// Background theme colors
+@each $color,
+$value in $theme-colors {
+    // Hover color
+    .bg-#{$color} {
+        background-color: $value !important;
+    }
+    // Opacity
+    @for $opacity from 1 through 20 {
+        .bg-#{$color}-o-#{$opacity * 5} {
+            background-color: rgba($value, calc($opacity * 20 / 1000)) !important;
+        }
+    }
+}
+
+// Background color transparent
+.bg-transparent {
+    background-color: transparent;
+}
+
+.bg-transparent-i {
+    background-color: transparent !important;
+}
+
+// Background size
+.bgi-size-length {
+    background-size: length;
+}
+
+.bgi-size-cover {
+    background-size: cover;
+}
+
+.bgi-size-contain {
+    background-size: contain;
+}
+
+// Background repeat
+.bgi-no-repeat {
+    background-repeat: no-repeat;
+}
+
+// Background positions
+.bgi-position-y-top {
+    background-position-y: top;
+}
+
+.bgi-position-y-bottom {
+    background-position-y: bottom;
+}
+
+.bgi-position-y-center {
+    background-position-y: center;
+}
+
+.bgi-position-x-left {
+    background-position-x: left;
+}
+
+.bgi-position-x-right {
+    background-position-x: right;
+}
+
+.bgi-position-x-center {
+    background-position-x: center;
+}
+
+.bgi-position-top {
+    background-position: 0 top;
+}
+
+.bgi-position-bottom {
+    background-position: 0 bottom;
+}
+
+.bgi-position-center {
+    background-position: center;
+}

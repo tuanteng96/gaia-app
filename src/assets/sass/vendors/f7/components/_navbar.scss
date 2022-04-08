@@ -1,0 +1,34 @@
+@mixin createBgNavbars($map) {
+    @each $name,
+    $value in $map {
+        .bg-color-#{$name} {
+            .navbar-bg {
+                background-color: get($value, "backgroud");
+            }
+            .navbar-inner {
+                .title {
+                    font-size: get($value, "font-size-title");
+                    color: get($value, "color");
+                }
+                .left .back {
+                    >span {
+                        display: none !important;
+                    }
+                    i {
+                        width: 20px;
+                        &:after {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include createBgNavbars($config-navbars);
+.no-navbar {
+    .page-content {
+        padding-top: 0;
+    }
+}

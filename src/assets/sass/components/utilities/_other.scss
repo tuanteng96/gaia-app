@@ -1,0 +1,24 @@
+// ---- Floats and Clear Fix ----  
+@include createClasses(get($config-other, float));
+.clear {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// // ---- Text Align ----  
+@include createClasses(get($config-other, text-align));
+// // ---- Display ----  
+@include createClasses(get($config-other, display));
+// // ---- Vertical Align ----  
+@include createClasses(get($config-other, vertical));

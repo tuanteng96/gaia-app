@@ -1,0 +1,93 @@
+$black: #000000 !default;
+//
+$white: #ffffff !default;
+$white-hover: #ffffff !default;
+$white-inverse: $black !default;
+//
+$black-ezs: #2b2c31 !default;
+$black-ezs-hover: #55565b !default;
+$black-ezs-inverse: $white;
+//
+$black-ezs: #2b2c31 !default;
+$black-ezs-hover: #55565b !default;
+$black-ezs-inverse: $white;
+//
+$light: #fafafa !default;
+$light-hover: #55565b !default;
+$light-inverse: $black;
+//
+$facebook: #3c66c4 !default;
+$facebook-hover: #3c66c4 !default;
+$facebook-inverse: $white !default;
+//
+$gmail: #ce4332 !default;
+$gmail-hover: #ce4332 !default;
+$gmail-inverse: $white !default;
+//
+$success: #00a3ad;
+$success-hover: #52b5bd !default;
+$success-inverse: $white !default;
+//// Gray colors
+$gray-100: #F3F6F9 !default;
+$gray-200: #EBEDF3 !default;
+$gray-300: #E4E6EF !default;
+$gray-400: #D1D3E0 !default;
+$gray-500: #B5B5C3 !default;
+$gray-600: #7E8299 !default;
+$gray-700: #5E6278 !default;
+$gray-800: #3F4254 !default;
+$gray-900: #181C32 !default;
+//
+$text-muted: #8f8f8f;
+// Theme colors
+$theme-colors: ("white": $white, "black-ezs": $black-ezs, "light": $light, "success": $success, "facebook" : $facebook, "gmail": $gmail) !default;
+// Theme colors
+$theme-hover-colors: ("white": $white-hover, "black-ezs": $black-ezs-hover, "light": $light-hover, "success": $success-hover, "facebook": $facebook-hover, "gmail": $gmail-hover) !default;
+// Theme text colors
+$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success": $success, "facebook" : $facebook, "gmail" : $gmail) !default;
+// Theme color hover
+$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success": $success-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
+// Typography
+$font-size-base: 1rem !default; // Assumes the browser default, typically `13px`
+$font-size-xs: $font-size-base * .75 !default;
+$font-size-sm: $font-size-base * .825 !default;
+$font-size-md: $font-size-base * 1 !default;
+$font-size-lg: $font-size-base * 1.18 !default;
+$font-size-xl: $font-size-base * 2 !default;
+$h1-font-size: $font-size-base * 2 !default; // 26px
+$h2-font-size: $font-size-base * 1.75 !default; // 22.75px
+$h3-font-size: $font-size-base * 1.5 !default; // 19.5px
+$h4-font-size: $font-size-base * 1.35 !default; // 17.55px
+$h5-font-size: $font-size-base * 1.25 !default; // 16.25px
+$h6-font-size: $font-size-base * 1.175 !default; // 15.275px
+$config-font-size: ("size-xs": $font-size-xs, "size-sm": $font-size-sm, "size-md": $font-size-md, "size-lg": $font-size-lg, "size-xl": $font-size-xl);
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-rounded: true !default;
+$enable-shadows: true !default;
+// Line height
+
+$config-line-text: ("xs" : 16px, "sm" : 20px, "md" : 23px, "lg": 25px);
+
+// Transition
+$transition: all 0.35s ease !default; // Custom variable
+$transition-link: color 0.15s ease,
+background-color 0.15s ease,
+border-color 0.15s ease,
+box-shadow 0.15s ease !default; // Custom variable
+$transition-input: color 0.15s ease,
+background-color 0.15s ease,
+border-color 0.15s ease,
+box-shadow 0.15s ease !default; // Custom variable
+// Heights & Widths
+$heights-and-widths: (100: 100%, 80: 80%, 70: 70%, 60: 60%, 50: 50%, 30:30%, 20:20%, 15:15%, 10:10%, auto: auto, 1px: 1px, 2px: 2px, 3px: 3px, 4px: 4px, 5px: 5px, 6px: 6px, 8px: 8px, 10px: 10px, 12px: 12px, 15px: 15px, 20px: 20px, 25px: 25px, 30px: 30px, 35px: 35px, 40px: 40px, 42px: 42px, 45px: 45px, 50px: 50px, 55px: 55px, 60px: 60px, 65px: 65px, 70px: 70px, 75px: 75px, 80px: 80px, 85px: 85px, 90px: 90px, 95px: 95px, 100px: 100px, 105px: 105px, 110px: 110px, 115px: 115px, 120px: 120px, 125px: 125px, 130px: 130px, 135px: 135px, 140px: 140px, 145px: 145px, 150px: 150px, 155px: 155px, 160px: 160px, 165px: 165px, 176px: 170px, 175px: 175px, 180px: 180px, 200px: 200px, 225px: 225px, 235px: 235px, 250px: 250px, 255px: 255px, 260px: 260px, 265px: 265px, 275px: 275px, 295px: 295px, 300px: 300px, 325px: 325px, 350px: 350px, 375px: 375px, 400px: 400px, 425px: 425px, 450px: 450px, 475px: 475px, 500px: 500px, 550px: 550px, 600px: 600px, 650px: 650px, 700px: 700px, 750px: 750px, 800px: 800px, 850px: 850px, 900px: 900px, 950px: 950px, 1000px: 1000px, ) !default;
+// Position
+$positon-and: (0: 0, 1px: 1px, 2px: 2px, 3px: 3px, 4px: 4px, 5px: 5px, 6px: 6px, 7px: 7px, 8px: 8px, 9px: 9px, 10px: 10px, 15px: 15px, 20px: 20px, 25px: 25px, 100: 100%) !default;
+// Other
+$config-other: (float: ("name": "float", "prefix": "float-", "values": ("left": "left", "right": "right", "none": "none")), text-align: ("name": "text-align", "prefix": "text-", "values": ("center": "center", "right": "right", "left": "left")), display: ("name": "display", "prefix": "d-", "values": ("initial": "initial", "block": "block", "inline-block": "inline-block", "none": "none")), vertical: ("name": "vertical-align", "prefix": "va-", "values": ("baseline": "baseline", "bottom": "bottom", "middle": "middle", "sub": "sub")));
+// text
+$config-text: (font-weight: ("name": "font-weight", "prefix": "fw-", "values": ("200": 200, "300": 300, "400": 400, "500": 500, "600": 600, "700": 700, )), text-transform: ("name": "text-transform", "prefix": "text-", "values": ("capitalize": "capitalize", "uppercase": "uppercase", "lowercase": "lowercase", "none": "none")), text-decoration: ("name": "text-decoration", "prefix": "text-", "values": ("underline": "underline", "line-through": "line-through", "dnone": "dnone")), font-style: ("name": "font-style", "prefix": "text-", "values": ("italic": "italic", "initial": "initial", )));
+// btn
+$btn-border: 1px;
+$btn-border-radius: 5px;
+$btn-base: (padding: 17px 8px 16px 8px, font-size: $font-size-sm, border-radius: $btn-border-radius, font-weight: 600);
+$btn-size-config: (xs: (padding: 5px, font-size: $font-size-xs, border-radius: $btn-border-radius), sm: (padding: 6px, font-size: $font-size-sm, border-radius: $btn-border-radius), md: (padding: 7px, font-size: $font-size-md, border-radius: $btn-border-radius), lg: (padding: 8px, font-size: $font-size-lg, border-radius: $btn-border-radius), xl: (padding: 10px, font-size: $font-size-xl, border-radius: $btn-border-radius));

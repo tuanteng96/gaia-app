@@ -1,0 +1,84 @@
+//
+// Buttons
+//
+// Base
+.btn {
+    outline: none !important;
+    vertical-align: middle;
+    width: auto;
+    height: auto;
+    line-height: 1;
+    display: inline-block;
+    //base size
+    padding: get($btn-base, padding);
+    font-size: get($btn-base, font-size);
+    font-weight: get($btn-base, font-weight);
+    @include border-radius(get($btn-base, border-radius));
+    // Transition
+    @include button-custom-transition($transition-link);
+    //
+    &:focus:not(.btn-shadow):not(.btn-shadow-hover) {
+        box-shadow: none !important;
+    }
+    .btn.disabled,
+    .btn:disabled {
+        pointer-events: none;
+    }
+    // Button styles
+    &.btn-square {
+        border-radius: 0;
+    }
+    &.btn-pill {
+        border-radius: 2rem;
+    }
+    &.btn-text {
+        cursor: text;
+    }
+    &:not(.btn-text) {
+        cursor: pointer;
+    }
+    &.btn-borderless {
+        border-color: transparent;
+    }
+    &.disabled {
+        pointer-events: none;
+    }
+}
+//size btn
+@each $name,
+$value in $btn-size-config {
+    .btn.btn-#{$name} {
+        padding: get($value, padding);
+        font-size: get($value, font-size);
+        @include border-radius(get($value, border-radius));
+    }
+}
+// btn bg
+@each $name,
+$value in $theme-text-colors {
+    .btn.btn-#{$name} {
+        border: $btn-border solid $value;
+        background-color: $value;
+        color: theme-inverse-color($name);
+        &.active-state {
+            border: $btn-border solid theme-hover-color($name);
+            background-color: theme-hover-color($name);
+            color: theme-inverse-color($name);
+        }
+    }
+}
+
+// btn outline
+@each $name,
+$value in $theme-text-colors {
+    .btn.btn-outline-#{$name} {
+        border: $btn-border solid $value;
+        background-color: transparent;
+        color: $value;
+        &.active-state {
+            border: $btn-border solid theme-hover-color($name);
+            background-color: theme-hover-color($name);
+            color: theme-inverse-color($name);
+        }
+    }
+}

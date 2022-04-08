@@ -1,0 +1,34 @@
+.line {
+    position: relative;
+    text-align: center;
+    &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: $gray-300;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+    }
+    span {
+        position: relative;
+        z-index: 2;
+        background: $white;
+        padding: 0 8px;
+        color: $gray-400;
+        font-size: $font-size-sm;
+    }
+}
+
+@each $name, $value in $theme-colors {
+    .line.line-#{$name} {
+        &:before {
+            background-color: $value;
+        }
+        span {
+            color: $value;
+        }
+    }
+}

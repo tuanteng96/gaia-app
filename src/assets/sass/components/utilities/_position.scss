@@ -1,0 +1,24 @@
+//
+// Positions
+//
+$positon-key: (top, left, right, bottom) !default;
+@each $key in $positon-key {
+    @each $name,
+    $value in $positon-and {
+        .#{$key}-#{$name} {
+            #{$key}: #{$value} !important;
+        }
+        .#{$key}--#{$name} {
+            #{$key}: -#{$value} !important;
+        }
+    }
+}
+.position-fixed {
+    position: fixed !important;
+}
+.positon-relative {
+    position: relative !important;
+}
+.positon-absolute {
+    position: absolute !important;
+}

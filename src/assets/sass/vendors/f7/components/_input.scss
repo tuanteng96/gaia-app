@@ -1,0 +1,75 @@
+.item-input-outline {
+    .item-input-wrap {
+        &::after {
+            height: var(--f7-input-height);
+        }
+    }
+    &.item-input-focused {
+        .item-input-wrap {
+            input {
+                box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+            }
+            &::after {
+                border-width: 1.5px;
+            }
+        }
+    }
+    &.item-input-with-error-message {
+        .item-input-wrap {
+            margin-bottom: 15px !important;
+        }
+    }
+    &.item-input-invalid {
+        .item-input-wrap {
+            &::after {
+                border-width: 1.5px;
+            }
+        }
+    }
+    .item-input-error-message {
+        padding-left: 0;
+        margin-top: 5px !important;
+    }
+}
+.auto-focus {
+    .item-input-outline {
+        .item-inner {
+            .item-floating-label {
+                transform: scale(1) translateY(50%);
+                color: var(--f7-label-invalid-text-color, var(--f7-label-text-color));
+                background: var(--f7-list-bg-color)
+            }
+            .item-input-wrap {
+                input {
+                    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+                    @include placeholder(rgb(190, 189, 189))
+                }
+                &:after {
+                    border-color: var(--f7-input-outline-focused-border-color, var(--f7-theme-color));
+                }
+            }
+        }
+        &.item-input-invalid {
+            .item-inner {
+                .item-input-wrap {
+                    &:after {
+                        border-color: var(--f7-input-outline-invalid-border-color, var(--f7-input-error-text-color));
+                    }
+                }
+            }
+        }
+    }
+}
+// Icon clear input
+.ios {
+    .input-clear-button {
+        right: 12px;
+        &:after {
+            font-family: "Font Awesome 5 Pro";
+            content: "\f00d";
+            color: $input-icon-clear-color;
+            font-size: $input-icon-clear-size;
+            line-height: $input-icon-clear-line-height;
+        }
+    }
+}

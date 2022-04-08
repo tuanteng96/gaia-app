@@ -1,0 +1,72 @@
+.react-tel-input {
+    z-index: 2;
+    input.form-control {
+        width: 100%;
+        height: calc(var(--f7-input-height) + 4px);
+        border: 1.5px solid var(--f7-input-outline-border-color);
+        font-size: var(--f7-input-font-size);
+        .input-focused, &:focus {
+            border-color: 1.5px solid var(--f7-input-outline-border-color);
+            box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+        }
+    }
+    .special-label {
+        left: calc(var(--f7-input-outline-padding-horizontal) - 4px);
+        font-size: var(--f7-label-font-size);
+    }
+    &.is-invalid {
+        input.form-control {
+            border: 1.5px solid var(--f7-input-outline-invalid-border-color, var(--f7-input-error-text-color)) !important;
+        }
+    }
+    &.auto-focus {
+        input.form-control {
+            box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+            border-color: 1.5px solid var(--f7-input-outline-border-color);
+        }
+    }
+    .country-list {
+        -webkit-box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%);
+        box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%);
+        border-radius: 5px;
+        .country.highlight {
+            background-color: $black-ezs;
+            color: $white;
+            .dial-code {
+                color: $white;
+            }
+        }
+        .search {
+            padding: 15px;
+            .search-emoji {
+                display: block;
+                position: absolute;
+                right: 28px;
+                top: 30px;
+                font-size: 18px;
+                pointer-events: none;
+            }
+            input {
+                width: 100%;
+                margin: 0;
+                padding: 12px;
+                height: var(--f7-input-height);
+                border: 1px solid var(--f7-input-outline-border-color);
+                font-size: var(--f7-input-font-size);
+            }
+        }
+        .country {
+            padding: 15px 15px 15px 50px;
+            .flag {
+                left: 15px;
+            }
+        }
+    }
+    &~ .invalid-feedback {
+        font-size: var(--f7-input-error-font-size);
+        line-height: var(--f7-input-error-line-height);
+        color: var(--f7-input-error-text-color);
+        font-weight: var(--f7-input-error-font-weight);
+        margin-top: 8px;
+    }
+}

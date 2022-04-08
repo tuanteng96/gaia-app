@@ -1,0 +1,49 @@
+import path from 'path';
+import reactRefresh from '@vitejs/plugin-react-refresh';
+
+
+
+const SRC_DIR = path.resolve(__dirname, './src');
+const PUBLIC_DIR = path.resolve(__dirname, './public');
+const BUILD_DIR = path.resolve(__dirname, './www', );
+
+export default {
+    plugins: [
+        reactRefresh(),
+    ],
+    root: SRC_DIR,
+    base: '/app2022/',
+    publicDir: PUBLIC_DIR,
+    build: {
+        outDir: BUILD_DIR,
+        assetsInlineLimit: 0,
+        emptyOutDir: true,
+        rollupOptions: {
+            treeshake: false,
+            output: {
+                assetFileNames: (assetInfo) => {
+                    let extType = assetInfo.name.split('.').at(1);
+                    if (extType === "css") {
+                        return `assets/css/[name][extname]`;
+                    }
+                    if (/ttf|woff2/i.test(extType) || extType === "woff") {
+                        return `assets/fonts/[name][extname]`;
+                    }
+                    return `assets/[name][extname]`;
+                },
+                chunkFileNames: 'assets/js/[name].js',
+                entryFileNames: 'assets/js/[name].js',
+            }
+        },
+
+    },
+    resolve: {
+        alias: {
+            '@': SRC_DIR,
+        },
+    },
+    server: {
+        host: true,
+    },
+
+};
