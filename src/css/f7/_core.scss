@@ -17,6 +17,9 @@
         --f7-safe-area-top: env(safe-area-inset-top);
         --f7-safe-area-bottom: env(safe-area-inset-bottom);
     }
+    .device-android {
+        --f7-safe-area-top: 20px;
+    }
      :root .ios-left-edge,
      :root .ios-edges,
      :root .safe-area-left,

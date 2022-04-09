@@ -58,9 +58,9 @@ function Login({ f7router }) {
     <Page
       className="bg-white"
       name="login"
+      noNavbar
       noToolbar
     >
-      <div>aaaaaaaaaaaaaa</div>
       {/* <Navbar
         innerClass="navbars-bg"
         //title="What is your email address?"
