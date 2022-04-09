@@ -60,7 +60,6 @@ function Login({ f7router }) {
       name="login"
       noToolbar
     >
-      <div>aaaaaaaaaaaaaa</div>
       {/* <Navbar
         innerClass="navbars-bg"
         //title="What is your email address?"

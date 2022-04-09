@@ -12,7 +12,7 @@ export default {
         reactRefresh(),
     ],
     root: SRC_DIR,
-    base: '/app2022/',
+    base: '',
     publicDir: PUBLIC_DIR,
     build: {
         outDir: BUILD_DIR,
