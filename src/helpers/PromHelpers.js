@@ -1,5 +1,4 @@
-import { SERVER_APP } from "./config";
-
+const SERVER_APP = "";
 var APP21 = window.app21 || {};
 
 const CHOOSE_FILE_SERVER = (_opt) => {
@@ -28,17 +27,23 @@ const CHOOSE_FILE_SERVER = (_opt) => {
             APP21.prom('POST_TO_SERVER', JSON.stringify({
                 server: opt.server,
                 path: s.data
-                    // token: 'neu_co',
+                // token: 'neu_co',
             })).then(s1 => {
                 var rs = JSON.parse(s1.data);
                 //console.log('app_camera->CAMERA->POST_TO_SERVER->OK', rs.data);
                 // vm.$emit('success', rs.data);
                 resolve(rs);
             }).catch(f1 => {
-                reject({ title: 'POST_TO_SERVER FAIL', error: f1 })
+                reject({
+                    title: 'POST_TO_SERVER FAIL',
+                    error: f1
+                })
             });
         }).catch(e => {
-            reject({ title: 'CAMERA FAIL', error: e })
+            reject({
+                title: 'CAMERA FAIL',
+                error: e
+            })
         })
     })
 }
@@ -76,15 +81,27 @@ const OPEN_QRCODE = () => {
 const SEND_TOKEN_FIREBASE = () => {
     if (typeof APP21 !== 'undefined') {
         return new Promise((resolve, reject) => {
-            APP21.prom('KEY', JSON.stringify({ key: 'FirebaseNotiToken' })).then(({ data }) => {
-                resolve({ Token: data });
-            }).catch(({ error }) => {
-                resolve({ error: error })
+            APP21.prom('KEY', JSON.stringify({
+                key: 'FirebaseNotiToken'
+            })).then(({
+                data
+            }) => {
+                resolve({
+                    Token: data
+                });
+            }).catch(({
+                error
+            }) => {
+                resolve({
+                    error: error
+                })
             })
         });
     } else {
         return new Promise((resolve, reject) => {
-            resolve({ error: "Yêu cầu nâng cấp lên phiên bản mới nhất." });
+            resolve({
+                error: "Yêu cầu nâng cấp lên phiên bản mới nhất."
+            });
         });
     }
 }
@@ -92,6 +109,19 @@ const SEND_TOKEN_FIREBASE = () => {
 const CLOSE_APP = () => {
     if (typeof APP21 !== 'undefined') {
         return APP21.prom('FINISH_ACTIVITY');
+    }
+}
+
+/**
+ * ##_STATUS_BAR_COLOR
+ * @param {string} color (`light` ? light : dark)
+ * @param {string} name (see `requireScript`)
+ * @param {string} version (see `requireScript`)
+ * @param {Function} callback (see `requireScript`)
+ */
+const STATUS_BAR_COLOR = (color) => {
+    if (typeof APP21 !== 'undefined') {
+        return APP21.prom('STATUS_BAR_COLOR', color);
     }
 }
 
@@ -103,6 +133,7 @@ const PromHelpers = {
     REMOVE_BADGE,
     OPEN_QRCODE,
     SEND_TOKEN_FIREBASE,
-    CLOSE_APP
+    CLOSE_APP,
+    STATUS_BAR_COLOR
 }
 export default PromHelpers;

@@ -1,0 +1,12 @@
+@import "../init";
+.page-home {
+    &__header {
+        background: #83af1e;
+        padding-top: var(--f7-safe-area-top);
+    }
+    &__main {
+        margin-top: -30px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+    }
+}

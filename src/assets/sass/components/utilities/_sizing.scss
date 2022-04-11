@@ -10,6 +10,13 @@
     width: auto !important;
 }
 
+.w-p15px {
+    width: calc(100% - 30px) !important;
+}
+.h-p15px {
+    height: calc(100% - 30px) !important;
+}
+
 @each $name,
 $value in $heights-and-widths {
 

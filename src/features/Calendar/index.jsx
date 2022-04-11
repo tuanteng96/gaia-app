@@ -14,39 +14,32 @@ import {
   Row,
   Col,
   Button,
-  useStore,
 } from "framework7-react";
-import store from "../js/store";
+import PromHelpers from "../../helpers/PromHelpers";
+import ToolbarControls from "../../components/Toolbar/ToolbarControls";
 
-const HomePage = (props) => {
-  const { Token } = useStore("Auth");
-  console.log(Token);
+const Calendar = ({f7router}) => {
   return (
-    <Page name="home">
+    <Page name="calendar" 
+      onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
+      onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}>
       {/* Top Navbar */}
       <Navbar sliding={false}>
         <NavLeft>
-          <Link
-            iconIos="f7:menu"
-            iconAurora="f7:menu"
-            iconMd="material:menu"
-            panelOpen="left"
-          />
+          <Link className="icon-only">
+            <i className="fa-light fa-circle-user"></i>
+          </Link>
         </NavLeft>
-        <NavTitle sliding>EZS Spa Manager</NavTitle>
+        <NavTitle sliding>Bảng lịch</NavTitle>
         <NavRight>
-          <Link
-            iconIos="f7:menu"
-            iconAurora="f7:menu"
-            iconMd="material:menu"
-            panelOpen="right"
-          />
+          <Link className="icon-only">
+            <i className="fa-light fa-bell"></i>
+          </Link>
         </NavRight>
       </Navbar>
       {/* Toolbar */}
-      <Toolbar bottom>
-        <Link>Left Link</Link>
-        <Link>Right Link</Link>
+      <Toolbar bottom className="bg-white">
+        <ToolbarControls f7router={f7router}/>
       </Toolbar>
       {/* Page content */}
       <Block strong>
@@ -59,12 +52,6 @@ const HomePage = (props) => {
       </List>
       <button
         type="button"
-        onClick={() => {
-          store.dispatch(
-            "setToken",
-            "Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam"
-          );
-        }}
       >
         Push Action
       </button>
@@ -117,4 +104,4 @@ const HomePage = (props) => {
     </Page>
   );
 };
-export default HomePage;
+export default Calendar;

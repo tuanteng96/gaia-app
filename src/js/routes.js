@@ -1,7 +1,13 @@
 // AUTH PAGE
 import LoginPage from "../features/Auth/pages/Login.jsx";
+import ForgotPasswordPage from "../features/Auth/pages/ForgotPassword.jsx";
 
-import HomePage from '../features/home.jsx';
+//HOME PAGE
+import HomePage from '../features/Home/index.jsx';
+
+//CALENDAR PAGE
+import CalendarPage from "../features/Calendar/index.jsx";
+
 import AboutPage from '../features/about.jsx';
 import FormPage from '../features/form.jsx';
 
@@ -26,15 +32,24 @@ var routes = [{
         //component: HomePage,
         async: function({ router, to, resolve }) {
             const splashScreen = document.getElementById("splash-screen");
+            const isSplashScreen = splashScreen.classList.contains("hidden")
             async function requestUser() {
                 try {
-                    await new Promise((resolve) => setTimeout(resolve, 1000));
-                    store.dispatch("setToken", "abcccc").then(() => {
+                    if(isSplashScreen) {
                         splashScreen.classList.add("hidden");
                         resolve({
                             component: HomePage,
                         });
-                    });
+                    }
+                    else {
+                        await new Promise((resolve) => setTimeout(resolve, 1000));
+                        store.dispatch("setToken", "abcccc").then(() => {
+                            splashScreen.classList.add("hidden");
+                            resolve({
+                                component: HomePage,
+                            });
+                        });
+                    }
                 } catch (error) {
                     splashScreen.classList.add("hidden");
                     resolve({
@@ -42,7 +57,7 @@ var routes = [{
                     });
                 }
             }
-            if (1 === 2) {
+            if (1 === 1) {
                 requestUser();
             } else {
                 splashScreen.classList.add("hidden");
@@ -57,7 +72,19 @@ var routes = [{
         path: '/login/',
         component: LoginPage,
     },
+    {
+        path: '/forgot/',
+        component: ForgotPasswordPage,
+    },
     // ================================================================= //
+
+    // CALENDAR PAGE
+    {
+        path: '/calendar/',
+        component: CalendarPage,
+    },
+    // ================================================================= //
+    
     {
         path: '/about/',
         component: AboutPage,

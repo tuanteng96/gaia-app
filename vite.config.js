@@ -22,12 +22,8 @@ export default {
             treeshake: false,
             output: {
                 assetFileNames: (assetInfo) => {
-                    let extType = assetInfo.name.split('.').at(1);
-                    if (extType === "css") {
-                        return `assets/css/[name][extname]`;
-                    }
-                    if (/ttf|woff2/i.test(extType) || extType === "woff") {
-                        return `assets/fonts/[name][extname]`;
+                    if (/\.css$/.test(assetInfo.name)) {
+                        return 'assets/css/[name][extname]'
                     }
                     return `assets/[name][extname]`;
                 },

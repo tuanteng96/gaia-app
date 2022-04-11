@@ -32,6 +32,33 @@
     <!-- built styles file will be auto injected -->
 </head>
 
+<script>
+  var IOS = true;
+  /**
+   * gửi yêu cầu tới app IOS || app Android
+   */
+  function app_request(cmd, value) {
+      if (window['ANDROID'])
+          ANDROID.Do(cmd, value);
+      else
+          window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.IOS.postMessage({
+              "cmd": cmd,
+              "value": value
+          })
+  }
+
+  /**
+   * App trả lời
+   */
+  function app_response(cmd, value) {
+
+  }
+
+  //Webview visiable
+  app_request("call", JSON.stringify({ sub_cmd: 'WV_VISIBLE', sub_cmd_id: -999, params: '1' }));
+
+</script>
+
 <body>
     <div id="app"></div>
 
@@ -47,7 +74,8 @@
         ></circle>
       </svg>
     </div>
-
+    <script type="text/javascript" src="https://ver2.hoccunggaia.edu.vn/app/21/app21.js?1"></script>
+    <script type="text/javascript" src="https://ver2.hoccunggaia.edu.vn/app/21/Index21.js"></script>
     <script type="module" src="./js/app.js"></script>
 </body>
 

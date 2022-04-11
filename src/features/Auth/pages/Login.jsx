@@ -3,26 +3,19 @@ import { Button, f7, Link, List, ListInput, Navbar, NavLeft, NavRight, NavTitle,
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { AsyncTimeOut } from "../../../helpers/AwaitHelpers";
+import PromHelpers from "../../../helpers/PromHelpers";
 import store from "../../../js/store";
+import LogoImages from "../../../assets/media/logos/logo-gaia.png";
+import BackgroundLogin from "../../../assets/media/pages/login/bg-login.png"
 
 const USNSchema = Yup.object().shape({
-  USN: Yup.string().required("Nhập Email / Số điện thoại.").test('test-name', 'Email / Số điện thoại không hợp lệ.',
-    function (value) {
-      const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
-      const phoneRegex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g; // /(84|0[3|5|7|8|9])+([0-9]{8})\b/g
-      let isValidEmail = emailRegex.test(value);
-      let isValidPhone = phoneRegex.test(value);
-      if (!isValidEmail && !isValidPhone) {
-        return false;
-      }
-      return true;
-    }),
+  USN: Yup.string().required("Nhập tài khoản của bạn."),
+  PWD: Yup.string().required("Nhập nhật khẩu của bạn.")
 });
 
 function Login({ f7router }) {
 
-  const [initialValues, setInitialValues] = useState({ USN: "" });
+  const [initialValues, setInitialValues] = useState({ USN: "", PWD: "" });
 
   const onSubmit = async (values, { setErrors }) => {
     f7.dialog.preloader('Đang kiểm tra...');
@@ -37,7 +30,7 @@ function Login({ f7router }) {
         }
         store.dispatch('setLogin', obj).then(() => {
           f7.dialog.close();
-          f7router.navigate('/login-pwd/');
+          f7router.navigate('/home/');
         });
       }
       else {
@@ -45,34 +38,23 @@ function Login({ f7router }) {
       }
     } catch (error) {
       const obj = {
-        USN: values.USN,
+        USN: "Tài khoản không tồn tại.",
       }
-      store.dispatch('setLogin', obj).then(() => {
-        f7router.navigate('/registration/');
-        f7.dialog.close();
-      });
+      setErrors(obj);
+      f7.dialog.close();
     }
   }
 
   return (
     <Page
       className="bg-white"
+      style={{ backgroundImage: `url(${BackgroundLogin})`, backgroundSize : "cover"}}
       name="login"
       noNavbar
       noToolbar
+      onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
+      onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}
     >
-      {/* <Navbar
-        innerClass="navbars-bg"
-        //title="What is your email address?"
-        noShadow={true}
-        sliding={true}
-        noHairline={true}
-        bgColor="light"
-      >
-        <NavLeft backLink="Back" sliding={true}></NavLeft>
-        <NavTitle sliding={true}>What is your email address?</NavTitle>
-        <NavRight></NavRight>
-      </Navbar> */}
       <Formik
         initialValues={initialValues}
         validationSchema={USNSchema}
@@ -90,15 +72,19 @@ function Login({ f7router }) {
           } = formikProps;
           return (
             <Form className="d--f fd--c jc--sb h-100">
-              <div>
+              <div className="p-safe-area-top">
+                <div className="text-center pt-50px pb-30px">
+                  <img src={LogoImages} alt="GAIA" />
+                </div>
+                <div className="px-15px fw-600 font-size-lg text-center text-uppercase mb-30px">Đăng nhập tài khoản</div>
                 <List noHairlinesMd>
                   <ListInput
                     outline
-                    label="Email / Số điện thoại"
+                    label="Tài khoản"
                     floatingLabel
                     type="text"
                     name="USN"
-                    placeholder="09xxx"
+                    placeholder="Nhập tài khoản"
                     clearButton
                     className="mt-20px auto-focus"
                     errorMessage={errors.USN}
@@ -107,31 +93,46 @@ function Login({ f7router }) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
+                  <ListInput
+                    outline
+                    label="Mật khẩu"
+                    floatingLabel
+                    type="password"
+                    name="PWD"
+                    placeholder="Nhập mật khẩu"
+                    clearButton
+                    className="mt-20px auto-focus"
+                    errorMessage={errors.PWD}
+                    validate
+                    errorMessageForce={errors.PWD && touched.PWD}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
                 </List>
               </div>
-              <div className="p-15px bz-bb">
+              <div className="pl-15px pt-15px pr-15px bz-bb">
                 <Button
                   type="submit"
-                  className="btn btn-black-ezs w-100 text-uppercase"
+                  className="btn btn-success-ezs w-100 text-uppercase"
                 >
-                  Tiếp tục
+                  Đăng nhập
                 </Button>
                 <Button
                   className="btn btn-outline-black-ezs w-100 text-uppercase mt-10px"
-                  onClick={() => f7router.navigate("/registration/")}
+                  onClick={() => f7router.navigate("/forgot/")}
                 >
-                  Tạo tài khoản
+                  Quên mật khẩu
                 </Button>
                 <div className="text-center mt-15px">
                   <div className="text-muted font-size-xs mb-6px">
-                    By signing up I agree to the
+                    Bản quyền thuộc về GAIA
                   </div>
                   <div className="font-size-xs">
-                    <Link>Terms and Conditions</Link>
+                    <Link>Các điều khoản</Link>
                     <span className="text-muted px-4px text-black-ezs">
-                      and to the
+                      và
                     </span>
-                    <Link>Privacy Polocy</Link>
+                    <Link>Chính sách bảo mật</Link>
                   </div>
                 </div>
               </div>
