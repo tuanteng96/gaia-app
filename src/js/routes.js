@@ -5,6 +5,9 @@ import ForgotPasswordPage from "../features/Auth/pages/ForgotPassword.jsx";
 //HOME PAGE
 import HomePage from '../features/Home/index.jsx';
 
+//POSTS PAGE
+import PostsDetailPage from "../features/Posts/PostsDetail.jsx";
+
 //CALENDAR PAGE
 import CalendarPage from "../features/Calendar/index.jsx";
 
@@ -15,7 +18,9 @@ import FormPage from '../features/form.jsx';
 import DynamicRoutePage from '../features/dynamic-route.jsx';
 import RequestAndLoad from '../features/request-and-load.jsx';
 import NotFoundPage from '../features/404.jsx';
+
 import store from "./store.js";
+import AuthApi from "../api/AuthApi.js";
 
 function checkAuth({ resolve, reject }) {
     const router = this;
@@ -35,20 +40,29 @@ var routes = [{
             const isSplashScreen = splashScreen.classList.contains("hidden")
             async function requestUser() {
                 try {
-                    if(isSplashScreen) {
+                    if (isSplashScreen) {
                         splashScreen.classList.add("hidden");
                         resolve({
                             component: HomePage,
                         });
-                    }
-                    else {
-                        await new Promise((resolve) => setTimeout(resolve, 1000));
-                        store.dispatch("setToken", "abcccc").then(() => {
-                            splashScreen.classList.add("hidden");
-                            resolve({
-                                component: HomePage,
+                    } else {
+                        const { data } = await AuthApi.LoginByToken(store.state.Auth.Token);
+                        if (data.error) {
+                            store.dispatch("setLogout").then(() => {
+                                resolve({
+                                    component: LoginPage,
+                                });
+                                splashScreen.classList.add("hidden");
                             });
-                        });
+                        } else {
+                            store.dispatch("setToken", { User: data, Token: data.Token }).then(() => {
+                                resolve({
+                                    component: HomePage,
+                                });
+                                splashScreen.classList.add("hidden");
+                            });
+                        }
+
                     }
                 } catch (error) {
                     splashScreen.classList.add("hidden");
@@ -57,7 +71,8 @@ var routes = [{
                     });
                 }
             }
-            if (1 === 1) {
+
+            if (store.state.Auth.Token) {
                 requestUser();
             } else {
                 splashScreen.classList.add("hidden");
@@ -78,13 +93,21 @@ var routes = [{
     },
     // ================================================================= //
 
+    // POST PAGE
+    {
+        path: '/adv/:id',
+        component: PostsDetailPage,
+    },
+
+    // ================================================================= //
+
     // CALENDAR PAGE
     {
         path: '/calendar/',
         component: CalendarPage,
     },
     // ================================================================= //
-    
+
     {
         path: '/about/',
         component: AboutPage,

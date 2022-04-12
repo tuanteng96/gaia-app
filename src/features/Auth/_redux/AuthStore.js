@@ -1,34 +1,34 @@
+import { LocalStorageHelper } from "../../../helpers/LocalStorageHelper";
+
 export const authStore = {
     state: {
-        Login: {
-            USN: "",
-            Phone: "84971021196",
-            Profile: null
-        },
         Auth: {
-            user: null,
-            Token: null
+            User: LocalStorageHelper.load("EZS_User") || null,
+            Token: LocalStorageHelper.load("EZS_Token") || null
         }
     },
     getters: {
-        getLogin: ({ state }) => {
-            return state.Login;
-        },
         Auth: ({ state }) => {
             return state.Auth;
         },
     },
-    actions : {
-        setLogin: ({ state }, Login) => {
-            state.Login = {
-                ...state.Login,
-                ...Login
-            }
-        },
-        setToken: ({ state }, Token) => {
+    actions: {
+        setToken: ({ state }, { Token, User }) => {
+            LocalStorageHelper.add("EZS_Token", Token);
+            LocalStorageHelper.add("EZS_User", User);
             state.Auth = {
                 ...state.Auth,
-                Token: Token
+                Token: Token,
+                User: User
+            }
+        },
+        setLogout: ({ state }) => {
+            LocalStorageHelper.remove("EZS_Token");
+            LocalStorageHelper.remove("EZS_User");
+            state.Auth = {
+                ...state.Auth,
+                Token: "",
+                User: ""
             }
         }
     }

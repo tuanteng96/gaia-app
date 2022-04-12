@@ -40,13 +40,13 @@ $gray-900: #181C32 !default;
 //
 $text-muted: #a8adb9;
 // Theme colors
-$theme-colors: ("white": $white, "black-ezs": $black-ezs,"success-ezs": $success-ezs, "light": $light, "success": $success, "facebook" : $facebook, "gmail": $gmail) !default;
+$theme-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "light": $light, "success": $success, "facebook": $facebook, "gmail": $gmail) !default;
 // Theme colors
-$theme-hover-colors: ("white": $white-hover, "black-ezs": $black-ezs-hover, "success-ezs": $success-ezs-hover,"light": $light-hover, "success": $success-hover, "facebook": $facebook-hover, "gmail": $gmail-hover) !default;
+$theme-hover-colors: ("white": $white-hover, "black-ezs": $black-ezs-hover, "success-ezs": $success-ezs-hover, "light": $light-hover, "success": $success-hover, "facebook": $facebook-hover, "gmail": $gmail-hover) !default;
 // Theme text colors
-$theme-text-colors: ("white": $white, "black-ezs": $black-ezs,"success-ezs": $success-ezs, "success": $success, "facebook" : $facebook, "gmail" : $gmail) !default;
+$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "success": $success, "facebook": $facebook, "gmail": $gmail) !default;
 // Theme color hover
-$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse,"success-ezs": $success-ezs-inverse, "success": $success-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
+$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success-ezs": $success-ezs-inverse, "success": $success-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
 // Typography
 $font-size-base: 1rem !default; // Assumes the browser default, typically `13px`
 $font-size-xs: $font-size-base * .75 !default;
@@ -59,24 +59,21 @@ $h2-font-size: $font-size-base * 1.75 !default; // 22.75px
 $h3-font-size: $font-size-base * 1.5 !default; // 19.5px
 $h4-font-size: $font-size-base * 1.35 !default; // 17.55px
 $h5-font-size: $font-size-base * 1.25 !default; // 16.25px
-$h6-font-size: $font-size-base * 1.5 !default; // 15.275px
-$config-font-size: ("size-xs": $font-size-xs, "size-sm": $font-size-sm, "size-md": $font-size-md, "size-lg": $font-size-lg, "size-xl": $font-size-xl, "size-h6" : $h6-font-size );
+$h6-font-size: $font-size-base * 1.3 !default; // 15.275px
+$config-font-size: ("size-xs": $font-size-xs, "size-sm": $font-size-sm, "size-md": $font-size-md, "size-lg": $font-size-lg, "size-xl": $font-size-xl, "size-h6": $h6-font-size);
 // Quickly modify global styling by enabling or disabling optional features.
 $enable-rounded: true !default;
 $enable-shadows: true !default;
 // Line height
-
-$config-line-text: ("xs" : 16px, "sm" : 20px, "md" : 23px, "lg": 25px);
+$config-line-text: ("xs": 16px, "sm": 20px, "md": 22px, "lg": 25px);
 // Border
-$border-width:                1px !default;
-$border-color:                $gray-300 !default;
-
-$border-radius:               .25rem !default;
-$border-radius-xl:            1.3rem !default;
-$border-radius-lg:            .3rem !default;
-$border-radius-sm:            .2rem !default;
-
-$rounded-pill:                50rem !default;
+$border-width: 1px !default;
+$border-color: $gray-300 !default;
+$border-radius: .25rem !default;
+$border-radius-xl: 1.3rem !default;
+$border-radius-lg: .3rem !default;
+$border-radius-sm: .2rem !default;
+$rounded-pill: 50rem !default;
 // Transition
 $transition: all 0.35s ease !default; // Custom variable
 $transition-link: color 0.15s ease,
@@ -101,4 +98,6 @@ $btn-border-radius: 5px;
 $btn-base: (padding: 17px 8px 16px 8px, font-size: $font-size-sm, border-radius: $btn-border-radius, font-weight: 600);
 $btn-size-config: (xs: (padding: 5px, font-size: $font-size-xs, border-radius: $btn-border-radius), sm: (padding: 6px, font-size: $font-size-sm, border-radius: $btn-border-radius), md: (padding: 7px, font-size: $font-size-md, border-radius: $btn-border-radius), lg: (padding: 8px, font-size: $font-size-lg, border-radius: $btn-border-radius), xl: (padding: 10px, font-size: $font-size-xl, border-radius: $btn-border-radius));
 // Overflows
-$overflows: auto, hidden !default;
+$overflows: auto,
+hidden !default;
+//

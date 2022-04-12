@@ -11,6 +11,42 @@ $color in $theme-text-colors {
     color: $text-muted !important;
 }
 
+.text-gray-100 {
+    color: $gray-100;
+}
+
+.text-gray-200 {
+    color: $gray-200;
+}
+
+.text-gray-3100 {
+    color: $gray-300;
+}
+
+.text-gray-400 {
+    color: $gray-400;
+}
+
+.text-gray-500 {
+    color: $gray-500;
+}
+
+.text-gray-600 {
+    color: $gray-600;
+}
+
+.text-gray-700 {
+    color: $gray-700;
+}
+
+.text-gray-800 {
+    color: $gray-800;
+}
+
+.text-gray-900 {
+    color: $gray-900;
+}
+
 //
 @each $name,
 $size in $config-font-size {
@@ -28,11 +64,27 @@ $config in $config-text {
 }
 
 //
-
 @each $name,
 $config in $config-line-text {
     // Base text
     .line-height-#{$name} {
         line-height: $config;
+    }
+}
+
+// 
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@for $count from 2 through 15 {
+    .text-truncate-#{$count} {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: $count;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
     }
 }

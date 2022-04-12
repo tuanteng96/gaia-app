@@ -13,38 +13,38 @@
 .w-p15px {
     width: calc(100% - 30px) !important;
 }
+
 .h-p15px {
     height: calc(100% - 30px) !important;
 }
 
 @each $name,
 $value in $heights-and-widths {
-
     // Height
     .w-#{$name} {
         width: $value !important;
     }
-
     // Width
     .h-#{$name} {
         height: $value !important;
     }
-
     // Min width
     .min-w-#{$name} {
         min-width: $value !important;
     }
-
     // Min
     .min-h-#{$name} {
         min-height: $value !important;
     }
-
     .max-h-#{$name} {
         max-height: $value !important;
     }
-
     .max-w-#{$name} {
         max-width: $value !important;
     }
+}
+
+//
+.object-fit-cover {
+    object-fit: cover !important;
 }

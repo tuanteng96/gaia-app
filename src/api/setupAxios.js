@@ -1,5 +1,6 @@
 export default function setupAxios(axios, store) {
-    // Request interceptor for API calls
+    console.log(store)
+        // Request interceptor for API calls
     axios.interceptors.request.use(
         (config) => {
             const {

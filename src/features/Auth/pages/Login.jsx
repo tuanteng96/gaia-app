@@ -1,54 +1,76 @@
 import { Form, Formik } from "formik";
-import { Button, f7, Link, List, ListInput, Navbar, NavLeft, NavRight, NavTitle, Page } from "framework7-react";
+import {
+  Button,
+  f7,
+  Link,
+  List,
+  ListInput,
+  Navbar,
+  NavLeft,
+  NavRight,
+  NavTitle,
+  Page,
+} from "framework7-react";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { AsyncTimeOut } from "../../../helpers/AwaitHelpers";
 import PromHelpers from "../../../helpers/PromHelpers";
 import store from "../../../js/store";
 import LogoImages from "../../../assets/media/logos/logo-gaia.png";
-import BackgroundLogin from "../../../assets/media/pages/login/bg-login.png"
+import BackgroundLogin from "../../../assets/media/pages/login/bg-login.png";
+import AuthApi from "../../../api/AuthApi";
 
 const USNSchema = Yup.object().shape({
   USN: Yup.string().required("Nhập tài khoản của bạn."),
-  PWD: Yup.string().required("Nhập nhật khẩu của bạn.")
+  PWD: Yup.string().required("Nhập nhật khẩu của bạn."),
 });
 
 function Login({ f7router }) {
-
-  const [initialValues, setInitialValues] = useState({ USN: "", PWD: "" });
+  const [initialValues] = useState({ USN: "", PWD: "" });
 
   const onSubmit = async (values, { setErrors }) => {
-    f7.dialog.preloader('Đang kiểm tra...');
+    f7.dialog.preloader("Vui lòng đợi...");
     try {
-      await AsyncTimeOut(2000);
-      if (values.USN === "0971021196") {
+      const { data } = await AuthApi.Login(values);
+      if (data.error) {
         const obj = {
-          USN: values.USN,
-          Profile: {
-            FullName: "Nguyễn Tài Tuấn"
-          }
-        }
-        store.dispatch('setLogin', obj).then(() => {
-          f7.dialog.close();
-          f7router.navigate('/home/');
+          USN: "Tài khoản hoặc mật khẩu không chính xác.",
+        };
+        setErrors(obj);
+        f7.dialog.close();
+      } else {
+        const obj = {
+          User: data,
+          Token: data.Token,
+        };
+        PromHelpers.SEND_TOKEN_FIREBASE().then(async (response) => {
+          await AuthApi.SendTokenFirebase({
+            Token: response.Token,
+            ID: data.ID,
+            Type: data.acc_type,
+          });
+          store.dispatch("setToken", obj).then(() => {
+            f7.dialog.close();
+            f7router.navigate("/", { transition: "f7-circle" });
+          });
         });
       }
-      else {
-        throw { USN: "Tài khoản không tồn tại." };
-      }
     } catch (error) {
+      console.log(error);
       const obj = {
-        USN: "Tài khoản không tồn tại.",
-      }
+        USN: "Tài khoản không chính xác.",
+      };
       setErrors(obj);
       f7.dialog.close();
     }
-  }
+  };
 
   return (
     <Page
       className="bg-white"
-      style={{ backgroundImage: `url(${BackgroundLogin})`, backgroundSize : "cover"}}
+      style={{
+        backgroundImage: `url(${BackgroundLogin})`,
+        backgroundSize: "cover",
+      }}
       name="login"
       noNavbar
       noToolbar
@@ -76,7 +98,9 @@ function Login({ f7router }) {
                 <div className="text-center pt-50px pb-30px">
                   <img src={LogoImages} alt="GAIA" />
                 </div>
-                <div className="px-15px fw-600 font-size-lg text-center text-uppercase mb-30px">Đăng nhập tài khoản</div>
+                <div className="px-15px fw-600 font-size-lg text-center text-uppercase mb-30px">
+                  Đăng nhập tài khoản
+                </div>
                 <List noHairlinesMd>
                   <ListInput
                     outline
@@ -129,9 +153,7 @@ function Login({ f7router }) {
                   </div>
                   <div className="font-size-xs">
                     <Link>Các điều khoản</Link>
-                    <span className="text-muted px-4px text-black-ezs">
-                      và
-                    </span>
+                    <span className="text-muted px-4px text-black-ezs">và</span>
                     <Link>Chính sách bảo mật</Link>
                   </div>
                 </div>

@@ -23,9 +23,9 @@ const MyApp = () => {
     // Extended by Dialog component:
     dialog: {
       title: "Gaia Manage",
-        // change default "OK" button text
-      buttonOk: 'OK',
-      buttonCancel: 'Đóng'
+      // change default "OK" button text
+      buttonOk: "OK",
+      buttonCancel: "Đóng",
     },
     touch: {
       activeState: true,
