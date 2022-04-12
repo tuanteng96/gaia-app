@@ -3,41 +3,49 @@ import { Button, f7, Link, List, ListInput, Navbar, NavLeft, NavRight, NavTitle,
 import React, { useState } from "react";
 import * as Yup from "yup";
 import AuthApi from "../../../api/AuthApi";
-import { AsyncTimeOut } from "../../../helpers/AwaitHelpers";
 import PromHelpers from "../../../helpers/PromHelpers";
 import store from "../../../js/store";
 
 const ForgotSchema = Yup.object().shape({
-    Email: Yup.string().required("Nhập Email của bạn."),
+    secure: Yup.string().required("Nhập mã xác nhận."),
+    new_password: Yup.string().required("Nhập mật khẩu mới."),
+    re_newpassword: Yup.string().required("Nhập lại mật khẩu mới.").oneOf([Yup.ref('new_password'), null], 'Mật khẩu không trùng khớp'),
 });
 
-function ForgotPassword({ f7router }) {
-    const [initialValues, setInitialValues] = useState({ Email: "" });
+function ResetPassword({ f7router }) {
+    const [initialValues, setInitialValues] = useState({ secure: "", new_password: "", re_newpassword: "" });
 
     const onSubmit = async (values, { setErrors }) => {
         f7.dialog.preloader('Đang kiểm tra...');
         var bodyFormData = new FormData();
-        bodyFormData.append("input", values.Email);
-        bodyFormData.append("loading", true);
+        bodyFormData.append("secure", values.secure);
+        bodyFormData.append("new_password", values.new_password);
+        bodyFormData.append("re_newpassword", values.re_newpassword);
         bodyFormData.append("mess", "");
         bodyFormData.append("error", "");
-        bodyFormData.append("currentPhoneNumber", "");
-        AuthApi.Forgot(bodyFormData).then(({ data }) => {
-            if (data.error) {
+        bodyFormData.append("autoLogin", "3");
+
+        AuthApi.ResetPWD(bodyFormData).then(({ data }) => {
+            if(data.error) {
+                const objErr = {};
+                if(data.error === "SECURE_WRONG") objErr.secure = "Mã xác thực đã hết hạn hoặc không hợp lệ.";
+                if (data.error === "RE_NEWPASSWORD_WRONG") objErr.re_newpassword = "Mật khẩu không trùng khớp.";
                 f7.dialog.close();
-                setErrors({ Email: data.error === "FORGET_METHOD_OVER_SECTION" ? "Vượt quá số lượng đổi mật khẩu trong ngày." : "Địa chỉ Email không hợp lệ." })
             }
             else {
-                f7.dialog.close();
-                f7router.navigate('/reset-password/');
+                console.log(data);
+                store.dispatch('setLogin', obj).then(() => {
+                    f7router.navigate('/');
+                    f7.dialog.close();
+                });
             }
-        }).catch((error) => console.log(error));
+        }).catch(error => console.log(error));
     }
 
     return (
         <Page
             className="bg-white"
-            name="page-forgot-password"
+            name="page-reset-password"
             noToolbar
             onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
             onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}
@@ -75,16 +83,46 @@ function ForgotPassword({ f7router }) {
                                 <List noHairlinesMd>
                                     <ListInput
                                         outline
-                                        label="Email"
+                                        label="Mã xác nhận"
                                         floatingLabel
                                         type="text"
-                                        name="Email"
-                                        placeholder="Nhập Email của bạn"
+                                        name="secure"
+                                        placeholder="Nhập mã xác nhận của bạn"
                                         clearButton
                                         className="mt-20px auto-focus"
-                                        errorMessage={errors.Email}
+                                        errorMessage={errors.secure}
                                         validate
-                                        errorMessageForce={errors.Email && touched.Email}
+                                        errorMessageForce={errors.secure && touched.secure}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <ListInput
+                                        outline
+                                        label="Mật khẩu mới"
+                                        floatingLabel
+                                        type="password"
+                                        name="new_password"
+                                        placeholder="Nhập mật khẩu mới"
+                                        clearButton
+                                        className="mt-20px auto-focus"
+                                        errorMessage={errors.new_password}
+                                        validate
+                                        errorMessageForce={errors.new_password && touched.new_password}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <ListInput
+                                        outline
+                                        label="Nhập lại mật khẩu"
+                                        floatingLabel
+                                        type="password"
+                                        name="re_newpassword"
+                                        placeholder="Nhập lại mật khẩu mới"
+                                        clearButton
+                                        className="mt-20px auto-focus"
+                                        errorMessage={errors.re_newpassword}
+                                        validate
+                                        errorMessageForce={errors.re_newpassword && touched.re_newpassword}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
@@ -124,4 +162,4 @@ function ForgotPassword({ f7router }) {
     );
 }
 
-export default ForgotPassword;
+export default ResetPassword;

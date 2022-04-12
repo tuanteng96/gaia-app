@@ -3,14 +3,16 @@ import { Link } from "framework7-react";
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { toAbsoluteUrl } from "../../../helpers/AssetsHelpers";
 
 export default function ItemPosts({ item }) {
+  
   return (
-    <Link className="mb-15px w-100 fd--c position-relative last-mb-0">
+    <Link href={`/posts/detail/${item.source.ID}/`} className="mb-15px w-100 fd--c position-relative last-mb-0" animate={true}>
       <div className="w-100 mb-10px h-225px">
         <LazyLoadImage
           className="w-100 d-block shadows rounded-sm object-fit-cover"
-          src={item.source.RawThumb}
+          src={toAbsoluteUrl(item.source.Thumbnail)}
           alt={item.source.Title}
           height={225}
           effect="blur"

@@ -1,1 +1,3 @@
-export const toAbsoluteUrl = pathname => window.location.origin + pathname;
+import APPS from "../js/settings";
+
+export const toAbsoluteUrl = pathname => APPS.DOMAIN_URL + "upload/image/" + pathname;

@@ -1,6 +1,7 @@
 // AUTH PAGE
 import LoginPage from "../features/Auth/pages/Login.jsx";
 import ForgotPasswordPage from "../features/Auth/pages/ForgotPassword.jsx";
+import ResetPasswordPage from "../features/Auth/pages/ResetPassword.jsx";
 
 //HOME PAGE
 import HomePage from '../features/Home/index.jsx';
@@ -91,11 +92,15 @@ var routes = [{
         path: '/forgot/',
         component: ForgotPasswordPage,
     },
+    {
+        path: '/reset-password/',
+        component: ResetPasswordPage,
+    },
     // ================================================================= //
 
     // POST PAGE
     {
-        path: '/adv/:id',
+        path: '/posts/detail/:ID',
         component: PostsDetailPage,
     },
 

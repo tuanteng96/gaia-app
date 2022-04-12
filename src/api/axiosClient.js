@@ -1,9 +1,9 @@
 import axios from 'axios';
 import queryString from 'query-string';
-
+import APPS from "../js/settings";
 
 const axiosClient = axios.create({
-    baseURL: "https://ver2.hoccunggaia.edu.vn/",
+    baseURL: APPS.DOMAIN_API,
     // headers: {
     //     'content-type': 'text/plain',
     //     "Set-Cookie": "promo_shown=1; SameSite=Lax"
