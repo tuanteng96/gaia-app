@@ -7,7 +7,8 @@ import {
     NavRight,
     Link,
     Toolbar,
-    SkeletonBlock
+    SkeletonBlock,
+    SkeletonImage
 } from "framework7-react";
 import PromHelpers from "../../helpers/PromHelpers";
 import LogoImages from "../../assets/media/logos/logo-gaia-text.png";
@@ -71,82 +72,77 @@ const Home = ({ f7router }) => {
     };
 
     return (
-        <Page
-            name="home"
-            className="bg-white page-home"
-            //noNavbar
-            onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
-            onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}
-            ptr
-            //ptrMousewheel={true}
-            onPtrRefresh={loadRefresh}
-            infinite
-            infiniteDistance={50}
-            infinitePreloader={showPreloader}
-            onInfinite={loadMore}
-        >
-            {/* Top Navbar */}
-            <Navbar
-                className="bg-color-white border-bottom"
-                sliding={false}
-            >
-                <NavLeft>
-                    <Link className="icon-only">
-                        <div className="font-size-h6 fw-500">
-                            <i className="fa-regular fa-bars-sort"></i>
-                        </div>
-                    </Link>
-                </NavLeft>
-                <NavTitle className="w-65px">
-                    <div className="h-100 d--f ai--c jc--c">
-                        <img className="w-100" src={LogoImages} alt="" />
-                    </div>
-                </NavTitle>
-                <NavRight>
-                    <Link className="icon-only">
-                        <div className="text-center">
-                            <i className="font-size-h6 fa-regular fa-bell"></i>
-                        </div>
-                    </Link>
-                </NavRight>
-            </Navbar>
-            {/* Toolbar */}
-            <Toolbar bottom className="bg-white">
-                <ToolbarControls f7router={f7router} />
-            </Toolbar>
-            {/* Page content */}
-            <div className="">
-                <div className="p-15px page-home__main bg-white">
-                    {
-                        loading && (
-                            <div>
-                                <SkeletonBlock
-                                    className="w-100 h-225px shadows rounded-sm skeleton-text skeleton-effect-wave"
-                                    //style={{ width: '40px', height: '40px', borderRadius: '50%' }}
-                                    slot="media"
-                                />
-                                <SkeletonBlock
-                                    className="w-100 mt-10px h-15px skeleton-text skeleton-effect-wave"
-                                    slot="media"
-                                />
-                                <SkeletonBlock
-                                    className="w-100 mt-10px h-8px skeleton-text skeleton-effect-wave"
-                                    slot="media"
-                                />
-                                <SkeletonBlock
-                                    className="w-100 mt-5px h-8px skeleton-text skeleton-effect-wave"
-                                    slot="media"
-                                />
-                            </div>
-                        )
-                    }
-                    {!loading && ListPosts &&
-                        ListPosts.map((item, index) => (
-                            <ItemPosts key={index} item={item} />
-                        ))}
-                </div>
+      <Page
+        name="home"
+        className="bg-white page-home"
+        //noNavbar
+        onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
+        onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}
+        ptr
+        //ptrMousewheel={true}
+        onPtrRefresh={loadRefresh}
+        infinite
+        infiniteDistance={50}
+        infinitePreloader={showPreloader}
+        onInfinite={loadMore}
+      >
+        {/* Top Navbar */}
+        <Navbar className="bg-color-white border-bottom" sliding={false}>
+          <NavLeft>
+            <Link className="icon-only">
+              <div className="font-size-h6 fw-500">
+                <i className="fa-regular fa-bars-sort"></i>
+              </div>
+            </Link>
+          </NavLeft>
+          <NavTitle className="w-65px">
+            <div className="h-100 d--f ai--c jc--c">
+              <img className="w-100" src={LogoImages} alt="" />
             </div>
-        </Page>
+          </NavTitle>
+          <NavRight>
+            <Link className="icon-only">
+              <div className="text-center">
+                <i className="font-size-h6 fa-regular fa-bell"></i>
+              </div>
+            </Link>
+          </NavRight>
+        </Navbar>
+        {/* Toolbar */}
+        <Toolbar bottom className="bg-white">
+          <ToolbarControls f7router={f7router} />
+        </Toolbar>
+        {/* Page content */}
+        <div className="">
+          <div className="p-15px page-home__main bg-white">
+            {loading && (
+              <div>
+                <SkeletonImage
+                  className="w-100 h-200px shadows rounded-sm skeleton-text skeleton-effect-wave"
+                  slot="media"
+                />
+                <SkeletonBlock
+                  className="w-100 mt-10px h-15px skeleton-text skeleton-effect-wave"
+                  slot="media"
+                />
+                <SkeletonBlock
+                  className="w-100 mt-10px h-8px skeleton-text skeleton-effect-wave"
+                  slot="media"
+                />
+                <SkeletonBlock
+                  className="w-100 mt-5px h-8px skeleton-text skeleton-effect-wave"
+                  slot="media"
+                />
+              </div>
+            )}
+            {!loading &&
+              ListPosts &&
+              ListPosts.map((item, index) => (
+                <ItemPosts key={index} item={item} />
+              ))}
+          </div>
+        </div>
+      </Page>
     );
 };
 export default Home;

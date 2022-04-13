@@ -12,9 +12,10 @@ import Framework7React from 'framework7-react';
 // Import Framework7 Styles
 import 'framework7/framework7-bundle.css';
 
-// Import Modules styles
-import 'react-phone-input-2/lib/material.css';
-
+// Import react-lazy-load-image-component
+import "react-lazy-load-image-component/src/effects/blur.css";
+//
+import "../assets/js/NotiAppClickHandler.js";
 // Import Icons and App Custom Styles
 import '../css/icons.css';
 import '../css/app.scss';
@@ -23,7 +24,7 @@ import '../css/app.scss';
 import App from '../app/MyApp.jsx';
 
 // Init F7 React Plugin
-Framework7.use(Framework7React)
+Framework7.use(Framework7React);
 
 // Mount React App
 ReactDOM.render(

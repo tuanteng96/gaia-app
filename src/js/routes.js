@@ -26,7 +26,13 @@ import AuthApi from "../api/AuthApi.js";
 function checkAuth({ resolve, reject }) {
     const router = this;
     if (store.state.Auth.Token) {
-        resolve()
+        // window.NotificationHandle = ({ id }) => {
+        //     if (id) {
+        //         router.navigate(`/posts/detail/${id}`);
+        //         reject();
+        //     }
+        // };
+        resolve();
     } else {
         reject();
         router.navigate('/login/');
@@ -38,7 +44,8 @@ var routes = [{
         //component: HomePage,
         async: function({ router, to, resolve }) {
             const splashScreen = document.getElementById("splash-screen");
-            const isSplashScreen = splashScreen.classList.contains("hidden")
+            const isSplashScreen = splashScreen.classList.contains("hidden");
+
             async function requestUser() {
                 try {
                     if (isSplashScreen) {
@@ -63,7 +70,6 @@ var routes = [{
                                 splashScreen.classList.add("hidden");
                             });
                         }
-
                     }
                 } catch (error) {
                     splashScreen.classList.add("hidden");
@@ -81,7 +87,8 @@ var routes = [{
                     component: LoginPage,
                 });
             }
-        }
+        },
+        beforeEnter: checkAuth
     },
     // AUTH PAGE
     {

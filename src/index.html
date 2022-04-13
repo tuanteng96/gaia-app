@@ -19,6 +19,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <title>Gaia Manager</title>
 
+    <meta http-equiv="Content-Language" content="vi" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -33,30 +34,33 @@
 </head>
 
 <script>
-  var IOS = true;
-  /**
-   * gửi yêu cầu tới app IOS || app Android
-   */
-  function app_request(cmd, value) {
-      if (window['ANDROID'])
-          ANDROID.Do(cmd, value);
-      else
-          window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.IOS.postMessage({
-              "cmd": cmd,
-              "value": value
-          })
-  }
+    var IOS = true;
+    /**
+     * gửi yêu cầu tới app IOS || app Android
+     */
+    function app_request(cmd, value) {
+        if (window['ANDROID'])
+            ANDROID.Do(cmd, value);
+        else
+            window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.IOS.postMessage({
+                "cmd": cmd,
+                "value": value
+            })
+    }
 
-  /**
-   * App trả lời
-   */
-  function app_response(cmd, value) {
+    /**
+     * App trả lời
+     */
+    function app_response(cmd, value) {
 
-  }
+    }
 
-  //Webview visiable
-  app_request("call", JSON.stringify({ sub_cmd: 'WV_VISIBLE', sub_cmd_id: -999, params: '1' }));
-
+    //Webview visiable
+    app_request("call", JSON.stringify({
+        sub_cmd: 'WV_VISIBLE',
+        sub_cmd_id: -999,
+        params: '1'
+    }));
 </script>
 
 <body>
@@ -76,6 +80,7 @@
     </div>
     <script type="text/javascript" src="https://ver2.hoccunggaia.edu.vn/app/21/app21.js?1"></script>
     <script type="text/javascript" src="https://ver2.hoccunggaia.edu.vn/app/21/Index21.js"></script>
+    <script type="text/javascript" src="https://cdn.ezs.vn/lib/NotiAppClickHandler/NotiAppClickHandler.js?t=2021_01_26_2"></script>
     <script type="module" src="./js/app.js"></script>
 </body>
 

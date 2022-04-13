@@ -11,9 +11,10 @@
 "./components/button",
 "./components/line";
 // 3: Plugins
-@import "./vendors/f7/init", 
+@import "./vendors/f7/init",
 "./vendors/plugins/react-phone-input-2",
 "./vendors/plugins/g-captcha",
 "./vendors/plugins/react-input-verification-code";
 // 4: Page
-@import "./pages/home";
+@import "./pages/home",
+"./pages/posts";

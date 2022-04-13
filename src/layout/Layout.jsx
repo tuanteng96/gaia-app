@@ -1,16 +1,13 @@
-import { View, f7 } from "framework7-react";
-import React from "react";
-import AuthInit from "../features/Auth/_redux/AuthInit";
-import { EzsSplashScreenProvider } from "./_core/EzsSplashScreen";
+import { View, f7, Link } from "framework7-react";
+import React, { useEffect } from "react";
 
-function Layout(props) {
+function Layout({ f7router }) {
+  useEffect(() => {
+    f7router.navigate("/home/", { transition: "f7-circle" });
+  }, []);
+
   return (
-    <EzsSplashScreenProvider>
-      <AuthInit>
-        {/* Your main view, should have "view-main" class */}
-        <View main className="safe-areas" url="/" />
-      </AuthInit>
-    </EzsSplashScreenProvider>
+    <div></div>
   );
 }
 

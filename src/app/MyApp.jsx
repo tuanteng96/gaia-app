@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { App, View } from "framework7-react";
+import { App, f7, f7ready, View } from "framework7-react";
 
 import routes from "../js/routes";
 import store from "../js/store";
 
-const MyApp = () => {
+const MyApp = (props) => {
   // Framework7 Parameters
   const f7params = {
     name: "Gaia Manage", // App name,
@@ -31,7 +31,7 @@ const MyApp = () => {
       activeState: true,
     },
     on: {
-      init: function () {
+      init: function (router) {
         console.log("init");
       },
       pageInit: function () {
@@ -40,7 +40,10 @@ const MyApp = () => {
     },
     view: {
       allowDuplicateUrls: true,
+      xhrCache: false,
+      pushState: true,
     },
+    initOnDeviceReady: true,
   };
 
   return (
