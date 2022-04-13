@@ -89,7 +89,7 @@ const Home = ({ f7router }) => {
         {/* Top Navbar */}
         <Navbar className="bg-color-white border-bottom" sliding={false}>
           <NavLeft>
-            <Link className="icon-only">
+            <Link className="icon-only" panelOpen="left">
               <div className="font-size-h6 fw-500">
                 <i className="fa-regular fa-bars-sort"></i>
               </div>

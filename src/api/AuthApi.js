@@ -24,7 +24,7 @@ const ResetPWD = (data) => {
 const SendTokenFirebase = ({ Token, Type, ID }) => {
     return axiosClient.get(`${SEND_TOKEN_URL}&token=${Token}&accid=${ID}&acctype=${Type}`);
 }
-const RemoveFirebase = ({ Token, Type, ID }) => {
+const RemoveTokenFirebase = ({ Token, Type, ID }) => {
     return axiosClient.get(`${SEND_TOKEN_URL}&token=${Token}&accid=${ID}&acctype=${Type}&logout=1`);
 }
 
@@ -35,6 +35,6 @@ const AuthApi = {
     Forgot,
     ResetPWD,
     SendTokenFirebase,
-    RemoveFirebase,
+    RemoveTokenFirebase,
 }
 export default AuthApi;

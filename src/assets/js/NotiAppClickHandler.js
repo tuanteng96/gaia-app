@@ -1,8 +1,5 @@
 ﻿;
 (function() {
-
-
-
     var clicked = [];
     //var $log = document.createElement('div');
     //$log.style.position = 'fixed';
@@ -60,11 +57,12 @@
     }
 
     function _bodySendEvent(name, data) {
-        // var e = new Event("noti_click." + name);
-        // e.data = data;
-        // document.body.dispatchEvent(e);
+        var e = new Event("noti_click." + name);
+        e.data = data;
+        document.body.dispatchEvent(e);
+        console.log("On Click");
         //$log.innerHTML = name;
-        window.NotificationHandle(data);
+        //window.NotificationHandle(data);
     }
 
 

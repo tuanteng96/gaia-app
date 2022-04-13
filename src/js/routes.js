@@ -45,7 +45,6 @@ var routes = [{
         async: function({ router, to, resolve }) {
             const splashScreen = document.getElementById("splash-screen");
             const isSplashScreen = splashScreen.classList.contains("hidden");
-
             async function requestUser() {
                 try {
                     if (isSplashScreen) {
@@ -87,8 +86,7 @@ var routes = [{
                     component: LoginPage,
                 });
             }
-        },
-        beforeEnter: checkAuth
+        }
     },
     // AUTH PAGE
     {
