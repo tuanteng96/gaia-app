@@ -8,6 +8,7 @@
             }
             .navbar-bg {
                 background-color: get($value, "backgroud");
+                box-shadow: 0px 10px 30px 0px rgb(82 63 105 / 8%);
                 &::after {
                     background: transparent;
                 }
@@ -22,10 +23,19 @@
                         display: none !important;
                     }
                     i {
-                        width: 20px;
-                        &:after {
-                            font-size: 16px;
+                        &.icon-back {
+                            width: 30px;
+                            &:after {
+                                font-size: 16px;
+                            }
                         }
+                    }
+                }
+            }
+            &.navbar {
+                &.no-shadow {
+                    .navbar-bg {
+                        box-shadow: none;
                     }
                 }
             }
@@ -39,6 +49,7 @@
         padding-top: 0;
     }
 }
+
 .navbar-hidden {
     transform: translate3d(0, calc(-1 * (var(--f7-navbar-height) + var(--f7-safe-area-top))), 0);
 }

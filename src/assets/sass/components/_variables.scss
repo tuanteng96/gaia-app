@@ -4,29 +4,45 @@ $white: #ffffff !default;
 $white-hover: #ffffff !default;
 $white-inverse: $black !default;
 //
+$primary: #3699FF !default; // Bootstrap variable
+$primary-hover: #187DE4 !default; // Custom variable
+$primary-light: #E1F0FF !default; // Custom variable
+$primary-inverse: $white !default; // Custom variable
+//
 $success-ezs: #83af1e !default;
 $success-ezs-hover: #668815 !default;
+$success-ezs-light: #668815 !default;
 $success-ezs-inverse: $white;
 //
 $black-ezs: #2b2c31 !default;
 $black-ezs-hover: #55565b !default;
+$black-ezs-light: #55565b !default;
 $black-ezs-inverse: $white;
 //
 $light: #fafafa !default;
 $light-hover: #55565b !default;
+$light-light: #55565b !default;
 $light-inverse: $black;
 //
 $facebook: #3c66c4 !default;
 $facebook-hover: #3c66c4 !default;
+$facebook-light: #3c66c4 !default;
 $facebook-inverse: $white !default;
 //
 $gmail: #ce4332 !default;
 $gmail-hover: #ce4332 !default;
+$gmail-light: #ce4332 !default;
 $gmail-inverse: $white !default;
 //
 $success: #00a3ad;
 $success-hover: #52b5bd !default;
+$success-light: #52b5bd !default;
 $success-inverse: $white !default;
+// Danger colors
+$danger: #F64E60 !default; // Bootstrap variable
+$danger-hover: #EE2D41 !default; // Custom variable
+$danger-light: #FFE2E5 !default; // Custom variable
+$danger-inverse: $white !default; // Custom variable
 //// Gray colors
 $gray-100: #F3F6F9 !default;
 $gray-200: #EBEDF3 !default;
@@ -40,13 +56,17 @@ $gray-900: #181C32 !default;
 //
 $text-muted: #a8adb9;
 // Theme colors
-$theme-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "light": $light, "success": $success, "facebook": $facebook, "gmail": $gmail) !default;
+$theme-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "light": $light, "success": $success, "primary": $primary, "danger": $danger, "facebook": $facebook, "gmail": $gmail) !default;
 // Theme colors
-$theme-hover-colors: ("white": $white-hover, "black-ezs": $black-ezs-hover, "success-ezs": $success-ezs-hover, "light": $light-hover, "success": $success-hover, "facebook": $facebook-hover, "gmail": $gmail-hover) !default;
+$theme-hover-colors: ("white": $white-hover, "black-ezs": $black-ezs-hover, "success-ezs": $success-ezs-hover, "light": $light-hover, "success": $success-hover, "primary": $primary-hover, "danger": $danger-hover, "facebook": $facebook-hover, "gmail": $gmail-hover) !default;
 // Theme text colors
-$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "success": $success, "facebook": $facebook, "gmail": $gmail) !default;
+$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "success": $success, "primary": $primary, "danger": $danger, "facebook": $facebook, "gmail": $gmail) !default;
 // Theme color hover
-$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success-ezs": $success-ezs-inverse, "success": $success-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
+$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success-ezs": $success-ezs-inverse, "success": $success-inverse, "danger": $danger-inverse, "primary": $primary-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
+//
+$theme-outline-inverse-colors: ( "white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "light": $light, "success": $success, "danger": $danger, "primary": $primary, "facebook": $facebook, "gmail": $gmail) !default; // Custom variable
+// Extended light colors for Bootstrap theme colors
+$theme-light-colors: ( "white": $white, "black-ezs": $black-ezs-light, "success-ezs": $success-ezs-light, "light": $light-light, "success": $success-light, "danger": $danger-light, "primary": $primary-light, "facebook": $facebook-light, "gmail": $gmail-light) !default; // Custom variable
 // Typography
 $font-size-base: 1rem !default; // Assumes the browser default, typically `13px`
 $font-size-xs: $font-size-base * .75 !default;
@@ -68,7 +88,7 @@ $enable-shadows: true !default;
 $config-line-text: ("xs": 16px, "sm": 20px, "md": 22px, "lg": 25px, "xl": 28px, "xxl": 35px);
 // Border
 $border-width: 1px !default;
-$border-color: $gray-300 !default;
+$border-color: $gray-100 !default;
 $border-radius: .25rem !default;
 $border-radius-xl: 1.3rem !default;
 $border-radius-lg: .3rem !default;

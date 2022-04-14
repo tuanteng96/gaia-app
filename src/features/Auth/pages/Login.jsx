@@ -50,12 +50,11 @@ function Login({ f7router }) {
           });
           store.dispatch("setToken", obj).then(() => {
             f7.dialog.close();
-            f7router.navigate("/", { transition: "f7-circle" });
+            f7router.navigate("/", { transition: "f7-flip" });
           });
         });
       }
     } catch (error) {
-      console.log(error);
       const obj = {
         USN: "Tài khoản không chính xác.",
       };

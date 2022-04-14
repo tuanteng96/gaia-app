@@ -22,7 +22,7 @@ const initialMenu = [{
 {
     Title: "Kho",
     IconClass: "fa-light h6-font-size fa-warehouse-full font-size-lg",
-    Url: "/b",
+    Url: "/warehouse/",
     Active: false,
 },
 {

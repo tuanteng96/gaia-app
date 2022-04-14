@@ -6,6 +6,7 @@ import {
   Link,
   SkeletonImage,
   SkeletonBlock,
+  f7,
 } from "framework7-react";
 import PromHelpers from "../../helpers/PromHelpers";
 import ToolbarControls from "../../components/Toolbar/ToolbarControls";
@@ -19,14 +20,17 @@ moment.locale("vi");
 
 const PostsDetail = ({ f7router, f7route }) => {
   const { ID } = f7route.params;
+  const { isNotification } = f7route.query;
   const [PostDetail, setPostDetail] = useState(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (ID) {
       getDetailPosts();
     }
+    if (isNotification && f7.device.ios) {
+      PromHelpers.SET_BADGE();
+    }
   }, []);
-
   const getDetailPosts = () => {
     setLoading(true);
     PostsApi.getPostsDetailToId(ID)

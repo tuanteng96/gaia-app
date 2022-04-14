@@ -1,11 +1,22 @@
 import React, { useEffect } from "react";
 
-import { App, Block, f7, f7ready, Navbar, Page, Panel, View } from "framework7-react";
+import {
+  App,
+  Block,
+  f7,
+  f7ready,
+  Navbar,
+  Page,
+  Panel,
+  View,
+} from "framework7-react";
 
 import routes from "../js/routes";
 import store from "../js/store";
 import PromHelpers from "../helpers/PromHelpers";
 import PanelLeft from "../components/Panel/PanelLeft";
+import axiosClient from "../api/axiosClient";
+import setupAxios from "../api/setupAxios";
 
 const MyApp = (props) => {
   // Framework7 Parameters
@@ -48,9 +59,11 @@ const MyApp = (props) => {
     //initOnDeviceReady: true,
   };
 
+  setupAxios(axiosClient, store);
+
   const handleUserNotification = ({ data }) => {
-    f7.views.main.router.navigate(`/posts/detail/${data.id}`);
-  }
+    f7.views.main.router.navigate(`/posts/detail/${data.id}?isNotification=1`);
+  };
 
   const ToBackBrowser = () => {
     const { history } = f7.views.main.router;
@@ -69,8 +82,11 @@ const MyApp = (props) => {
     document.body.addEventListener("noti_click.art_id", handleUserNotification);
     // this will clean up the event every time the component is re-rendered
     return function cleanup() {
-      document.body.removeEventListener("noti_click.art_id", handleUserNotification);
-    }
+      document.body.removeEventListener(
+        "noti_click.art_id",
+        handleUserNotification
+      );
+    };
   }, []);
 
   return (

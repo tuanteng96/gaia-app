@@ -44,11 +44,9 @@ function ForgotPassword({ f7router }) {
         >
             <Navbar
                 innerClass="navbars-bg"
-                //title="What is your email address?"
-                noShadow={true}
                 sliding={false}
                 noHairline={true}
-                bgColor="light"
+                bgColor="white"
             >
                 <NavLeft backLink="Back" sliding={true}></NavLeft>
                 <NavTitle sliding={true}>Quên mật khẩu ?</NavTitle>

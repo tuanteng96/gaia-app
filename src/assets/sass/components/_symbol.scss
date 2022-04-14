@@ -1,0 +1,20 @@
+.symbol {
+    &-label {}
+    @each $color,
+    $value in $theme-colors {
+        // Default style
+        &.symbol-#{$color} {
+            .symbol-label {
+                background-color: $value;
+                color: theme-inverse-color($color);
+            }
+        }
+        // Light style
+        &.symbol-light-#{$color} {
+            .symbol-label {
+                background-color: theme-light-color($color);
+                color: $value;
+            }
+        }
+    }
+}
