@@ -60,6 +60,17 @@
         }
     }
 }
+
+.input-border-none {
+    input {
+        height: 100%;
+        font-size: 16px;
+    }
+    .input-clear-button {
+        right: 20px !important;
+    }
+}
+
 // Icon clear input
 .ios {
     .input-clear-button {

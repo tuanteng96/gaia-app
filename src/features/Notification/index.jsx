@@ -28,7 +28,7 @@ function Notification({ f7router }) {
   const [ListNotification, setListNotification] = useState([]);
   const [ListTotal, setListTotal] = useState(0);
   const [Filters, setFilters] = useState({
-    Ps: 20,
+    Ps: 10,
     Pi: 1,
   });
   const [PageTotal, setPageTotal] = useState(0);

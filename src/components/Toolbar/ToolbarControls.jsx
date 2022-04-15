@@ -48,7 +48,7 @@ export default function ToolbarControls({ f7router }) {
         <Fragment>
             {
                 MenuList.map((item, index) => (
-                    <Link href={item.Url} className={`w-20 ${item.Active ? "text-success-ezs" : "text-muted"}`} key={index}>
+                    <Link href={!item.Active ? item.Url : ""} className={`w-20 ${item.Active ? "text-success-ezs" : "text-muted"}`} key={index}>
                         <i className={item.IconClass}></i>
                     </Link>
                 ))

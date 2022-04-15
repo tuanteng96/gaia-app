@@ -39,6 +39,15 @@
                     }
                 }
             }
+            .subnavbar {
+                border-top: 1px solid $border-color;
+                background-color: get($value, "backgroud");
+                //box-shadow: 0 4px 2px -2px rgb(82 63 105 / 8%);
+                box-shadow: 0px 10px 30px -10px rgb(82 63 105 / 8%);
+                &::after {
+                    background-color: transparent;
+                }
+            }
         }
     }
 }
