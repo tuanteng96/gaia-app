@@ -5,11 +5,15 @@ import * as Yup from "yup";
 import AuthApi from "../../../api/AuthApi";
 import PromHelpers from "../../../helpers/PromHelpers";
 
-const ForgotSchema = Yup.object().shape({
-    Email: Yup.string().required("Nhập Email của bạn."),
+const ChangePWDSchema = Yup.object().shape({
+    secure: Yup.string().required("Nhập mã xác nhận."),
+    new_password: Yup.string().required("Nhập mật khẩu mới."),
+    re_newpassword: Yup.string()
+        .required("Nhập lại mật khẩu mới.")
+        .oneOf([Yup.ref("new_password"), null], "Mật khẩu không trùng khớp"),
 });
 
-function ForgotPassword({ f7router }) {
+function ChangePassword({ f7router }) {
     const [initialValues, setInitialValues] = useState({ Email: "" });
 
     const onSubmit = async (values, { setErrors }) => {
@@ -47,12 +51,12 @@ function ForgotPassword({ f7router }) {
                 bgColor="white"
             >
                 <NavLeft backLink="Back" sliding={true}></NavLeft>
-                <NavTitle sliding={true}>Quên mật khẩu ?</NavTitle>
+                <NavTitle sliding={true}>Thay đổi mật khẩu ?</NavTitle>
                 <NavRight></NavRight>
             </Navbar>
             <Formik
                 initialValues={initialValues}
-                validationSchema={ForgotSchema}
+                validationSchema={ChangePWDSchema}
                 onSubmit={onSubmit}
                 enableReinitialize={true}
             >
@@ -71,16 +75,50 @@ function ForgotPassword({ f7router }) {
                                 <List noHairlinesMd>
                                     <ListInput
                                         outline
-                                        label="Email"
+                                        label="Mật khẩu hiện tại"
                                         floatingLabel
                                         type="text"
-                                        name="Email"
-                                        placeholder="Nhập Email của bạn"
+                                        name="secure"
+                                        placeholder="Nhập mật khẩu hiện tại"
                                         clearButton
                                         className="mt-20px auto-focus"
-                                        errorMessage={errors.Email}
+                                        errorMessage={errors.secure}
                                         validate
-                                        errorMessageForce={errors.Email && touched.Email}
+                                        errorMessageForce={errors.secure && touched.secure}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <ListInput
+                                        outline
+                                        label="Mật khẩu mới"
+                                        floatingLabel
+                                        type="password"
+                                        name="new_password"
+                                        placeholder="Nhập mật khẩu mới"
+                                        clearButton
+                                        className="mt-20px auto-focus"
+                                        errorMessage={errors.new_password}
+                                        validate
+                                        errorMessageForce={
+                                            errors.new_password && touched.new_password
+                                        }
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <ListInput
+                                        outline
+                                        label="Nhập lại mật khẩu"
+                                        floatingLabel
+                                        type="password"
+                                        name="re_newpassword"
+                                        placeholder="Nhập lại mật khẩu mới"
+                                        clearButton
+                                        className="mt-20px auto-focus"
+                                        errorMessage={errors.re_newpassword}
+                                        validate
+                                        errorMessageForce={
+                                            errors.re_newpassword && touched.re_newpassword
+                                        }
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
@@ -91,13 +129,7 @@ function ForgotPassword({ f7router }) {
                                     type="submit"
                                     className="btn btn-success-ezs w-100 text-uppercase"
                                 >
-                                    Quên mật khẩu
-                                </Button>
-                                <Button
-                                    className="btn btn-outline-black-ezs w-100 text-uppercase mt-10px"
-                                    onClick={() => f7router.navigate("/login/")}
-                                >
-                                    Đăng nhập tài khoản
+                                    Đổi mật khẩu
                                 </Button>
                                 <div className="text-center mt-15px">
                                     <div className="text-muted font-size-xs mb-6px">
@@ -105,9 +137,7 @@ function ForgotPassword({ f7router }) {
                                     </div>
                                     <div className="font-size-xs">
                                         <Link>Các điều khoản</Link>
-                                        <span className="text-muted px-4px text-black-ezs">
-                                            và
-                                        </span>
+                                        <span className="text-muted px-4px text-black-ezs">và</span>
                                         <Link>Chính sách bảo mật</Link>
                                     </div>
                                 </div>
@@ -120,4 +150,4 @@ function ForgotPassword({ f7router }) {
     );
 }
 
-export default ForgotPassword;
+export default ChangePassword;

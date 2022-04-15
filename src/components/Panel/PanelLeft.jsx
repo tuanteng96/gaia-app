@@ -7,6 +7,7 @@ import {
   useStore,
   f7,
   Link,
+  Button,
 } from "framework7-react";
 import React from "react";
 import AuthApi from "../../api/AuthApi";
@@ -39,60 +40,54 @@ export default function PanelLeft() {
       });
     });
   };
+
+  const OnChangePassword = () => {
+    f7.panel.close();
+    f7.views.main.router.navigate(`/change-password/`);
+  }
+
   if (!User) return "";
+  console.log(User)
   return (
     <Panel resizable left reveal>
       <View>
         <Page className="bg-white page-content-hidden">
           <Navbar title={`GV.${User.FullName}`} />
           <div className="h-100 d--f fd--c jc--sb">
-            <div className="p-15px">
+            <div className="p-15px d--f fd--c f--1 jc--sb">
               <div>
-                <Link className="d--f jc--fs ai--fe py-10px">
-                  <div className="text-center w-40px">
-                    <i className="fa-light fa-user font-size-md"></i>
-                  </div>
-                  <span className="pl-4 fw-500">Thông tin cá nhân</span>
-                </Link>
-                <Link className="d--f jc--fs ai--fe py-10px">
-                  <div className="text-center w-40px">
-                    <i className="fa-light fa-bell-on font-size-md"></i>
-                  </div>
-                  <span className="pl-4 fw-500">Thông báo</span>
-                </Link>
-                <Link className="d--f jc--fs ai--fe py-10px">
-                  <div className="text-center w-40px">
-                    <i className="fa-light fa-calendar-day font-size-md"></i>
-                  </div>
-                  <span className="pl-4 fw-500">Bảng lịch</span>
-                </Link>
-                <Link className="d--f jc--fs ai--fe py-10px">
-                  <div className="text-center w-40px">
-                    <i className="fa-light fa-circle-exclamation-check font-size-md"></i>
-                  </div>
-                  <span className="pl-4 fw-500">Cần xử lý</span>
-                </Link>
-                <Link className="d--f jc--fs ai--fe py-10px">
-                  <div className="text-center w-40px">
-                    <i className="fa-light fa-warehouse-full font-size-md"></i>
-                  </div>
-                  <span className="pl-4 fw-500">Kho</span>
-                </Link>
-                <Link className="d--f jc--fs ai--fe py-10px">
-                  <div className="text-center w-40px">
-                    <i className="fa-light fa-chart-pie font-size-md"></i>
-                  </div>
-                  <span className="pl-4 fw-500">Thống kê</span>
-                </Link>
+                <div className="mb-15px mt-10px">
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">Họ Tên</div>
+                  <div className="font-size-md line-height-sm fw-500">{User.FullName}</div>
+                </div>
+                <div className="mb-15px">
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">Số điện thoại</div>
+                  <div className="font-size-md line-height-sm fw-500">{User.Phone}</div>
+                </div>
+                <div className="mb-15px">
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">Email</div>
+                  <div className="font-size-md line-height-sm fw-500">{User.Email}</div>
+                </div>
+                <div className="mb-15px">
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">Trường</div>
+                  <div className="font-size-md line-height-sm fw-500 text-capitalize">{User.SchoolTitle}</div>
+                </div>
+              </div>
+              <div>
+                <Button
+                  className="btn btn-black-ezs btn-sm w-100 text-uppercase mb-10px"
+                  onClick={OnChangePassword}
+                >
+                  Đổi mật khẩu
+                </Button>
+                <Button onClick={handlerLogout} type="button" className="btn btn-light btn-sm w-100"><i className="fa-light fa-arrow-right-from-bracket pr-5px"></i> Đăng xuất</Button>
               </div>
             </div>
             <div>
               <div
-                className="border-top h-45px d--f ai--c jc--c px-15px text-center"
-                onClick={handlerLogout}
+                className="border-top h-45px d--f ai--c jc--c font-size-sm px-15px text-center text-muted fw-500"
               >
-                <i className="fa-light fa-arrow-right-from-bracket"></i>
-                <span className="fw-500 pl-10px">Đăng xuất</span>
+                GAIA VERSION 1.0
               </div>
             </div>
           </div>

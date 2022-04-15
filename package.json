@@ -33,6 +33,7 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-lazy-load-image-component": "^1.5.4",
+        "react-mobile-datepicker": "^4.0.2",
         "skeleton-elements": "^3.5.0",
         "swiper": "^6.8.4",
         "yup": "^0.32.11"

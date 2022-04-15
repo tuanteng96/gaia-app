@@ -2,6 +2,7 @@
 import LoginPage from "../features/Auth/pages/Login.jsx";
 import ForgotPasswordPage from "../features/Auth/pages/ForgotPassword.jsx";
 import ResetPasswordPage from "../features/Auth/pages/ResetPassword.jsx";
+import ChangePasswordPage from "../features/Auth/pages/ChangePassword.jsx";
 
 //HOME PAGE
 import HomePage from '../features/Home/index.jsx';
@@ -112,6 +113,13 @@ var routes = [{
     {
         path: "/reset-password/",
         component: ResetPasswordPage,
+        options: {
+            transition: "f7-cover",
+        },
+    },
+    {
+        path: "/change-password/",
+        component: ChangePasswordPage,
         options: {
             transition: "f7-cover",
         },

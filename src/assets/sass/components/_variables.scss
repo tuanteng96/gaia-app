@@ -19,10 +19,10 @@ $black-ezs-hover: #55565b !default;
 $black-ezs-light: #55565b !default;
 $black-ezs-inverse: $white;
 //
-$light: #fafafa !default;
-$light-hover: #55565b !default;
-$light-light: #55565b !default;
-$light-inverse: $black;
+$light: #F3F6F9 !default;
+$light-hover: #E4E6EF !default;
+$light-light: #7E8299 !default;
+$light-inverse: #7E8299;
 //
 $facebook: #3c66c4 !default;
 $facebook-hover: #3c66c4 !default;
@@ -54,7 +54,7 @@ $gray-700: #5E6278 !default;
 $gray-800: #3F4254 !default;
 $gray-900: #181C32 !default;
 //
-$text-muted: #a8adb9;
+$text-muted: #B5B5C3;
 //
 $font-family-number: 'Poppins',
 sans-serif;
@@ -63,9 +63,9 @@ $theme-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $succes
 // Theme colors
 $theme-hover-colors: ("white": $white-hover, "black-ezs": $black-ezs-hover, "success-ezs": $success-ezs-hover, "light": $light-hover, "success": $success-hover, "primary": $primary-hover, "danger": $danger-hover, "facebook": $facebook-hover, "gmail": $gmail-hover) !default;
 // Theme text colors
-$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "success": $success, "primary": $primary, "danger": $danger, "facebook": $facebook, "gmail": $gmail) !default;
+$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "success": $success,"light": $light, "primary": $primary, "danger": $danger, "facebook": $facebook, "gmail": $gmail) !default;
 // Theme color hover
-$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success-ezs": $success-ezs-inverse, "success": $success-inverse, "danger": $danger-inverse, "primary": $primary-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
+$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success-ezs": $success-ezs-inverse,"light": $light-inverse, "success": $success-inverse, "danger": $danger-inverse, "primary": $primary-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
 //
 $theme-outline-inverse-colors: ( "white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "light": $light, "success": $success, "danger": $danger, "primary": $primary, "facebook": $facebook, "gmail": $gmail) !default; // Custom variable
 // Extended light colors for Bootstrap theme colors
@@ -120,7 +120,7 @@ $config-text: (font-weight: ("name": "font-weight", "prefix": "fw-", "values": (
 $btn-border: 1px;
 $btn-border-radius: 5px;
 $btn-base: (padding: 17px 8px 16px 8px, font-size: $font-size-sm, border-radius: $btn-border-radius, font-weight: 600);
-$btn-size-config: (xs: (padding: 5px, font-size: $font-size-xs, border-radius: $btn-border-radius), sm: (padding: 6px, font-size: $font-size-sm, border-radius: $btn-border-radius), md: (padding: 7px, font-size: $font-size-md, border-radius: $btn-border-radius), lg: (padding: 8px, font-size: $font-size-lg, border-radius: $btn-border-radius), xl: (padding: 10px, font-size: $font-size-xl, border-radius: $btn-border-radius));
+$btn-size-config: (xs: (padding: 5px, font-size: $font-size-xs, border-radius: $btn-border-radius), sm: (padding: 13px 8px 12px 8px, font-size: $font-size-sm, border-radius: $btn-border-radius), md: (padding: 7px, font-size: $font-size-md, border-radius: $btn-border-radius), lg: (padding: 8px, font-size: $font-size-lg, border-radius: $btn-border-radius), xl: (padding: 10px, font-size: $font-size-xl, border-radius: $btn-border-radius));
 // Overflows
 $overflows: auto,
 hidden !default;

@@ -1,0 +1,27 @@
+$rmd-height-navbar : 48px;
+
+.Modal-Portal {
+    .datepicker-modal {
+        z-index: 100001;
+    background-color: rgba(0, 0, 0, .45);
+        .datepicker {
+            &.ios {
+                .datepicker-header {
+                    height: $rmd-height-navbar;
+                    line-height: $rmd-height-navbar;
+                    font-weight: 600;
+                    font-family: $font-family-number;
+                }
+                .datepicker-navbar {
+                    box-shadow: 0px 10px 30px 0px rgb(82 63 105 / 8%);
+                    border-bottom: 0;
+                    &-btn {
+                        line-height: $rmd-height-navbar;
+                        height: $rmd-height-navbar;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}
