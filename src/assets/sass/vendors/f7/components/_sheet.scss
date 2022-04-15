@@ -1,0 +1,22 @@
+.sheet-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.sheet-modal.sheet-modal-bottom {
+    height: 100%;
+    max-height: 90%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    //overflow: hidden;
+    &::after {
+        content: "";
+        width: 65px;
+        height: 4px;
+        background: $white;
+        top: -10px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        border-radius: 5px;
+    }
+}

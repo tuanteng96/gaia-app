@@ -1,45 +1,42 @@
 import React, { useState, useEffect, Fragment, useRef } from "react";
 import {
-  Page,
+  Link,
   Navbar,
   NavLeft,
-  NavTitle,
   NavRight,
-  Link,
+  NavTitle,
+  Page,
   Toolbar,
   useStore,
-  Subnavbar,
-  Input,
 } from "framework7-react";
-import PromHelpers from "../../helpers/PromHelpers";
-import ToolbarControls from "../../components/Toolbar/ToolbarControls";
-import WareHouseApi from "../../api/WareHouseApi";
-import PageEmpty from "../../components/Empty/PageEmpty";
-import SkeletonPage from "./SkeletonPage";
-import ItemWareHouse from "./components/ItemWareHouse";
+import ToolbarControls from "../../../components/Toolbar/ToolbarControls";
+import WareHouseApi from "../../../api/WareHouseApi";
+import PageEmpty from "../../../components/Empty/PageEmpty";
+import ItemWareHouseDetail from "../components/ItemWareHouseDetail";
+import SkeletonDetailPage from "../SkeletonDetailPage";
 
-function WareHouse({ f7router }) {
+function WareHouseDetail({ f7router, f7route }) {
   const { User } = useStore("Auth");
-
-  const [ListWareHouse, setListWareHouse] = useState([]);
-  const [PageTotal, setPageTotal] = useState(0);
+  const { params, query } = f7route;
+  const [ListDetailWareHouse, setListDetailWareHouse] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [PageTotal, setPageTotal] = useState(0);
   const [Filters, setFilters] = useState({
     _key: "",
     _teacherid: User.ID,
+    _itemid: params.ID,
     _pi: 1,
-    _ps: 5,
+    _ps: 10,
   });
   const [showPreloader, setShowPreloader] = useState(false);
 
   const allowInfinite = useRef(true);
-  const typingTimeoutRef = useRef(null);
 
   useEffect(() => {
-    getListWareHouse();
+    getDetailWareHouse();
   }, []);
 
-  const getListWareHouse = (
+  const getDetailWareHouse = (
     obj = {
       isLoading: true,
       Filters: Filters,
@@ -49,14 +46,14 @@ function WareHouse({ f7router }) {
   ) => {
     const { isLoading, Filters, refresh } = obj;
     isLoading && setLoading(true);
-    WareHouseApi.getList(Filters)
+    WareHouseApi.getDetail(Filters)
       .then(({ data }) => {
         const { list, total, pi } = data;
         setFilters({ ...Filters, Pi: pi });
         if (refresh) {
-          setListWareHouse(() => [...list]);
+          setListDetailWareHouse(() => [...list]);
         } else {
-          setListWareHouse((prevState) => [...prevState, ...list]);
+          setListDetailWareHouse((prevState) => [...prevState, ...list]);
         }
         setPageTotal(total);
         setLoading(false);
@@ -66,7 +63,7 @@ function WareHouse({ f7router }) {
   };
 
   const loadRefresh = (done) => {
-    getListWareHouse(
+    getDetailWareHouse(
       {
         isLoading: false,
         Filters: { ...Filters, Pi: 1 },
@@ -84,13 +81,13 @@ function WareHouse({ f7router }) {
   const loadMore = () => {
     if (!allowInfinite.current) return;
     allowInfinite.current = false;
-    if (ListWareHouse.length >= PageTotal) {
+    if (ListDetailWareHouse.length >= PageTotal) {
       setShowPreloader(false);
       return;
     }
     setShowPreloader(true);
     const newFilters = { ...Filters, Pi: Filters.Pi + 1 };
-    getListWareHouse(
+    getDetailWareHouse(
       { isLoading: false, Filters: newFilters, refresh: false },
       () => {
         allowInfinite.current = true;
@@ -98,31 +95,10 @@ function WareHouse({ f7router }) {
     );
   };
 
-  const handleChangeSearch = (values) => {
-    setLoading(true);
-    if (typingTimeoutRef.current) {
-      clearTimeout(typingTimeoutRef.current);
-    }
-    typingTimeoutRef.current = setTimeout(() => {
-      getListWareHouse(
-        {
-          isLoading: false,
-          Filters: { ...Filters, Pi: 1, _key: values },
-          refresh: true,
-        },
-        () => {
-          allowInfinite.current = true;
-        }
-      );
-    }, 500);
-  };
-
   return (
     <Page
-      name="warehouse"
+      name="warehouse-detail"
       className="bg-white"
-      onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
-      onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}
       ptr
       //ptrMousewheel={true}
       onPtrRefresh={loadRefresh}
@@ -131,10 +107,9 @@ function WareHouse({ f7router }) {
       infinitePreloader={showPreloader}
       onInfinite={loadMore}
     >
-      {/* Top Navbar */}
       <Navbar sliding={false} bgColor="white" innerClass="navbars-bg">
         <NavLeft backLink="Back" sliding={true}></NavLeft>
-        <NavTitle sliding={true}>Kho của bạn</NavTitle>
+        <NavTitle sliding={true}>{query.Title}</NavTitle>
         <NavRight>
           <Link href="/notification/" className="icon-only">
             <div className="text-center position-relative line-height-sm">
@@ -143,39 +118,22 @@ function WareHouse({ f7router }) {
             </div>
           </Link>
         </NavRight>
-        <Subnavbar inner={false}>
-          <div className="w-100 h-100">
-            <Input
-              className="w-100 h-100 input-border-none px-20px bz-bb"
-              type="text"
-              clearButton
-              validate
-              placeholder="Tên giáo cụ ..."
-              onChange={(e) => handleChangeSearch(e.target.value)}
-              onInputClear={() => handleChangeSearch("")}
-            />
-          </div>
-        </Subnavbar>
       </Navbar>
       {/* Toolbar */}
       <Toolbar bottom className="bg-white">
         <ToolbarControls f7router={f7router} />
       </Toolbar>
-      {/* Page content */}
-      {loading && <SkeletonPage />}
+      {loading && <SkeletonDetailPage />}
       {!loading && (
         <Fragment>
-          {ListWareHouse && ListWareHouse.length > 0 ? (
-            <div className="position-relative mt-15px">
-              {ListWareHouse.map((item, index) => (
-                <ItemWareHouse
-                  item={item}
-                  key={index}
-                />
+          {ListDetailWareHouse && ListDetailWareHouse.length > 0 ? (
+            <div className="p-15px">
+              {ListDetailWareHouse.map((item, index) => (
+                <ItemWareHouseDetail key={index} item={item} />
               ))}
             </div>
           ) : (
-            <PageEmpty Title="Không có dữ liệu." />
+            <PageEmpty />
           )}
         </Fragment>
       )}
@@ -183,4 +141,4 @@ function WareHouse({ f7router }) {
   );
 }
 
-export default WareHouse;
+export default WareHouseDetail;

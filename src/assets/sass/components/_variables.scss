@@ -55,6 +55,9 @@ $gray-800: #3F4254 !default;
 $gray-900: #181C32 !default;
 //
 $text-muted: #a8adb9;
+//
+$font-family-number: 'Poppins',
+sans-serif;
 // Theme colors
 $theme-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "light": $light, "success": $success, "primary": $primary, "danger": $danger, "facebook": $facebook, "gmail": $gmail) !default;
 // Theme colors
@@ -71,6 +74,7 @@ $theme-light-colors: ( "white": $white, "black-ezs": $black-ezs-light, "success-
 $font-size-base: 1rem !default; // Assumes the browser default, typically `13px`
 $font-size-xs: $font-size-base * .75 !default;
 $font-size-sm: $font-size-base * .825 !default;
+$font-size-smm: $font-size-base * .905 !default;
 $font-size-md: $font-size-base * 1 !default;
 $font-size-lg: $font-size-base * 1.18 !default;
 $font-size-xl: $font-size-base * 1.25 !default;
@@ -80,7 +84,7 @@ $h3-font-size: $font-size-base * 1.6 !default; // 19.5px
 $h4-font-size: $font-size-base * 1.5 !default; // 17.55px
 $h5-font-size: $font-size-base * 1.45 !default; // 16.25px
 $h6-font-size: $font-size-base * 1.3 !default; // 15.275px
-$config-font-size: ("size-xs": $font-size-xs, "size-sm": $font-size-sm, "size-md": $font-size-md, "size-lg": $font-size-lg, "size-xl": $font-size-xl, "size-h6": $h6-font-size, "size-h5": $h5-font-size, "size-h4": $h4-font-size, "size-h3": $h3-font-size, "size-h2": $h2-font-size, "size-h1": $h1-font-size);
+$config-font-size: ("size-xs": $font-size-xs, "size-sm": $font-size-sm, "size-smm": $font-size-smm, "size-md": $font-size-md, "size-lg": $font-size-lg, "size-xl": $font-size-xl, "size-h6": $h6-font-size, "size-h5": $h5-font-size, "size-h4": $h4-font-size, "size-h3": $h3-font-size, "size-h2": $h2-font-size, "size-h1": $h1-font-size);
 // Quickly modify global styling by enabling or disabling optional features.
 $enable-rounded: true !default;
 $enable-shadows: true !default;
@@ -105,7 +109,7 @@ background-color 0.15s ease,
 border-color 0.15s ease,
 box-shadow 0.15s ease !default; // Custom variable
 // Heights & Widths
-$heights-and-widths: (100: 100%, 80: 80%, 70: 70%, 60: 60%, 50: 50%, 30:30%, 20:20%, 15:15%, 10:10%, auto: auto, 0: 0px, 1px: 1px, 2px: 2px, 3px: 3px, 4px: 4px, 5px: 5px, 6px: 6px, 8px: 8px, 10px: 10px, 12px: 12px, 15px: 15px, 20px: 20px, 25px: 25px, 30px: 30px, 35px: 35px, 40px: 40px, 42px: 42px, 45px: 45px, 50px: 50px, 55px: 55px, 60px: 60px, 65px: 65px, 70px: 70px, 75px: 75px, 80px: 80px, 85px: 85px, 90px: 90px, 95px: 95px, 100px: 100px, 105px: 105px, 110px: 110px, 115px: 115px, 120px: 120px, 125px: 125px, 130px: 130px, 135px: 135px, 140px: 140px, 145px: 145px, 150px: 150px, 155px: 155px, 160px: 160px, 165px: 165px, 176px: 170px, 175px: 175px, 180px: 180px, 200px: 200px, 225px: 225px, 235px: 235px, 250px: 250px, 255px: 255px, 260px: 260px, 265px: 265px, 275px: 275px, 295px: 295px, 300px: 300px, 325px: 325px, 350px: 350px, 375px: 375px, 400px: 400px, 425px: 425px, 450px: 450px, 475px: 475px, 500px: 500px, 550px: 550px, 600px: 600px, 650px: 650px, 700px: 700px, 750px: 750px, 800px: 800px, 850px: 850px, 900px: 900px, 950px: 950px, 1000px: 1000px, ) !default;
+$heights-and-widths: (100: 100%, 80: 80%, 70: 70%, 60: 60%, 50: 50%, 30:30%, 20:20%, 15:15%, 10:10%, auto: auto, 0: 0px, 1px: 1px, 2px: 2px, 3px: 3px, 4px: 4px, 5px: 5px, 6px: 6px, 8px: 8px, 10px: 10px, 12px: 12px, 15px: 15px, 20px: 20px, 25px: 25px, 30px: 30px, 35px: 35px, 40px: 40px, 42px: 42px, 45px: 45px, 48px: 48px, 50px: 50px, 55px: 55px, 60px: 60px, 65px: 65px, 70px: 70px, 75px: 75px, 80px: 80px, 85px: 85px, 90px: 90px, 95px: 95px, 100px: 100px, 105px: 105px, 110px: 110px, 115px: 115px, 120px: 120px, 125px: 125px, 130px: 130px, 135px: 135px, 140px: 140px, 145px: 145px, 150px: 150px, 155px: 155px, 160px: 160px, 165px: 165px, 176px: 170px, 175px: 175px, 180px: 180px, 200px: 200px, 225px: 225px, 235px: 235px, 250px: 250px, 255px: 255px, 260px: 260px, 265px: 265px, 275px: 275px, 295px: 295px, 300px: 300px, 325px: 325px, 350px: 350px, 375px: 375px, 400px: 400px, 425px: 425px, 450px: 450px, 475px: 475px, 500px: 500px, 550px: 550px, 600px: 600px, 650px: 650px, 700px: 700px, 750px: 750px, 800px: 800px, 850px: 850px, 900px: 900px, 950px: 950px, 1000px: 1000px, ) !default;
 // Position
 $positon-and: (0: 0, 1px: 1px, 2px: 2px, 3px: 3px, 4px: 4px, 5px: 5px, 6px: 6px, 7px: 7px, 8px: 8px, 9px: 9px, 10px: 10px, 15px: 15px, 20px: 20px, 25px: 25px, 100: 100%) !default;
 // Other

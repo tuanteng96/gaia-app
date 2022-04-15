@@ -60,7 +60,7 @@ const PostsDetail = ({ f7router, f7route }) => {
             className="w-45px h-45px bg-success-ezs d--f ai--c jc--c shadow rounded-circle mt-15px"
             onClick={() => f7router.back()}
           >
-            <i className="text-white font-size-lg fa-light fa-arrow-left"></i>
+            <i className="text-white font-size-lg fa-light fa-arrow-left h-15px"></i>
           </Link>
         </div>
         {loading && PostDetail && (
