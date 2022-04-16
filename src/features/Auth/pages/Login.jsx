@@ -108,6 +108,7 @@ function Login({ f7router }) {
                     type="text"
                     name="USN"
                     placeholder="Nhập tài khoản"
+                    value={values.USN}
                     clearButton
                     className="mt-20px auto-focus"
                     errorMessage={errors.USN}
@@ -126,6 +127,7 @@ function Login({ f7router }) {
                     clearButton
                     className="mt-20px auto-focus"
                     errorMessage={errors.PWD}
+                    value={values.PWD}
                     validate
                     errorMessageForce={errors.PWD && touched.PWD}
                     onChange={handleChange}

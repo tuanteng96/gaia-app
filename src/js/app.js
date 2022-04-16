@@ -12,10 +12,12 @@ import Framework7React from 'framework7-react';
 // Import Framework7 Styles
 import 'framework7/framework7-bundle.css';
 
+// React Toastify
+import 'react-toastify/dist/ReactToastify.css';
+
 // Import react-lazy-load-image-component
 import "react-lazy-load-image-component/src/effects/blur.css";
-//
-import "../assets/js/NotiAppClickHandler.js";
+
 // Import Icons and App Custom Styles
 import '../css/icons.css';
 import '../css/app.scss';

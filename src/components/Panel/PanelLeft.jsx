@@ -47,30 +47,53 @@ export default function PanelLeft() {
   }
 
   if (!User) return "";
-  console.log(User)
   return (
     <Panel resizable left reveal>
       <View>
         <Page className="bg-white page-content-hidden">
-          <Navbar title={`GV.${User.FullName}`} />
+          <Navbar title={`GV.${User?.FullName}`} />
           <div className="h-100 d--f fd--c jc--sb">
             <div className="p-15px d--f fd--c f--1 jc--sb">
               <div>
                 <div className="mb-15px mt-10px">
-                  <div className="text-muted font-size-xs text-uppercase mb-5px">Họ Tên</div>
-                  <div className="font-size-md line-height-sm fw-500">{User.FullName}</div>
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">
+                    Họ Tên
+                  </div>
+                  <div className="font-size-md line-height-sm fw-500">
+                    {User?.FullName}
+                  </div>
                 </div>
                 <div className="mb-15px">
-                  <div className="text-muted font-size-xs text-uppercase mb-5px">Số điện thoại</div>
-                  <div className="font-size-md line-height-sm fw-500">{User.Phone}</div>
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">
+                    Số điện thoại
+                  </div>
+                  <div className="font-size-md line-height-sm fw-500">
+                    {User?.Phone || "Chưa có số điện thoại"}
+                  </div>
                 </div>
                 <div className="mb-15px">
-                  <div className="text-muted font-size-xs text-uppercase mb-5px">Email</div>
-                  <div className="font-size-md line-height-sm fw-500">{User.Email}</div>
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">
+                    Email
+                  </div>
+                  <div className="font-size-md line-height-sm fw-500">
+                    {User?.Email || "Chưa có Email"}
+                  </div>
                 </div>
                 <div className="mb-15px">
-                  <div className="text-muted font-size-xs text-uppercase mb-5px">Trường</div>
-                  <div className="font-size-md line-height-sm fw-500 text-capitalize">{User.SchoolTitle}</div>
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">
+                    Trường
+                  </div>
+                  <div className="font-size-md line-height-sm fw-500 text-capitalize">
+                    {User?.SchoolTitle || "Chưa có trường"}
+                  </div>
+                </div>
+                <div className="mb-15px">
+                  <div className="text-muted font-size-xs text-uppercase mb-5px">
+                    Địa chỉ
+                  </div>
+                  <div className="font-size-md line-height-sm fw-500 text-capitalize">
+                    {User?.Address || "Chưa có địa chỉ"}
+                  </div>
                 </div>
               </div>
               <div>
@@ -80,13 +103,18 @@ export default function PanelLeft() {
                 >
                   Đổi mật khẩu
                 </Button>
-                <Button onClick={handlerLogout} type="button" className="btn btn-light btn-sm w-100"><i className="fa-light fa-arrow-right-from-bracket pr-5px"></i> Đăng xuất</Button>
+                <Button
+                  onClick={handlerLogout}
+                  type="button"
+                  className="btn btn-light btn-sm w-100"
+                >
+                  <i className="fa-light fa-arrow-right-from-bracket pr-5px"></i>{" "}
+                  Đăng xuất
+                </Button>
               </div>
             </div>
             <div>
-              <div
-                className="border-top h-45px d--f ai--c jc--c font-size-sm px-15px text-center text-muted fw-500"
-              >
+              <div className="border-top h-45px d--f ai--c jc--c font-size-sm px-15px text-center text-muted fw-500">
                 GAIA VERSION 1.0
               </div>
             </div>

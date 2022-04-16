@@ -6,7 +6,7 @@ import { toAbsoluteUrl } from "../../../helpers/AssetsHelpers";
 export default function ItemPosts({ item }) {
   
   return (
-    <Link href={`/posts/detail/${item.source.ID}/`} className="mb-15px w-100 fd--c position-relative last-mb-0" animate={true}>
+    <Link href={`/posts/detail/${item.source.ID}/`} className="mb-15px w-100 fd--c position-relative last-mb-0 d-block" animate={true}>
       <div className="w-100 mb-10px h-225px">
         <LazyLoadImage
           className="w-100 d-block shadows rounded-sm object-fit-cover"

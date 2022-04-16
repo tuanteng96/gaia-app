@@ -56,6 +56,8 @@ $gray-900: #181C32 !default;
 //
 $text-muted: #B5B5C3;
 //
+$font-family-global: 'Roboto',
+sans-serif;
 $font-family-number: 'Poppins',
 sans-serif;
 // Theme colors
@@ -63,9 +65,9 @@ $theme-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $succes
 // Theme colors
 $theme-hover-colors: ("white": $white-hover, "black-ezs": $black-ezs-hover, "success-ezs": $success-ezs-hover, "light": $light-hover, "success": $success-hover, "primary": $primary-hover, "danger": $danger-hover, "facebook": $facebook-hover, "gmail": $gmail-hover) !default;
 // Theme text colors
-$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "success": $success,"light": $light, "primary": $primary, "danger": $danger, "facebook": $facebook, "gmail": $gmail) !default;
+$theme-text-colors: ("white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "success": $success, "light": $light, "primary": $primary, "danger": $danger, "facebook": $facebook, "gmail": $gmail) !default;
 // Theme color hover
-$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success-ezs": $success-ezs-inverse,"light": $light-inverse, "success": $success-inverse, "danger": $danger-inverse, "primary": $primary-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
+$theme-inverse-colors: ("white": $white-inverse, "black-ezs": $black-ezs-inverse, "success-ezs": $success-ezs-inverse, "light": $light-inverse, "success": $success-inverse, "danger": $danger-inverse, "primary": $primary-inverse, "facebook": $facebook-inverse, "gmail": $gmail-inverse) !default;
 //
 $theme-outline-inverse-colors: ( "white": $white, "black-ezs": $black-ezs, "success-ezs": $success-ezs, "light": $light, "success": $success, "danger": $danger, "primary": $primary, "facebook": $facebook, "gmail": $gmail) !default; // Custom variable
 // Extended light colors for Bootstrap theme colors
@@ -124,4 +126,5 @@ $btn-size-config: (xs: (padding: 5px, font-size: $font-size-xs, border-radius: $
 // Overflows
 $overflows: auto,
 hidden !default;
-//
+// Shadow
+$shadows: 0px 10px 30px 0px rgb(82 63 105 / 8%);

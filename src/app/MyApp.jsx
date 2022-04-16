@@ -2,12 +2,7 @@ import React, { useEffect } from "react";
 
 import {
   App,
-  Block,
   f7,
-  f7ready,
-  Navbar,
-  Page,
-  Panel,
   View,
 } from "framework7-react";
 
@@ -17,6 +12,7 @@ import PromHelpers from "../helpers/PromHelpers";
 import PanelLeft from "../components/Panel/PanelLeft";
 import axiosClient from "../api/axiosClient";
 import setupAxios from "../api/setupAxios";
+import { ToastContainer } from "react-toastify";
 
 const MyApp = (props) => {
   // Framework7 Parameters
@@ -94,6 +90,7 @@ const MyApp = (props) => {
       <PanelLeft />
       {/* Your main view, should have "view-main" class */}
       <View main className="safe-areas" url="/" />
+      <ToastContainer />
     </App>
   );
 };

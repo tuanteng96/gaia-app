@@ -108,6 +108,7 @@ function ResetPassword({ f7router }) {
                     type="text"
                     name="secure"
                     placeholder="Nhập mã xác nhận của bạn"
+                    value={values.secure}
                     clearButton
                     className="mt-20px auto-focus"
                     errorMessage={errors.secure}
@@ -123,6 +124,7 @@ function ResetPassword({ f7router }) {
                     type="password"
                     name="new_password"
                     placeholder="Nhập mật khẩu mới"
+                    value={values.new_password}
                     clearButton
                     className="mt-20px auto-focus"
                     errorMessage={errors.new_password}
@@ -140,6 +142,7 @@ function ResetPassword({ f7router }) {
                     type="password"
                     name="re_newpassword"
                     placeholder="Nhập lại mật khẩu mới"
+                    value={values.re_newpassword}
                     clearButton
                     className="mt-20px auto-focus"
                     errorMessage={errors.re_newpassword}

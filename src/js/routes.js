@@ -20,6 +20,12 @@ import NotificationPage from "../features/Notification/index.jsx";
 import WareHousePage from "../features/WareHouse/index.jsx";
 import WareHouseDetailPage from "../features/WareHouse/pages/WareHouseDetail.jsx";
 
+// NEED HANDLE PAGE
+import NeedHandlePage from "../features/NeedHandle/index.jsx";
+
+// STATISTICAL PAGE
+import StatisticalPage from "../features/Statistical/index.jsx";
+
 import AboutPage from '../features/about.jsx';
 import FormPage from '../features/form.jsx';
 
@@ -160,7 +166,7 @@ var routes = [{
     },
     // ================================================================= //
 
-    // NOTIFICATION PAGE
+    // WARE HOUSE PAGE
     {
         path: "/warehouse/",
         component: WareHousePage,
@@ -178,6 +184,26 @@ var routes = [{
         },
     },
     // ================================================================= //
+
+    // NEED HANDLE PAGE
+    {
+        path: "/need-handle/",
+        component: NeedHandlePage,
+        beforeEnter: checkAuth,
+        options: {
+            transition: "f7-cover",
+        },
+    },
+
+    // STATISTICAL PAGE
+    {
+        path: "/statistical/",
+        component: StatisticalPage,
+        beforeEnter: checkAuth,
+        options: {
+            transition: "f7-cover",
+        },
+    },
 
     {
         path: "/about/",

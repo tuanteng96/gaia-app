@@ -8,3 +8,7 @@
 /* Your app custom styles here */
 
 @import "../assets/sass/style.app.scss";
+.page-content {
+    min-width: 100% !important;
+    width: 100% !important;
+}

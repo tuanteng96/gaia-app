@@ -17,7 +17,7 @@ const initialMenu = [
   {
     Title: "Cần xử lý",
     IconClass: "fa-light h6-font-size fa-circle-exclamation-check font-size-lg",
-    Url: "/cad",
+    Url: "/need-handle/",
     Active: false,
   },
   {
@@ -29,7 +29,7 @@ const initialMenu = [
   {
     Title: "Thống kê",
     IconClass: "fa-light h6-font-size fa-chart-pie font-size-lg",
-    Url: "/aadad",
+    Url: "/statistical/",
     Active: false,
   },
 ];

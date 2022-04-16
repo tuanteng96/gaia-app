@@ -78,6 +78,7 @@ function ForgotPassword({ f7router }) {
                                         placeholder="Nhập Email của bạn"
                                         clearButton
                                         className="mt-20px auto-focus"
+                                        value={values.Email}
                                         errorMessage={errors.Email}
                                         validate
                                         errorMessageForce={errors.Email && touched.Email}
