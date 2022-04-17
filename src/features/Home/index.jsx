@@ -9,6 +9,8 @@ import {
   Toolbar,
   SkeletonBlock,
   SkeletonImage,
+  f7,
+  f7ready,
 } from "framework7-react";
 import PromHelpers from "../../helpers/PromHelpers";
 import LogoImages from "../../assets/media/logos/logo-gaia-text.png";

@@ -111,6 +111,7 @@ function ChangePassword({ f7router }) {
                     value={values.crpwd}
                     placeholder="Nhập mật khẩu hiện tại"
                     clearButton
+                    onInputClear={() => setFieldValue(crpwd, "", false)}
                     className="mt-20px auto-focus"
                     errorMessage={errors.crpwd}
                     validate
@@ -126,6 +127,7 @@ function ChangePassword({ f7router }) {
                     name="pwd"
                     placeholder="Nhập mật khẩu mới"
                     clearButton
+                    onInputClear={() => setFieldValue(pwd, "", false)}
                     className="mt-20px auto-focus"
                     value={values.pwd}
                     errorMessage={errors.pwd}
@@ -142,6 +144,7 @@ function ChangePassword({ f7router }) {
                     name="repwd"
                     placeholder="Nhập lại mật khẩu mới"
                     clearButton
+                    onInputClear={() => setFieldValue(repwd, "", false)}
                     className="mt-20px auto-focus"
                     value={values.repwd}
                     errorMessage={errors.repwd}
@@ -152,7 +155,7 @@ function ChangePassword({ f7router }) {
                   />
                 </List>
               </div>
-              <div className="pl-15px pt-15px pr-15px bz-bb">
+              <div className="p-15px bz-bb">
                 <Button
                   type="submit"
                   className="btn btn-success-ezs w-100 text-uppercase"

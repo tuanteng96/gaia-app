@@ -1,3 +1,8 @@
+
+::-webkit-scrollbar {
+    display: none; // Safari and Chrome
+}
+
 //
 @import "../assets/plugins/font-awesome-pro-v6/css/all.min.css";
 
@@ -8,7 +13,3 @@
 /* Your app custom styles here */
 
 @import "../assets/sass/style.app.scss";
-.page-content {
-    min-width: 100% !important;
-    width: 100% !important;
-}

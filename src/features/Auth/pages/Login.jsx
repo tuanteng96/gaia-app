@@ -5,10 +5,6 @@ import {
   Link,
   List,
   ListInput,
-  Navbar,
-  NavLeft,
-  NavRight,
-  NavTitle,
   Page,
 } from "framework7-react";
 import React, { useState } from "react";
@@ -110,6 +106,7 @@ function Login({ f7router }) {
                     placeholder="Nhập tài khoản"
                     value={values.USN}
                     clearButton
+                    onInputClear={() => setFieldValue("USN", "", false)}
                     className="mt-20px auto-focus"
                     errorMessage={errors.USN}
                     validate
@@ -125,6 +122,7 @@ function Login({ f7router }) {
                     name="PWD"
                     placeholder="Nhập mật khẩu"
                     clearButton
+                    onInputClear={() => setFieldValue("PWD", "", false)}
                     className="mt-20px auto-focus"
                     errorMessage={errors.PWD}
                     value={values.PWD}
@@ -135,7 +133,7 @@ function Login({ f7router }) {
                   />
                 </List>
               </div>
-              <div className="pl-15px pt-15px pr-15px bz-bb">
+              <div className="p-15px bz-bb">
                 <Button
                   type="submit"
                   className="btn btn-success-ezs w-100 text-uppercase"

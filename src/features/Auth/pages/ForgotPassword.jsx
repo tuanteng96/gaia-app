@@ -77,6 +77,7 @@ function ForgotPassword({ f7router }) {
                                         name="Email"
                                         placeholder="Nhập Email của bạn"
                                         clearButton
+                                        onInputClear={() => setFieldValue(Email, "", false)}
                                         className="mt-20px auto-focus"
                                         value={values.Email}
                                         errorMessage={errors.Email}
@@ -87,7 +88,7 @@ function ForgotPassword({ f7router }) {
                                     />
                                 </List>
                             </div>
-                            <div className="pl-15px pt-15px pr-15px bz-bb">
+                            <div className="p-15px bz-bb">
                                 <Button
                                     type="submit"
                                     className="btn btn-success-ezs w-100 text-uppercase"

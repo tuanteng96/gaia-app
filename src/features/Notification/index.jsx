@@ -1,6 +1,7 @@
 import {
   f7,
   Link,
+  List,
   Navbar,
   NavLeft,
   NavRight,
@@ -149,7 +150,7 @@ function Notification({ f7router }) {
   return (
     <Page
       className="bg-white"
-      name="page-forgot-password"
+      name="page-notification"
       //noToolbar
       onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
       onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}
@@ -186,7 +187,6 @@ function Notification({ f7router }) {
         <ToolbarControls f7router={f7router} />
       </Toolbar>
       {/* Page content */}
-
       {loading && <SkeletonPage />}
       {!loading && (
         <Fragment>

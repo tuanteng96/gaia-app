@@ -110,6 +110,7 @@ function ResetPassword({ f7router }) {
                     placeholder="Nhập mã xác nhận của bạn"
                     value={values.secure}
                     clearButton
+                    onInputClear={() => setFieldValue(secure, "", false)}
                     className="mt-20px auto-focus"
                     errorMessage={errors.secure}
                     validate
@@ -126,6 +127,7 @@ function ResetPassword({ f7router }) {
                     placeholder="Nhập mật khẩu mới"
                     value={values.new_password}
                     clearButton
+                    onInputClear={() => setFieldValue(new_password, "", false)}
                     className="mt-20px auto-focus"
                     errorMessage={errors.new_password}
                     validate
@@ -144,6 +146,7 @@ function ResetPassword({ f7router }) {
                     placeholder="Nhập lại mật khẩu mới"
                     value={values.re_newpassword}
                     clearButton
+                    onInputClear={() => setFieldValue(re_newpassword, "", false)}
                     className="mt-20px auto-focus"
                     errorMessage={errors.re_newpassword}
                     validate
@@ -155,7 +158,7 @@ function ResetPassword({ f7router }) {
                   />
                 </List>
               </div>
-              <div className="pl-15px pt-15px pr-15px bz-bb">
+              <div className="pl-15px bz-bb">
                 <Button
                   type="submit"
                   className="btn btn-success-ezs w-100 text-uppercase"
