@@ -122,7 +122,7 @@ $config-text: (font-weight: ("name": "font-weight", "prefix": "fw-", "values": (
 $btn-border: 1px;
 $btn-border-radius: 5px;
 $btn-base: (padding: 17px 8px 16px 8px, font-size: $font-size-sm, border-radius: $btn-border-radius, font-weight: 600);
-$btn-size-config: (xs: (padding: 5px, font-size: $font-size-xs, border-radius: $btn-border-radius), sm: (padding: 13px 8px 12px 8px, font-size: $font-size-sm, border-radius: $btn-border-radius), md: (padding: 7px, font-size: $font-size-md, border-radius: $btn-border-radius), lg: (padding: 8px, font-size: $font-size-lg, border-radius: $btn-border-radius), xl: (padding: 10px, font-size: $font-size-xl, border-radius: $btn-border-radius));
+$btn-size-config: (xs: (padding: 5px 8px, font-size: $font-size-xs, border-radius: 3px), sm: (padding: 13px 8px 12px 8px, font-size: $font-size-sm, border-radius: $btn-border-radius), md: (padding: 7px, font-size: $font-size-md, border-radius: $btn-border-radius), lg: (padding: 8px, font-size: $font-size-lg, border-radius: $btn-border-radius), xl: (padding: 10px, font-size: $font-size-xl, border-radius: $btn-border-radius));
 // Overflows
 $overflows: auto,
 hidden !default;

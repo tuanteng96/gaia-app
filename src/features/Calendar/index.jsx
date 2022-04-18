@@ -10,6 +10,7 @@ import {
   NavRight,
   Subnavbar,
   useStore,
+  Button,
 } from "framework7-react";
 import PromHelpers from "../../helpers/PromHelpers";
 import ToolbarControls from "../../components/Toolbar/ToolbarControls";
@@ -106,7 +107,7 @@ const Calendar = ({ f7router }) => {
   return (
     <Page
       name="calendar"
-      className="bg-white"
+      className="bg-white page-calendar"
       onPageBeforeIn={() => PromHelpers.STATUS_BAR_COLOR()}
       onPageBeforeOut={() => PromHelpers.STATUS_BAR_COLOR()}
       ptr
@@ -156,6 +157,88 @@ const Calendar = ({ f7router }) => {
       </Toolbar>
       {/* Page content */}
       {loading && "Đang tải"}
+
+      <div className="p-15px">
+        <div className="mt-20px position-relative calendar-item">
+          <div className="position-relative">
+            <div className="time-school time-school-top fw-500 mb-8px position-relative">
+              <div className="time-icon"></div>
+              <span className="pl-20px pr-15px bg-white position-relative text-muted">
+                9AM
+              </span>
+            </div>
+            <div className="pl-15px py-10px position-relative">
+              <div className="line-status w-2px h-100 bg-primary position-absolute left-0 top-0"></div>
+              <div className="text-uppercase fw-600 text-success-ezs line-height-md font-size-md">
+                Trường trung học cơ sở Minh Sơn Triệu Sơn Thanh Hóa
+              </div>
+              <div className="mt-12px fw-600 text-uppercase text-gray-800">
+                Tiết 1 - Lớp 9A
+              </div>
+              <div className="mt-12px d--f jc--sb ai--c text-gray-700">
+                <div className="fw-600">
+                  <i className="fa-solid fa-timer"></i>
+                  <span className="pl-5px">40 Phút</span>
+                </div>
+                <div>
+                  <Button className="btn btn-primary btn-xs fw-500 mr-5px">
+                    Chi tiết
+                  </Button>
+                  <Button className="btn btn-danger btn-xs fw-500">
+                    Hủy lịch
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div className="time-school time-school-bottom fw-500 mt-8px position-relative">
+              <div className="time-icon"></div>
+              <span className="pl-20px pr-15px bg-white position-relative text-muted">
+                9:45 AM
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="mt-20px position-relative calendar-item">
+          <div className="position-relative">
+            <div className="time-school time-school-top fw-500 mb-8px position-relative">
+              <div className="time-icon"></div>
+              <span className="pl-20px pr-15px bg-white position-relative text-muted">
+                9AM
+              </span>
+            </div>
+            <div className="pl-15px py-10px position-relative">
+              <div className="line-status w-2px h-100 bg-primary position-absolute left-0 top-0"></div>
+              <div className="text-uppercase fw-600 text-success-ezs line-height-md font-size-md">
+                Trường THCS Minh Sơn
+              </div>
+              <div className="mt-10px fw-600 text-uppercase text-gray-700">
+                Tiết 1 - Lớp 9A
+              </div>
+              <div className="mt-15px d--f ai--c jc--sb">
+                <div className="fw-600 text-gray-700">
+                  <i className="fa-solid fa-timer"></i>
+                  <span className="pl-5px">50 Phút</span>
+                </div>
+                <div>
+                  <Button className="btn btn-primary btn-xs fw-500 mr-5px">
+                    Chi tiết
+                  </Button>
+                  <Button className="btn btn-danger btn-xs fw-500">
+                    Hủy lịch
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div className="time-school time-school-bottom fw-500 mt-8px position-relative">
+              <div className="time-icon"></div>
+              <span className="pl-20px pr-15px bg-white position-relative text-muted">
+                9:45 AM
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {!loading && (
         <Fragment>
           {ListCalendar && ListCalendar.length > 0 ? (
@@ -167,7 +250,8 @@ const Calendar = ({ f7router }) => {
                 >
                   <div className="f--1">
                     <div className="fw-500 font-size-md mb-6px line-height-sm">
-                      {item.CalendarItem?.Teaching?.SchoolTitle || "Chưa có tên"}
+                      {item.CalendarItem?.Teaching?.SchoolTitle ||
+                        "Chưa có tên"}
                     </div>
                     <div className="d--f">
                       <div className="text-gray-800">
