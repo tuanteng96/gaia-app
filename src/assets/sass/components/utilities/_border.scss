@@ -6,6 +6,10 @@
     border-top: $border-width solid $border-color !important;
 }
 
+.border-top {
+    border-top: $border-width solid $border-color !important;
+}
+
 .border-right {
     border-right: $border-width solid $border-color !important;
 }
@@ -16,6 +20,12 @@
 
 .border-left {
     border-left: $border-width solid $border-color !important;
+}
+
+@for $count from 2 through 15 {
+    .border-width-#{$count} {
+        border-width: #{$count}px !important;
+    }
 }
 
 .border-0 {

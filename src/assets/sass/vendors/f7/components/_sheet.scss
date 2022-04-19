@@ -3,10 +3,10 @@
 }
 
 .sheet-modal.sheet-modal-bottom {
-    height: 100%;
-    max-height: 90%;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    height: 100%;
+    max-height: 80%;
     //overflow: hidden;
     &::after {
         content: "";
@@ -18,5 +18,19 @@
         position: absolute;
         transform: translateX(-50%);
         border-radius: 5px;
+    }
+}
+
+.sheet-modal.sheet-modal-bottom.sheet-layout {
+    .sheet-navbar {
+        height: 48px;
+        box-sizing: border-box;
+    }
+    .sheet-toolbar {
+        height: 100px;
+    }
+    .sheet-page {
+        height: calc(100% - 80px + 48px);
+        overflow: auto;
     }
 }

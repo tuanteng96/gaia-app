@@ -17,7 +17,7 @@ import { ToastContainer } from "react-toastify";
 const MyApp = (props) => {
   // Framework7 Parameters
   const f7params = {
-    name: "Gaia Manage", // App name,
+    name: "Gaia Manager", // App name,
     id: "ezs.manager",
     theme: "ios", // Automatic theme detection ( ios / md / aurora / auto )
     version: "1.0.0",
@@ -31,7 +31,7 @@ const MyApp = (props) => {
     },
     // Extended by Dialog component:
     dialog: {
-      title: "Gaia Manage",
+      title: "Gaia Manager",
       // change default "OK" button text
       buttonOk: "OK",
       buttonCancel: "Đóng",

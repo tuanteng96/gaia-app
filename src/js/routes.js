@@ -81,9 +81,11 @@ var routes = [{
                         }
                     }
                 } catch (error) {
-                    splashScreen.classList.add("hidden");
-                    resolve({
-                        component: LoginPage,
+                    store.dispatch("setLogout").then(() => {
+                        resolve({
+                            component: LoginPage,
+                        });
+                        splashScreen.classList.add("hidden");
                     });
                 }
             }

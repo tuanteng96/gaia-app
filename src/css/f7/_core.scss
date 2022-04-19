@@ -14,8 +14,8 @@
 
 @supports (left: env(safe-area-inset-left)) {
      :root {
-        --f7-safe-area-top: env(safe-area-inset-top), var(--f7-safe-area-top);
-        --f7-safe-area-bottom: env(safe-area-inset-bottom), var(--f7-safe-area-bottom);
+        --f7-safe-area-top: env(safe-area-inset-top, var(--android-safe-area-top));
+        --f7-safe-area-bottom: env(safe-area-inset-bottom, var(--android-safe-area-bottom));
     }
     // .device-android {
     //     --f7-safe-area-top: var(--android-safe-area-top);
