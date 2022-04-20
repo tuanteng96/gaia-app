@@ -18,7 +18,6 @@ import DatePickers from "../../components/DatePickers/DatePickers";
 import PageEmpty from "../../components/Empty/PageEmpty";
 import CalendarApi from "../../api/CalenderApi";
 import { toast } from "react-toastify";
-import { DateTimeHelpers } from "../../helpers/DateTimeHelpers";
 import SkeletonPage from "./SkeletonPage";
 
 import moment from "moment";
@@ -198,9 +197,9 @@ const Calendar = ({ f7router }) => {
     f7.dialog.preloader("Đang thực hiện ...");
     CalendarApi.accept(objSubmit)
       .then(({ data }) => {
-
         if (data.error) {
           f7.dialog.close();
+          f7.sheet.close();
           toast.error(data.error, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,

@@ -34,6 +34,7 @@ const initialValue = {
   TeachingItemList: {
     Items: [],
   },
+  ThumbnailList: []
 };
 
 const CalendarSchema = Yup.object().shape({
@@ -66,9 +67,9 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
         Desc: CalendarItem.Teaching?.Desc || "",
         Type: CalendarItem.Teaching?.Type
           ? TypeLists.filter(
-              (item) => item.value === CalendarItem.Teaching?.Type
-            )[0]
-          : TypeLists[1],
+            (item) => item.value === CalendarItem.Teaching?.Type
+          )[0]
+          : TypeLists[0],
         TimesEnd: CalendarItem.Teaching?.TimesEnd || "",
         CalendarItemID: CalendarItem.ID,
         ScheduleID: CalendarItem.Teaching?.ScheduleID,
@@ -76,6 +77,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
         SchoolID: CalendarItem.Teaching?.SchoolID,
         SchoolTitle: CalendarItem.Teaching?.SchoolTitle,
         ProductLessonTitle: CalendarItem.Teaching?.ProductLessonTitle,
+        ThumbnailList: CalendarItem.Teaching?.ThumbnailList || []
       };
       setInitialValues(newObj);
     }
@@ -94,10 +96,10 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
     const newData =
       list && list.length > 0
         ? list.map((item) => ({
-            ...item,
-            label: item.Title,
-            value: item.ID,
-          }))
+          ...item,
+          label: item.Title,
+          value: item.ID,
+        }))
         : [];
     return {
       options: newData,
@@ -112,9 +114,9 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
     if (!item) return true;
     const dateCurrent = moment().format("YYYY-MM-DD");
     const DayMaps = moment(item.CalendarItem?.DayMap).format("YYYY-MM-DD");
-    return moment(dateCurrent).diff(DayMaps, "day") >= 0;
+    return moment(dateCurrent).diff(DayMaps, "day") > 0;
   }
-
+  console.log(item);
   return (
     <div className="mt-15px position-relative calendar-item">
       <div className="position-relative">
@@ -126,23 +128,20 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
         </div>
         <div className="pl-15px py-10px position-relative">
           <div
-            className={`line-status w-2px h-100 position-absolute left-0 top-0 ${
-              item.CalendarItem.Teaching?.Status === "" ? "bg-primary" : ""
-            } ${
-              item.CalendarItem.Teaching?.Status === "TU_CHOI"
+            className={`line-status w-2px h-100 position-absolute left-0 top-0 ${item.CalendarItem.Teaching?.Status === "" ? "bg-primary" : ""
+              } ${item.CalendarItem.Teaching?.Status === "TU_CHOI"
                 ? "bg-danger"
                 : ""
-            } ${
-              item.CalendarItem.Teaching?.Status === "NHAN_TIET"
+              } ${item.CalendarItem.Teaching?.Status === "NHAN_TIET"
                 ? "bg-success"
                 : ""
-            }`}
+              }`}
           ></div>
           <div className="text-uppercase fw-600 text-success-ezs line-height-md font-size-md">
             {item.CalendarItem.Teaching?.SchoolTitle || "Chưa có trường"}
           </div>
           <div className="mt-12px fw-600 text-uppercase text-gray-800">
-            {item.CalendarItem.Title} - Lớp {item.CalendarItem.ClassMap?.Title}
+            {item.CalendarItem.Title} - Lớp {item.CalendarItem.ClassMap?.Level}{item.CalendarItem.ClassMap?.Title}
           </div>
           <div className="mt-12px d--f jc--sb ai--c text-gray-700">
             <div className="fw-600">
@@ -452,24 +451,34 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                         />
                       </List>
                     </div>
-                    <div className="border-top border-width-2 p-15px d--f">
-                      {values.Thumbnail && (
-                        <div className="w-80px h-80px mr-15px">
-                          <LazyLoadImage
-                            className="w-100 d-block shadows rounded-sm object-fit-cover"
-                            src={toAbsoluteUrl(values.Thumbnail)}
-                            height={80}
-                            effect="blur"
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <UploadImages
-                          onChange={(values) =>
-                            setFieldValue("Thumbnail", values, false)
-                          }
-                        />
-                      </div>
+                    <div className="border-top border-width-2 p-15px d--f fw--w">
+                      <FieldArray
+                        name="ThumbnailList"
+                        render={(arrayHelpers) => (
+                          <React.Fragment>
+                            {
+                              values.ThumbnailList && values.ThumbnailList.map((item, index) => (
+                                <div className="w-80px h-80px mr-15px position-relative" key={index}>
+                                  <LazyLoadImage
+                                    className="w-100 d-block shadows rounded-sm object-fit-cover"
+                                    src={toAbsoluteUrl(item)}
+                                    height={80}
+                                    effect="blur"
+                                  />
+                                  <div className="position-absolute w-25px h-25px shadows rounded-circle bg-white d--f ai--c jc--c top--10px right--10px" onClick={() => arrayHelpers.remove(index)}><i className="fa-solid fa-xmark"></i></div>
+                                </div>
+                              ))
+                            }
+                            <div>
+                              <UploadImages
+                                onChange={(image) =>
+                                  arrayHelpers.push(image)
+                                }
+                              />
+                            </div>
+                          </React.Fragment>
+                        )}
+                      />
                     </div>
                   </div>
                   <div className="border-top border-width-2 sheet-toolbar px-15px d--f ai--c jc--c fd--c">
@@ -481,7 +490,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                         isDisabled(item)
                       }
                     >
-                      Hoàn thành
+                      {item.CalendarItem.Teaching?.Status === "NHAN_TIET" ? "Lưu thay đổi" : "Hoàn thành"}
                     </Button>
                   </div>
                 </Form>
