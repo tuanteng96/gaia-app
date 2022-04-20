@@ -1,6 +1,7 @@
 import axiosClient from "./axiosClient";
 
 const GET_ALL_URL = "/api/v3/content4?cmd=TeacherCalendarDaily";
+const ACCEPT_URL = "/api/v3/content4?cmd=TeacherAccept";
 const REJECT_URL = "/api/v3/content4?cmd=TeacherReject";
 
 const getList = (data) => {
@@ -11,8 +12,13 @@ const reject = (data) => {
     return axiosClient.post(REJECT_URL, JSON.stringify(data));
 }
 
+const accept = (data) => {
+    return axiosClient.post(ACCEPT_URL, JSON.stringify(data));
+}
+
 const CalendarApi = {
     getList,
+    accept,
     reject
 }
 export default CalendarApi;

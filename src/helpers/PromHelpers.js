@@ -1,4 +1,4 @@
-const SERVER_APP = "";
+import APPS from "../js/settings";
 var APP21 = window.app21 || {};
 
 const CHOOSE_FILE_SERVER = (_opt) => {
@@ -7,7 +7,7 @@ const CHOOSE_FILE_SERVER = (_opt) => {
         maxheight: 5000,
         ext: 'png',
         pref: 'IMG',
-        server: `${SERVER_APP}/api/v3/file?cmd=upload&autn=AAAA`
+        server: `${APPS.DOMAIN_API}/api/v3/file?cmd=upload&autn=AAAA`
     };
     opt = Object.assign(opt, _opt);
 
@@ -23,15 +23,12 @@ const CHOOSE_FILE_SERVER = (_opt) => {
     }
     return new Promise((resolve, reject) => {
         APP21.prom('CAMERA', cameraOpt).then(s => {
-
             APP21.prom('POST_TO_SERVER', JSON.stringify({
                 server: opt.server,
                 path: s.data
-                // token: 'neu_co',
+                    // token: 'neu_co',
             })).then(s1 => {
                 var rs = JSON.parse(s1.data);
-                //console.log('app_camera->CAMERA->POST_TO_SERVER->OK', rs.data);
-                // vm.$emit('success', rs.data);
                 resolve(rs);
             }).catch(f1 => {
                 reject({

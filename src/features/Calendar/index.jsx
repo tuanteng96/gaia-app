@@ -148,9 +148,9 @@ const Calendar = ({ f7router }) => {
   };
 
   const OnCancelBook = ({ CalendarItem }) => {
-    f7.dialog.confirm("Bạn chắc chắn muốn hủy lịch này?", function () {
-      f7.dialog.prompt("Nhập lý do bạn muốn hủy lịch ?", async (name) => {
-        f7.dialog.preloader("Đang thực hiện hủy lịch ...");
+    f7.dialog.confirm("Bạn chắc chắn muốn xin nghỉ tiết này?", function () {
+      f7.dialog.prompt("Nhập lý do bạn muốn xin nghỉ ?", async (name) => {
+        f7.dialog.preloader("Đang thực hiện ...");
         const obj = {
           Teaching: {
             Desc: name,
@@ -173,9 +173,9 @@ const Calendar = ({ f7router }) => {
               },
               () => {
                 f7.dialog.close();
-                toast.success("Hủy lịch thành công !", {
+                toast.success("Xin nghỉ thành công !", {
                   position: toast.POSITION.TOP_CENTER,
-                  autoClose: 1500
+                  autoClose: 1500,
                 });
               }
             );
@@ -183,6 +183,47 @@ const Calendar = ({ f7router }) => {
           .catch((error) => console.log(error));
       });
     });
+  };
+
+  const onSubmit = (values) => {
+    const objSubmit = {
+      Teaching: {
+        ...values,
+        Type: values.Type ? values.Type.value : "TIET_BINH_THUONG",
+        TimesEnd: values.TimesEnd
+          ? moment(values.TimesEnd).format("YYYY-MM-DD HH:mm")
+          : "",
+      },
+    };
+    f7.dialog.preloader("Đang thực hiện ...");
+    CalendarApi.accept(objSubmit)
+      .then(({ data }) => {
+
+        if (data.error) {
+          f7.dialog.close();
+          toast.error(data.error, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+          });
+        } else {
+          getListCalendar(
+            {
+              isLoading: true,
+              Filters: {
+                ...Filters,
+              },
+            },
+            () => {
+              f7.dialog.close();
+              toast.success("Hoàn thành thành công !", {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+              });
+            }
+          );
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -247,6 +288,7 @@ const Calendar = ({ f7router }) => {
                   key={index}
                   item={item}
                   OnCancelBook={OnCancelBook}
+                  onSubmit={onSubmit}
                 />
               ))}
             </div>

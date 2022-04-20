@@ -1,3 +1,11 @@
+.input {
+    &.text-center {
+        input {
+            text-align: center;
+        }
+    }
+}
+
 .item-input-outline {
     .item-input-wrap {
         &::after {
@@ -31,6 +39,7 @@
         margin-top: 5px !important;
     }
 }
+
 .auto-focus {
     .item-input-outline {
         .item-inner {
@@ -83,4 +92,9 @@
             line-height: $input-icon-clear-line-height;
         }
     }
+}
+
+//
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background: none;
 }

@@ -4,6 +4,7 @@ $toast-warning: #FFA800;
 $toast-info: #8950FC;
 .Toastify {
     &__toast-container {
+        z-index: 100001;
         //top: var(--f7-safe-area-top);
         .Toastify__toast {
             box-shadow: $shadows;

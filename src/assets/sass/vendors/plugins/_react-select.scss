@@ -24,4 +24,21 @@
             }
         }
     }
+    .select__menu {
+        z-index: 100;
+        -webkit-box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%);
+        box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%);
+        border-radius: 0.25rem;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        max-height: 160px;
+        overflow: auto;
+        .select__option {
+            font-size: 15px;
+            padding: 0 12px;
+            height: 38px;
+            line-height: 38px;
+            font-weight: 400;
+        }
+    }
 }

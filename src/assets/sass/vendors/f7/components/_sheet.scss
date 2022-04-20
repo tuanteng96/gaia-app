@@ -6,7 +6,7 @@
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     height: 100%;
-    max-height: 80%;
+    max-height: 85%;
     //overflow: hidden;
     &::after {
         content: "";
@@ -23,14 +23,21 @@
 
 .sheet-modal.sheet-modal-bottom.sheet-layout {
     .sheet-navbar {
-        height: 48px;
-        box-sizing: border-box;
+        height: 50px;
+        line-height: 55px;
+        position: relative;
+        .sheet-close {
+            position: absolute;
+            right: 20px;
+            top: 14px;
+            font-size: 25px;
+        }
     }
     .sheet-toolbar {
-        height: 100px;
+        height: 80px;
     }
-    .sheet-page {
-        height: calc(100% - 80px + 48px);
+    .sheet-body {
+        height: calc(100% - 135px);
         overflow: auto;
     }
 }
