@@ -60,7 +60,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
       const { CalendarItem } = item;
       const newObj = {
         TeachingItemList: {
-          Items: [],
+          Items: CalendarItem.Teaching?.TeachingItemList?.Items || [],
         },
         StudentCount: CalendarItem.Teaching?.StudentCount || "",
         Thumbnail: "",
@@ -114,9 +114,16 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
     if (!item) return true;
     const dateCurrent = moment().format("YYYY-MM-DD");
     const DayMaps = moment(item.CalendarItem?.DayMap).format("YYYY-MM-DD");
+    return moment(dateCurrent).diff(DayMaps, "day") !== 0;
+  }
+
+  const isShowButton = (item) => {
+    if (!item) return true;
+    const dateCurrent = moment().format("YYYY-MM-DD");
+    const DayMaps = moment(item.CalendarItem?.DayMap).format("YYYY-MM-DD");
     return moment(dateCurrent).diff(DayMaps, "day") > 0;
   }
-  console.log(item);
+
   return (
     <div className="mt-15px position-relative calendar-item">
       <div className="position-relative">
@@ -175,7 +182,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                 >
                   Chi tiết
                 </Button>
-                {!isDisabled(item) && (
+                {!isShowButton(item) && (
                   <Button
                     className="btn btn-danger btn-xs fw-500"
                     onClick={() => OnCancelBook(item)}

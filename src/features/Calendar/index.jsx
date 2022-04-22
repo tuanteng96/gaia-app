@@ -185,6 +185,7 @@ const Calendar = ({ f7router }) => {
   };
 
   const onSubmit = (values) => {
+    f7.sheet.close();
     const objSubmit = {
       Teaching: {
         ...values,
@@ -199,7 +200,6 @@ const Calendar = ({ f7router }) => {
       .then(({ data }) => {
         if (data.error) {
           f7.dialog.close();
-          f7.sheet.close();
           toast.error(data.error, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,
@@ -213,6 +213,7 @@ const Calendar = ({ f7router }) => {
               },
             },
             () => {
+              f7.sheet.close();
               f7.dialog.close();
               toast.success("Hoàn thành thành công !", {
                 position: toast.POSITION.TOP_CENTER,
