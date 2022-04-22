@@ -53,7 +53,7 @@ export default function PanelLeft() {
         <Page className="bg-white page-content-hidden">
           <Navbar title={`GV.${User?.FullName}`} />
           <div className="h-100 d--f fd--c jc--sb">
-            <div className="p-15px d--f fd--c f--1 jc--sb">
+            <div className="p-15px d--f fd--c jc--sb">
               <div>
                 <div className="mb-15px mt-10px">
                   <div className="text-muted font-size-xs text-uppercase mb-5px">

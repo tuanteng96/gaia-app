@@ -58,27 +58,33 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
   useEffect(() => {
     if (item) {
       const { CalendarItem } = item;
-      const newObj = {
-        TeachingItemList: {
-          Items: CalendarItem.Teaching?.TeachingItemList?.Items || [],
-        },
-        StudentCount: CalendarItem.Teaching?.StudentCount || "",
-        Thumbnail: "",
-        Desc: CalendarItem.Teaching?.Desc || "",
-        Type: CalendarItem.Teaching?.Type
-          ? TypeLists.filter(
-            (item) => item.value === CalendarItem.Teaching?.Type
-          )[0]
-          : TypeLists[0],
-        TimesEnd: CalendarItem.Teaching?.TimesEnd || "",
-        CalendarItemID: CalendarItem.ID,
-        ScheduleID: CalendarItem.Teaching?.ScheduleID,
-        ProductLessonID: CalendarItem.Teaching?.ProductLessonID,
-        SchoolID: CalendarItem.Teaching?.SchoolID,
-        SchoolTitle: CalendarItem.Teaching?.SchoolTitle,
-        ProductLessonTitle: CalendarItem.Teaching?.ProductLessonTitle,
-        ThumbnailList: CalendarItem.Teaching?.ThumbnailList || []
-      };
+      var newObj;
+      if (CalendarItem.Teaching.Status === "TU_CHOI") {
+        newObj = initialValue;
+      }
+      else {
+        newObj = {
+          TeachingItemList: {
+            Items: CalendarItem.Teaching?.TeachingItemList?.Items || [],
+          },
+          StudentCount: CalendarItem.Teaching?.StudentCount || "",
+          Thumbnail: "",
+          Desc: CalendarItem.Teaching?.Desc || "",
+          Type: CalendarItem.Teaching?.Type
+            ? TypeLists.filter(
+                (item) => item.value === CalendarItem.Teaching?.Type
+              )[0]
+            : TypeLists[0],
+          TimesEnd: CalendarItem.Teaching?.TimesEnd || "",
+          CalendarItemID: CalendarItem.ID,
+          ScheduleID: CalendarItem.Teaching?.ScheduleID,
+          ProductLessonID: CalendarItem.Teaching?.ProductLessonID,
+          SchoolID: CalendarItem.Teaching?.SchoolID,
+          SchoolTitle: CalendarItem.Teaching?.SchoolTitle,
+          ProductLessonTitle: CalendarItem.Teaching?.ProductLessonTitle,
+          ThumbnailList: CalendarItem.Teaching?.ThumbnailList || [],
+        };
+      }
       setInitialValues(newObj);
     }
   }, [item]);
@@ -121,8 +127,13 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
     if (!item) return true;
     const dateCurrent = moment().format("YYYY-MM-DD");
     const DayMaps = moment(item.CalendarItem?.DayMap).format("YYYY-MM-DD");
+
+    if (dateCurrent === DayMaps) {
+      return moment().diff(item.CalendarItem.From, "hours") > -3;
+    }
     return moment(dateCurrent).diff(DayMaps, "day") > 0;
   }
+
 
   return (
     <div className="mt-15px position-relative calendar-item">
@@ -148,7 +159,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
             {item.CalendarItem.Teaching?.SchoolTitle || "Chưa có trường"}
           </div>
           <div className="mt-12px fw-600 text-uppercase text-gray-800">
-            {item.CalendarItem.Title} - Lớp {item.CalendarItem.ClassMap?.Level}{item.CalendarItem.ClassMap?.Title}
+            {item.CalendarItem.Title} - Lớp {item.CalendarItem.ClassMap?.Title}
           </div>
           <div className="mt-12px d--f jc--sb ai--c text-gray-700">
             <div className="fw-600">
@@ -258,7 +269,6 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                         </div>
                         <div className="fw-600">
                           {item.CalendarItem.Title} - Lớp{" "}
-                          {item.CalendarItem.ClassMap?.Level}{" "}
                           {item.CalendarItem.ClassMap?.Title}
                         </div>
                       </div>

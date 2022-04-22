@@ -43,10 +43,10 @@ export default function ToolbarControls({ f7router }) {
         ...item,
         Active:
           item.Url === f7router.url ||
-          item.Url !== "/" && f7router.url.indexOf(item.Url) > -1,
+          (item.Url !== "/" && f7router.url.indexOf(item.Url) > -1),
       }))
     );
-  }, []);
+  }, [f7router.url]);
 
   return (
     <Fragment>

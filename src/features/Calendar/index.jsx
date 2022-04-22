@@ -162,7 +162,7 @@ const Calendar = ({ f7router }) => {
           },
         };
         CalendarApi.reject(obj)
-          .then((response) => {
+          .then(({ data }) => {
             getListCalendar(
               {
                 isLoading: true,
@@ -171,11 +171,20 @@ const Calendar = ({ f7router }) => {
                 },
               },
               () => {
-                f7.dialog.close();
-                toast.success("Xin nghỉ thành công !", {
-                  position: toast.POSITION.TOP_CENTER,
-                  autoClose: 1500,
-                });
+                if (data.error) {
+                  f7.dialog.close();
+                  toast.error(data.error, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 1500,
+                  });
+                }
+                else {
+                  f7.dialog.close();
+                  toast.success("Xin nghỉ thành công !", {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 1500,
+                  });
+                }
               }
             );
           })
