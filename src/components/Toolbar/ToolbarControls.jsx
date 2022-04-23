@@ -1,4 +1,5 @@
-import { Link } from "framework7-react";
+import Dom7 from "dom7";
+import { f7, Link } from "framework7-react";
 import React, { Fragment, useEffect, useState } from "react";
 
 const initialMenu = [
