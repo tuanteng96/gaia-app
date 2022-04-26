@@ -10,13 +10,13 @@ const initialMenu = [
     Active: false,
   },
   {
-    Title: "Bảng lịch",
+    Title: "Lịch",
     IconClass: "fa-light h6-font-size fa-calendar-day font-size-lg",
     Url: "/calendar/",
     Active: false,
   },
   {
-    Title: "Cần xử lý",
+    Title: "Xử lý",
     IconClass: "fa-light h6-font-size fa-circle-exclamation-check font-size-lg",
     Url: "/need-handle/",
     Active: false,
@@ -54,10 +54,13 @@ export default function ToolbarControls({ f7router }) {
       {MenuList.map((item, index) => (
         <Link
           href={!item.Active ? item.Url : ""}
-          className={`w-20 ${item.Active ? "text-success-ezs" : "text-muted"}`}
+          className={`w-20 ${item.Active ? "text-success-ezs" : "text-muted"} line-height-auto text-center`}
           key={index}
         >
-          <i className={item.IconClass}></i>
+          <div className="h-100 d--f ai--c fd--c jc--c pt-8px">
+            <i className={item.IconClass}></i>
+            <div className="font-size-min mt-3px">{item.Title}</div>
+          </div>
         </Link>
       ))}
     </Fragment>

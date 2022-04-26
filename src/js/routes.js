@@ -12,6 +12,7 @@ import PostsDetailPage from "../features/Posts/PostsDetail.jsx";
 
 //CALENDAR PAGE
 import CalendarPage from "../features/Calendar/index.jsx";
+import TakeBreakPage from "../features/Calendar/pages/TakeBreak/index.jsx";
 
 // NOTIFICATION PAGE
 import NotificationPage from "../features/Notification/index.jsx";
@@ -150,6 +151,14 @@ var routes = [{
     {
         path: "/calendar/",
         component: CalendarPage,
+        beforeEnter: checkAuth,
+        options: {
+            transition: "f7-cover",
+        },
+    },
+    {
+        path: "/calendar/take-break/",
+        component: TakeBreakPage,
         beforeEnter: checkAuth,
         options: {
             transition: "f7-cover",

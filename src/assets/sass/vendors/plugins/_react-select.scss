@@ -41,4 +41,22 @@
             font-weight: 400;
         }
     }
+    &.react-select-error {
+        .select__control {
+            border-color: var(--f7-input-error-text-color);
+        }
+    }
+}
+
+.react-select-error-message {
+    font-size: var(--f7-input-error-font-size);
+    line-height: var(--f7-input-error-line-height);
+    color: var(--f7-input-error-text-color);
+    font-weight: var(--f7-input-error-font-weight);
+    padding-left: 0;
+    margin-top: 5px !important;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: calc(-1 * var(--f7-input-error-font-size) * var(--f7-input-error-line-height));
 }

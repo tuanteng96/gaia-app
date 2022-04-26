@@ -250,10 +250,9 @@ const Calendar = ({ f7router }) => {
         <NavLeft backLink="Back" sliding={true}></NavLeft>
         <NavTitle sliding={true}>Lịch giảng dạy</NavTitle>
         <NavRight>
-          <Link href="/notification/" className="icon-only">
+          <Link href="/calendar/take-break/" className="icon-only">
             <div className="text-center position-relative line-height-sm">
-              <i className="font-size-h6 fa-regular fa-bell"></i>
-              <div className="position-absolute w-6px h-6px border border-white rounded-circle bg-success shadow top-0 right-0"></div>
+              <i className="font-size-h6 fa-regular fa-money-check-pen"></i>
             </div>
           </Link>
         </NavRight>
