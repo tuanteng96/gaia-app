@@ -90,6 +90,10 @@ const TakeBreak = ({ f7router }) => {
       newObj.To = `${moment(newObj.From).format("YYYY-MM-DD")} 23:59:00`;
     }
     if (newObj.TimeType === "NGHI_NHIEU_NGAY") {
+      newObj.From = `${moment(newObj.From).format("YYYY-MM-DD")} 00:00:00`;
+      newObj.To = `${moment(newObj.To).format("YYYY-MM-DD")} 23:59:00`;
+    }
+    if (newObj.TimeType === "NGHI_THEO_THOI_GIAN") {
       newObj.From = moment(newObj.From).format("YYYY-MM-DD HH:mm");
       newObj.To = moment(newObj.To).format("YYYY-MM-DD HH:mm");
     }
@@ -258,7 +262,7 @@ const TakeBreak = ({ f7router }) => {
                                   Ngày {moment(item.From).format("DD.MM.YYYY")}
                                 </span>
                               )}
-                              {item.TimeType === "NGHI_NHIEU_NGAY" && (
+                              {item.TimeType === "NGHI_NHIEU_NGAY" || item.TimeType === "NGHI_THEO_THOI_GIAN" && (
                                 <span>
                                   Từ
                                   <span className="text-capitalize px-5px">

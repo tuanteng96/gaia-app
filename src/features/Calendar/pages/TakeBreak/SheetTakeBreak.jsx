@@ -28,6 +28,7 @@ const TimeTypeLists = [
   { value: "NGHI_CHIEU", label: "Nghỉ chiều" },
   { value: "NGHI_NGAY", label: "Nghỉ ngày" },
   { value: "NGHI_NHIEU_NGAY", label: "Nghỉ nhiều ngày" },
+  { value: "NGHI_THEO_THOI_GIAN", label: "Nghỉ theo thời gian" },
 ];
 
 const initialValue = {
@@ -78,7 +79,7 @@ function SheetTakeBreak({ SheetOpened, onHide, defaultValues, onSubmit }) {
       }));
     }
   }, [defaultValues, SheetOpened]);
-
+  
   return (
     <Sheet
       className="sheet-layout"
@@ -158,7 +159,7 @@ function SheetTakeBreak({ SheetOpened, onHide, defaultValues, onSubmit }) {
                           </div>
                         )}
                       </div>
-                      {values.TimeType?.value === "NGHI_NHIEU_NGAY" && (
+                      {values.TimeType?.value === "NGHI_THEO_THOI_GIAN" && (
                         <Fragment>
                           <DateTimeTake
                             value={
@@ -173,7 +174,7 @@ function SheetTakeBreak({ SheetOpened, onHide, defaultValues, onSubmit }) {
                             errorMessageForce={errors.From && touched.From}
                             name="From"
                             placeholder="--:-- --/--/----"
-                            label="Ngày bắt đầu"
+                            label="Thời gian bắt đầu"
                             onSelect={(date) =>
                               setFieldValue("From", date, false)
                             }
@@ -189,30 +190,71 @@ function SheetTakeBreak({ SheetOpened, onHide, defaultValues, onSubmit }) {
                             errorMessageForce={errors.To && touched.To}
                             name="To"
                             placeholder="--:-- --/--/----"
-                            label="Ngày kết thúc"
+                            label="Thời gian kết thúc"
                             onSelect={(date) =>
                               setFieldValue("To", date, false)
                             }
                           />
                         </Fragment>
                       )}
-                      {values.TimeType?.value !== "NGHI_NHIEU_NGAY" && (
-                        <DateTake
-                          value={
-                            values.From
-                              ? moment(values.From).format("DD-MM-YYYY")
-                              : ""
-                          }
-                          onInputClear={() => setFieldValue("From", "", false)}
-                          errorMessage={errors.From}
-                          errorMessageForce={errors.From && touched.From}
-                          name="From"
-                          placeholder="DD-MM-YYYY"
-                          label="Chọn ngày nghỉ"
-                          onSelect={(date) =>
-                            setFieldValue("From", date, false)
-                          }
-                        />
+                      {values.TimeType?.value !== "NGHI_NHIEU_NGAY" &&
+                        values.TimeType?.value !== "NGHI_THEO_THOI_GIAN" && (
+                          <DateTake
+                            value={
+                              values.From
+                                ? moment(values.From).format("DD-MM-YYYY")
+                                : ""
+                            }
+                            onInputClear={() =>
+                              setFieldValue("From", "", false)
+                            }
+                            errorMessage={errors.From}
+                            errorMessageForce={errors.From && touched.From}
+                            name="From"
+                            placeholder="DD-MM-YYYY"
+                            label="Chọn ngày nghỉ"
+                            onSelect={(date) =>
+                              setFieldValue("From", date, false)
+                            }
+                          />
+                        )}
+                      {values.TimeType?.value === "NGHI_NHIEU_NGAY" && (
+                        <React.Fragment>
+                          <DateTake
+                            value={
+                              values.From
+                                ? moment(values.From).format("DD-MM-YYYY")
+                                : ""
+                            }
+                            onInputClear={() =>
+                              setFieldValue("From", "", false)
+                            }
+                            errorMessage={errors.From}
+                            errorMessageForce={errors.From && touched.From}
+                            name="From"
+                            placeholder="DD-MM-YYYY"
+                            label="Ngày bắt đầu"
+                            onSelect={(date) =>
+                              setFieldValue("From", date, false)
+                            }
+                          />
+                          <DateTake
+                            value={
+                              values.To
+                                ? moment(values.From).format("DD-MM-YYYY")
+                                : ""
+                            }
+                            onInputClear={() => setFieldValue("To", "", false)}
+                            errorMessage={errors.From}
+                            errorMessageForce={errors.From && touched.From}
+                            name="To"
+                            placeholder="DD-MM-YYYY"
+                            label="Ngày kết thúc"
+                            onSelect={(date) =>
+                              setFieldValue("To", date, false)
+                            }
+                          />
+                        </React.Fragment>
                       )}
                       <ListInput
                         outline
@@ -233,6 +275,16 @@ function SheetTakeBreak({ SheetOpened, onHide, defaultValues, onSubmit }) {
                       />
                     </List>
                   </div>
+                  {defaultValues &&
+                    defaultValues.ConfirmUserID &&
+                    defaultValues.ConfirmDesc && (
+                      <div className="p-15px border-top">
+                        <div className="fw-500 line-height-sm">Phản hồi</div>
+                        <div className="line-height-sm text-italic mt-3px">
+                          {defaultValues.ConfirmDesc}
+                        </div>
+                      </div>
+                    )}
                 </div>
                 <div className="border-top border-width-2 sheet-toolbar px-15px d--f ai--c jc--c fd--c">
                   <Button

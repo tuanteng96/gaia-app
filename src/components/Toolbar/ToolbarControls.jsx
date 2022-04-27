@@ -16,7 +16,7 @@ const initialMenu = [
     Active: false,
   },
   {
-    Title: "Xử lý",
+    Title: "Cần xử lý",
     IconClass: "fa-light h6-font-size fa-circle-exclamation-check font-size-lg",
     Url: "/need-handle/",
     Active: false,
@@ -53,8 +53,13 @@ export default function ToolbarControls({ f7router }) {
     <Fragment>
       {MenuList.map((item, index) => (
         <Link
-          href={!item.Active ? item.Url : ""}
+          //href={!item.Active ? item.Url : ""}
           className={`w-20 ${item.Active ? "text-success-ezs" : "text-muted"} line-height-auto text-center`}
+          onClick={() => {
+            if (!item.Active) {
+              f7.views.main.router.navigate(item.Url);
+            }
+          }}
           key={index}
         >
           <div className="h-100 d--f ai--c fd--c jc--c pt-8px">
