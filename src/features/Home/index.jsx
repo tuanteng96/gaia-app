@@ -39,9 +39,9 @@ const Home = ({ f7router }) => {
     isLoading && setLoading(true);
     PostsApi.getPostsToId(filters)
       .then(({ data }) => {
-        setLoading(false);
         setListPosts(data.data);
         setPageTotal(data.more.total);
+        setLoading(false);
         callback && callback();
       })
       .catch((error) => console.log(error));

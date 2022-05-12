@@ -62,7 +62,7 @@ export default function ToolbarControls({ f7router }) {
           }}
           key={index}
         >
-          <div className="h-100 d--f ai--c fd--c jc--c pt-8px">
+          <div className="h-100 d--f ai--c fd--c jc--c pt-10px">
             <i className={item.IconClass}></i>
             <div className="font-size-min mt-3px">{item.Title}</div>
           </div>

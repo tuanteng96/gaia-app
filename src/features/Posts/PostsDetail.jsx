@@ -27,10 +27,17 @@ const PostsDetail = ({ f7router, f7route }) => {
     if (ID) {
       getDetailPosts();
     }
-    if (isNotification && f7.device.ios) {
-      PromHelpers.SET_BADGE();
+    else {
+      f7router.navigate("/");
     }
   }, []);
+
+  useEffect(() => {
+    if (isNotification > 0 && f7.device.ios) {
+      PromHelpers.SET_BADGE();
+    }
+  }, [isNotification])
+
   const getDetailPosts = () => {
     setLoading(true);
     PostsApi.getPostsDetailToId(ID)
