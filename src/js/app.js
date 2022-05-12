@@ -1,7 +1,8 @@
-
 // Import React and ReactDOM
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import "../assets/js/NotiAppClickHandler.js";
 
 // Import Framework7
 import Framework7 from 'framework7/lite-bundle';

@@ -49,18 +49,15 @@
     }
 
     function bodySendEvent(name, data) {
-        _bodySendEvent(name, data);
-        // ready().then(() => {
-        //     _bodySendEvent(name, data);
-        // })
-
+        ready().then(() => {
+            _bodySendEvent(name, data);
+        })
     }
 
     function _bodySendEvent(name, data) {
         var e = new Event("noti_click." + name);
         e.data = data;
         document.body.dispatchEvent(e);
-        console.log("On Click");
         //$log.innerHTML = name;
         //window.NotificationHandle(data);
     }
@@ -135,7 +132,6 @@
         if (o.NOTI_ID) {
             //
             var canClick = clickAgaint || clicked.indexOf(o.NOTI_ID) === -1; //
-
             if (o.click_action && canClick) {
                 //chuỗi gồm nhiều tp, ngăn cách bằng dấu ":"
                 var segs = o.click_action.split(':');
@@ -202,7 +198,7 @@
         app21.prom('NOTI_DATA').then(function(s) {
 
             //$log.innerHTML = JSON.stringify(s);
-
+            console.log(s)
             var d = s.data;
             if (!isObjectEmpty(d)) {
 

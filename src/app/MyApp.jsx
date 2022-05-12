@@ -1,18 +1,13 @@
 import React, { useEffect } from "react";
 
-import {
-  App,
-  f7,
-  View,
-} from "framework7-react";
+import { App, f7, f7ready, View } from "framework7-react";
 
 import routes from "../js/routes";
 import store from "../js/store";
 import PromHelpers from "../helpers/PromHelpers";
 import PanelLeft from "../components/Panel/PanelLeft";
-import axiosClient from "../api/axiosClient";
-import setupAxios from "../api/setupAxios";
 import { ToastContainer } from "react-toastify";
+import { PromiseHelper } from "../helpers/PromiseHelper";
 
 const MyApp = (props) => {
   // Framework7 Parameters
@@ -44,21 +39,25 @@ const MyApp = (props) => {
         console.log("init");
       },
       pageInit: function () {
-        console.log("pageInit");
+        console.log("Page Init");
       },
     },
     view: {
       allowDuplicateUrls: true,
-      //xhrCache: false,
+      xhrCache: false,
       pushState: true,
     },
     //initOnDeviceReady: true,
   };
 
-  setupAxios(axiosClient, store);
-
   const handleUserNotification = ({ data }) => {
-    f7.views.main.router.navigate(`/posts/detail/${data.id}?isNotification=1`);
+    if (data.id) {
+      PromiseHelper.Notification().then(() => {
+        f7.views.main.router.navigate(
+          `/posts/detail/${data.id}?isNotification=1`
+        );
+      });
+    }
   };
 
   const ToBackBrowser = () => {
@@ -73,7 +72,7 @@ const MyApp = (props) => {
   useEffect(() => {
     // To Back Browser handler
     window.ToBackBrowser = ToBackBrowser;
-
+    window.APP_READY = true;
     // Notification the event handler
     document.body.addEventListener("noti_click.art_id", handleUserNotification);
     // this will clean up the event every time the component is re-rendered
