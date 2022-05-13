@@ -1,5 +1,6 @@
 import { createStore } from 'framework7/lite';
 import { authStore } from '../features/Auth/_redux/AuthStore';
+import { postsStore } from '../features/Posts/_redux/PostsStore';
 
 // Get Store
 // const name = useStore("name"); name => function name getters
@@ -7,13 +8,16 @@ import { authStore } from '../features/Auth/_redux/AuthStore';
 
 const store = createStore({
     state: {
-        ...authStore.state
+        ...authStore.state,
+        ...postsStore.state
     },
     getters: {
-        ...authStore.getters
+        ...authStore.getters,
+        ...postsStore.getters
     },
     actions: {
-        ...authStore.actions
+        ...authStore.actions,
+        ...postsStore.actions
     },
 })
 export default store;
