@@ -36,11 +36,11 @@ function Login({ f7router }) {
       } else {
         const obj = {
           User: data,
-          Token: data.Token,
+          Token: data.token,
         };
         PromHelpers.SEND_TOKEN_FIREBASE().then(async (response) => {
           await AuthApi.SendTokenFirebase({
-            Token: response.Token,
+            Token: data.token,
             ID: data.ID,
             Type: data.acc_type,
           });
@@ -48,6 +48,8 @@ function Login({ f7router }) {
             f7.dialog.close();
             f7router.navigate("/", { transition: "f7-flip" });
           });
+        }).catch(error => {
+          console.log(error)
         });
       }
     } catch (error) {

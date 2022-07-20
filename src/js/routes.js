@@ -72,7 +72,7 @@ var routes = [{
                             });
                         } else {
                             store
-                                .dispatch("setToken", { User: data, Token: data.Token })
+                                .dispatch("setToken", { User: data, Token: data.token })
                                 .then(() => {
                                     resolve({
                                         component: HomePage,

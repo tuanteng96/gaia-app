@@ -55,11 +55,26 @@ const Calendar = ({ f7router }) => {
       date: moment(Filters.date).format("YYYY-MM-DD"),
     })
       .then(({ data }) => {
-        setListCalendar(data);
+        setListCalendar(getChildrenNested(data?.list));
         setLoading(false);
         callback && callback();
       })
       .catch((error) => console.log(error));
+  };
+
+  const getChildrenNested = (arrays) => {
+    if (!arrays) return [];
+    const newArrays = [];
+    for (let item of arrays) {
+      if (!item.IndexList) return;
+      for (let index of item.IndexList) {
+        if (!index.dayItems) return;
+        for (let day of index.dayItems) {
+          newArrays.push(day);
+        }
+      }
+    }
+    return newArrays;
   };
 
   const OnOpenDate = () => {
@@ -177,8 +192,7 @@ const Calendar = ({ f7router }) => {
                     position: toast.POSITION.TOP_CENTER,
                     autoClose: 1500,
                   });
-                }
-                else {
+                } else {
                   f7.dialog.close();
                   toast.success("Xin nghỉ thành công !", {
                     position: toast.POSITION.TOP_CENTER,

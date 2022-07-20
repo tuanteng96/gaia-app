@@ -57,32 +57,29 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
 
   useEffect(() => {
     if (item) {
-      const { CalendarItem } = item;
       var newObj;
-      if (CalendarItem.Teaching.Status === "TU_CHOI") {
+      if (item.Status === "TU_CHOI") {
         newObj = initialValue;
       }
       else {
         newObj = {
           TeachingItemList: {
-            Items: CalendarItem.Teaching?.TeachingItemList?.Items || [],
+            Items: item?.Teaching?.TeachingItemList?.Items || [],
           },
-          StudentCount: CalendarItem.Teaching?.StudentCount || "",
+          StudentCount: item?.Teaching?.StudentCount || "",
           Thumbnail: "",
-          Desc: CalendarItem.Teaching?.Desc || "",
-          Type: CalendarItem.Teaching?.Type
-            ? TypeLists.filter(
-                (item) => item.value === CalendarItem.Teaching?.Type
-              )[0]
+          Desc: item?.Teaching?.Desc || "",
+          Type: item?.Teaching?.Type
+            ? TypeLists.filter((item) => item.value === item?.Teaching?.Type)[0]
             : TypeLists[0],
-          TimesEnd: CalendarItem.Teaching?.TimesEnd || "",
-          CalendarItemID: CalendarItem.ID,
-          ScheduleID: CalendarItem.Teaching?.ScheduleID,
-          ProductLessonID: CalendarItem.Teaching?.ProductLessonID,
-          SchoolID: CalendarItem.Teaching?.SchoolID,
-          SchoolTitle: CalendarItem.Teaching?.SchoolTitle,
-          ProductLessonTitle: CalendarItem.Teaching?.ProductLessonTitle,
-          ThumbnailList: CalendarItem.Teaching?.ThumbnailList || [],
+          TimesEnd: item?.Teaching?.TimesEnd || "",
+          CalendarItemID: item?.ID,
+          ScheduleID: item?.Teaching?.ScheduleID,
+          ProductLessonID: item?.Teaching?.ProductLessonID,
+          SchoolID: item?.Teaching?.SchoolID,
+          SchoolTitle: item?.Teaching?.SchoolTitle,
+          ProductLessonTitle: item?.Teaching?.ProductLessonTitle,
+          ThumbnailList: item?.Teaching?.ThumbnailList || [],
         };
       }
       setInitialValues(newObj);
@@ -119,17 +116,17 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
   const isDisabled = (item) => {
     if (!item) return true;
     const dateCurrent = moment().format("YYYY-MM-DD");
-    const DayMaps = moment(item.CalendarItem?.DayMap).format("YYYY-MM-DD");
+    const DayMaps = moment(item.Date).format("YYYY-MM-DD");
     return moment(dateCurrent).diff(DayMaps, "day") !== 0;
   }
 
   const isShowButton = (item) => {
     if (!item) return true;
     const dateCurrent = moment().format("YYYY-MM-DD");
-    const DayMaps = moment(item.CalendarItem?.DayMap).format("YYYY-MM-DD");
+    const DayMaps = moment(item.Date).format("YYYY-MM-DD");
 
     if (dateCurrent === DayMaps) {
-      return moment().diff(item.CalendarItem.From, "hours") > -3;
+      return moment().diff(item.From, "hours") > -3;
     }
     return moment(dateCurrent).diff(DayMaps, "day") > 0;
   }
@@ -141,38 +138,31 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
         <div className="time-school time-school-top fw-500 mb-10px position-relative">
           <div className="time-icon"></div>
           <span className="pl-20px pr-15px bg-white position-relative text-muted text-uppercase">
-            {moment(item.CalendarItem.From).format("HH:mm a")}
+            {moment(item?.From).format("HH:mm a")}
           </span>
         </div>
         <div className="pl-15px py-10px position-relative">
           <div
-            className={`line-status w-2px h-100 position-absolute left-0 top-0 ${item.CalendarItem.Teaching?.Status === "" ? "bg-primary" : ""
-              } ${item.CalendarItem.Teaching?.Status === "TU_CHOI"
-                ? "bg-danger"
-                : ""
-              } ${item.CalendarItem.Teaching?.Status === "NHAN_TIET"
-                ? "bg-success"
-                : ""
-              }`}
+            className={`line-status w-2px h-100 position-absolute left-0 top-0 ${
+              item?.Status === "" ? "bg-primary" : ""
+            } ${item?.Status === "TU_CHOI" ? "bg-danger" : ""} ${
+              item?.Status === "NHAN_TIET" ? "bg-success" : ""
+            }`}
           ></div>
           <div className="text-uppercase fw-600 text-success-ezs line-height-md font-size-md">
-            {item.CalendarItem.Teaching?.SchoolTitle || "Chưa có trường"}
+            {item?.SchoolTitle || "Chưa có trường"}
           </div>
           <div className="mt-12px fw-600 text-uppercase text-gray-800">
-            {item.CalendarItem.Title} - Lớp {item.CalendarItem.ClassMap?.Title}
+            {item?.IndexTitle} - Lớp {item?.ClassTitle}
           </div>
           <div className="mt-12px d--f jc--sb ai--c text-gray-700">
             <div className="fw-600">
               <i className="fa-solid fa-timer"></i>
               <span className="pl-5px">
-                {DateTimeHelpers.TotalMinutesFromTo(
-                  item.CalendarItem.From,
-                  item.CalendarItem.To
-                )}{" "}
-                Phút
+                {DateTimeHelpers.TotalMinutesFromTo(item.From, item.To)} Phút
               </span>
             </div>
-            {item.CalendarItem.Teaching?.Status === "TU_CHOI" && (
+            {item?.Status === "TU_CHOI" && (
               <div className="d--f ai--c">
                 <div className="fw-600 text-danger text-italic pr-15px">
                   Đã xin nghỉ
@@ -185,7 +175,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                 </Button>
               </div>
             )}
-            {item.CalendarItem.Teaching?.Status === "" && (
+            {item?.Status === "" && (
               <div>
                 <Button
                   className="btn btn-primary btn-xs fw-500 mr-5px"
@@ -203,7 +193,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                 )}
               </div>
             )}
-            {item.CalendarItem.Teaching?.Status === "NHAN_TIET" && (
+            {item?.Status === "NHAN_TIET" && (
               <div className="d--f ai--c">
                 <div className="fw-600 text-success text-italic pr-15px">
                   Đã hoàn thành
@@ -221,7 +211,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
         <div className="time-school time-school-bottom fw-500 mt-8px position-relative">
           <div className="time-icon"></div>
           <span className="pl-20px pr-15px bg-white position-relative text-muted text-uppercase">
-            {moment(item.CalendarItem.To).format("HH:mm a")}
+            {moment(item.To).format("HH:mm a")}
           </span>
         </div>
       </div>
@@ -254,8 +244,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                 <Form className="h-100">
                   <div className="border-bottom border-width-2 px-15px sheet-navbar d--f ai--c">
                     <div className="text-uppercase fw-600 font-size-md text-truncate max-w-80">
-                      {item.CalendarItem.Teaching?.SchoolTitle ||
-                        "Chưa có trường"}
+                      {item?.SchoolTitle || "Chưa có trường"}
                     </div>
                     <Link className="sheet-close" sheetClose>
                       <i className="fa-light fa-xmark"></i>
@@ -268,8 +257,7 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                           Tiết - Lớp
                         </div>
                         <div className="fw-600">
-                          {item.CalendarItem.Title} - Lớp{" "}
-                          {item.CalendarItem.ClassMap?.Title}
+                          {item?.IndexTitle} - Lớp {item?.ClassTitle}
                         </div>
                       </div>
                       <div className="mt-15px">
@@ -277,14 +265,14 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                           Bài học
                         </div>
                         <div className="fw-600">
-                          {item.CalendarItem.Teaching.ProductLessonTitle}
+                          {item?.Teaching?.ProductLessonTitle}
                         </div>
                       </div>
                       <div className="mt-15px">
                         <div className="text-uppercase font-size-xs fw-600 text-muted mb-10px">
                           Giá viên giảng dạy
                         </div>
-                        <div className="fw-600">{User.FullName}</div>
+                        <div className="fw-600">{item.TeacherTitle}</div>
                       </div>
                     </div>
                     <div className="border-top border-width-2 pb-15px">
@@ -473,24 +461,29 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                         name="ThumbnailList"
                         render={(arrayHelpers) => (
                           <React.Fragment>
-                            {
-                              values.ThumbnailList && values.ThumbnailList.map((item, index) => (
-                                <div className="w-80px h-80px mr-15px position-relative" key={index}>
+                            {values.ThumbnailList &&
+                              values.ThumbnailList.map((item, index) => (
+                                <div
+                                  className="w-80px h-80px mr-15px position-relative"
+                                  key={index}
+                                >
                                   <LazyLoadImage
                                     className="w-100 d-block shadows rounded-sm object-fit-cover"
                                     src={toAbsoluteUrl(item)}
                                     height={80}
                                     effect="blur"
                                   />
-                                  <div className="position-absolute w-25px h-25px shadows rounded-circle bg-white d--f ai--c jc--c top--10px right--10px" onClick={() => arrayHelpers.remove(index)}><i className="fa-solid fa-xmark"></i></div>
+                                  <div
+                                    className="position-absolute w-25px h-25px shadows rounded-circle bg-white d--f ai--c jc--c top--10px right--10px"
+                                    onClick={() => arrayHelpers.remove(index)}
+                                  >
+                                    <i className="fa-solid fa-xmark"></i>
+                                  </div>
                                 </div>
-                              ))
-                            }
+                              ))}
                             <div>
                               <UploadImages
-                                onChange={(image) =>
-                                  arrayHelpers.push(image)
-                                }
+                                onChange={(image) => arrayHelpers.push(image)}
                               />
                             </div>
                           </React.Fragment>
@@ -503,11 +496,13 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                       type="submit"
                       className="btn btn-success-ezs w-100 text-uppercase"
                       disabled={
-                        item.CalendarItem.Teaching?.Status === "TU_CHOI" ||
+                        item?.Status === "TU_CHOI" ||
                         isDisabled(item)
                       }
                     >
-                      {item.CalendarItem.Teaching?.Status === "NHAN_TIET" ? "Lưu thay đổi" : "Hoàn thành"}
+                      {item?.Status === "NHAN_TIET"
+                        ? "Lưu thay đổi"
+                        : "Hoàn thành"}
                     </Button>
                   </div>
                 </Form>

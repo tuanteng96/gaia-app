@@ -84,7 +84,7 @@ const SEND_TOKEN_FIREBASE = () => {
                 data
             }) => {
                 resolve({
-                    Token: data
+                    token: data
                 });
             }).catch(({
                 error
