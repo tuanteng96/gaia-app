@@ -70,7 +70,19 @@ const Calendar = ({ f7router }) => {
       for (let index of item.IndexList) {
         if (!index.dayItems) return;
         for (let day of index.dayItems) {
-          newArrays.push(day);
+          const idx = newArrays.findIndex(
+            (o) => o.MajorID && o.MajorID === day.MajorID
+          );
+          if (idx > -1) {
+            newArrays[idx].MajorItems.push(day);
+          }
+          else {
+            const newDay = { ...day };
+            if (day.MajorID) {
+              newDay.MajorItems = [day];
+            }
+            newArrays.push(newDay);
+          }
         }
       }
     }
@@ -212,7 +224,7 @@ const Calendar = ({ f7router }) => {
     const objSubmit = {
       Teaching: {
         ...values,
-        Type: values.Type ? values.Type.value : "TIET_BINH_THUONG",
+        //Type: values.Type ? values.Type.value : "TIET_BINH_THUONG",
         TimesEnd: values.TimesEnd
           ? moment(values.TimesEnd).format("YYYY-MM-DD HH:mm")
           : "",

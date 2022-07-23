@@ -1,6 +1,6 @@
 const APPS = {
-    DOMAIN_URL: "https://ver2.hoccunggaia.edu.vn/",
-    DOMAIN_API: "https://ver2.hoccunggaia.edu.vn/",
+    DOMAIN_URL: window.SERVER ?? "https://ver2.hoccunggaia.edu.vn/",
+    DOMAIN_API: window.SERVER ?? "https://ver2.hoccunggaia.edu.vn/",
 };
 
 export default APPS;
