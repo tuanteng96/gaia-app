@@ -7,6 +7,7 @@ export default function ItemWareHouse({ item }) {
       href={`/warehouse/${item.ID}?Title=${item.Title}`}
       className="d--f ai--c p-15px border-bottom"
     >
+      {console.log(item)}
       <div className="symbol symbol-light-primary">
         <div className="icon w-50px h-50px symbol-label rounded-circle d--f ai--c jc--c font-size-xs fw-600">
           {(item.InQty / item.OutQty) * 100}%
