@@ -75,8 +75,7 @@ const Calendar = ({ f7router }) => {
           );
           if (idx > -1) {
             newArrays[idx].MajorItems.push(day);
-          }
-          else {
+          } else {
             const newDay = { ...day };
             if (day.MajorID) {
               newDay.MajorItems = [day];
@@ -173,22 +172,28 @@ const Calendar = ({ f7router }) => {
     }, 300);
   };
 
-  const OnCancelBook = ({ CalendarItem }) => {
+  const OnCancelBook = (item) => {
+    const dayItemIDs =
+      item?.MajorID > 0
+        ? item?.MajorItems.map((major) => major.ID)
+        : [item?.ID];
     f7.dialog.confirm("Bạn chắc chắn muốn xin nghỉ tiết này?", function () {
       f7.dialog.prompt("Nhập lý do bạn muốn xin nghỉ ?", async (name) => {
         f7.dialog.preloader("Đang thực hiện ...");
         const obj = {
-          Teaching: {
+          Teachings: dayItemIDs.map((itemID) => ({
             Desc: name,
-            CalendarItemID: CalendarItem.ID,
-            ScheduleID: CalendarItem.Teaching?.ScheduleID,
-            ProductLessonID: CalendarItem.Teaching?.ProductLessonID,
-            SchoolID: CalendarItem.Teaching?.SchoolID,
-            SchoolTitle: CalendarItem.Teaching?.SchoolTitle,
-            ProductLessonTitle: CalendarItem.Teaching?.ProductLessonTitle,
-          },
+            CalendarItemID: item.CalendarItemID,
+            ScheduleID: item.Teaching?.ScheduleID,
+            ProductLessonID: item.Teaching?.ProductLessonID,
+            SchoolID: item?.SchoolID,
+            SchoolTitle: item?.SchoolTitle,
+            ProductLessonTitle: item.Teaching?.ProductLessonTitle,
+            dayItemID: itemID,
+            Status: "TU_CHOI",
+          })),
         };
-        CalendarApi.reject(obj)
+        CalendarApi.accept(obj)
           .then(({ data }) => {
             getListCalendar(
               {
@@ -222,13 +227,15 @@ const Calendar = ({ f7router }) => {
   const onSubmit = (values) => {
     f7.sheet.close();
     const objSubmit = {
-      Teaching: {
+      Teachings: values?.dayItemIDs.map((itemID) => ({
         ...values,
         //Type: values.Type ? values.Type.value : "TIET_BINH_THUONG",
         TimesEnd: values.TimesEnd
           ? moment(values.TimesEnd).format("YYYY-MM-DD HH:mm")
           : "",
-      },
+        Status: "HOAN_THANH",
+        dayItemID: itemID,
+      })),
     };
     f7.dialog.preloader("Đang thực hiện ...");
     CalendarApi.accept(objSubmit)
