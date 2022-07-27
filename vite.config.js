@@ -23,7 +23,7 @@ export default {
             output: {
                 assetFileNames: (assetInfo) => {
                     if (/\.css$/.test(assetInfo.name)) {
-                        return 'css/app[extname]'
+                        return 'assets/css/[name][extname]'
                     }
                     return `assets/[name][extname]`;
                 },
