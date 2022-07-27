@@ -11,8 +11,11 @@
 "./components/button",
 "./components/line",
 "./components/symbol",
-"./components/upload-images";
-// 3: Plugins
+"./components/upload-images",
+"./components/splash-screen";
+// 3: Layout
+@import "./layout/init";
+// 4: Plugins
 @import "./vendors/f7/init",
 "./vendors/plugins/react-phone-input-2",
 "./vendors/plugins/g-captcha",
@@ -20,7 +23,7 @@
 "./vendors/plugins/react-mobile-datepicker",
 "./vendors/plugins/react-toastify",
 "./vendors/plugins/react-select";
-// 4: Page
+// 5: Page
 @import "./pages/home",
 "./pages/posts",
 "./pages/calendar";
