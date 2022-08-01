@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import PromHelpers from "../../../helpers/PromHelpers";
 import store from "../../../js/store";
-import LogoImages from "../../../assets/media/logos/logo-gaia.png";
+import LogoImages from "../../../assets/media/logos/logo.png";
 import BackgroundLogin from "../../../assets/media/pages/login/bg-login.png";
 import AuthApi from "../../../api/AuthApi";
 
@@ -93,7 +93,7 @@ function Login({ f7router }) {
             <Form className="d--f fd--c jc--sb h-100">
               <div className="p-safe-area-top">
                 <div className="text-center pt-50px pb-30px">
-                  <img src={LogoImages} alt="GAIA" />
+                  <img className="max-w-140px" src={LogoImages} alt="GAIA" />
                 </div>
                 <div className="px-15px fw-600 font-size-lg text-center text-uppercase mb-30px">
                   Đăng nhập tài khoản

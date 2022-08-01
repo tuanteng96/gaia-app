@@ -99,7 +99,6 @@ function ChangePassword({ f7router }) {
           } = formikProps;
           return (
             <Form className="d--f fd--c jc--sb h-100">
-              {console.log(values)}
               <div>
                 <List noHairlinesMd>
                   <ListInput

@@ -11,7 +11,7 @@ import {
   SkeletonImage,
 } from "framework7-react";
 import PromHelpers from "../../helpers/PromHelpers";
-import LogoImages from "../../assets/media/logos/logo-gaia-text.png";
+import LogoImages from "../../assets/media/logos/logo-text.png";
 import ToolbarControls from "../../components/Toolbar/ToolbarControls";
 import PostsApi from "../../api/postsApi";
 import ItemPosts from "./components/ItemPosts";
@@ -99,7 +99,7 @@ const Home = ({ f7router }) => {
         </NavLeft>
         <NavTitle className="w-65px">
           <div className="h-100 d--f ai--c jc--c">
-            <img className="w-100" src={LogoImages} alt="" />
+            <img className="w-100 max-w-50px" src={LogoImages} alt="WOW" />
           </div>
         </NavTitle>
         <NavRight>
