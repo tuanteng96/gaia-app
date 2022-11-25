@@ -157,7 +157,7 @@ var routes = [{
         },
     },
     {
-        path: "/calendar/take-break/",
+        path: "/take-break/",
         component: TakeBreakPage,
         beforeEnter: checkAuth,
         options: {

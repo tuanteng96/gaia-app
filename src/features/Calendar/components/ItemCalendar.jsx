@@ -149,17 +149,6 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
     return moment(dateCurrent).diff(DayMaps, "day") !== 0;
   };
 
-  const isShowButton = (item) => {
-    if (!item) return true;
-    const dateCurrent = moment().format("YYYY-MM-DD");
-    const DayMaps = moment(item.Date).format("YYYY-MM-DD");
-
-    if (dateCurrent === DayMaps) {
-      return moment().diff(item.From, "hours") > -1;
-    }
-    return moment(dateCurrent).diff(DayMaps, "day") > 0;
-  };
-
   return (
     <div className="mt-15px position-relative calendar-item">
       <div className="position-relative">
@@ -221,14 +210,6 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                 >
                   Chi tiết
                 </Button>
-                {!isShowButton(item) && (
-                  <Button
-                    className="btn btn-danger btn-xs fw-500"
-                    onClick={() => OnCancelBook(item)}
-                  >
-                    Xin nghỉ
-                  </Button>
-                )}
               </div>
             )}
             {item?.TeachingStatus === "HOAN_THANH" && (

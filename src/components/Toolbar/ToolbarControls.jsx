@@ -16,9 +16,9 @@ const initialMenu = [
     Active: false,
   },
   {
-    Title: "Cần xử lý",
+    Title: "Ngày nghỉ",
     IconClass: "fa-light h6-font-size fa-circle-exclamation-check font-size-lg",
-    Url: "/need-handle/",
+    Url: "/take-break/",
     Active: false,
   },
   {

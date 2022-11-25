@@ -283,7 +283,7 @@ const Calendar = ({ f7router }) => {
         <NavLeft backLink="Back" sliding={true}></NavLeft>
         <NavTitle sliding={true}>Lịch giảng dạy</NavTitle>
         <NavRight>
-          <Link href="/calendar/take-break/" className="icon-only">
+          <Link href="/take-break/" className="icon-only">
             <div className="text-center position-relative line-height-sm">
               <i className="font-size-h6 fa-regular fa-money-check-pen"></i>
             </div>
