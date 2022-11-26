@@ -12,7 +12,7 @@ export default {
         reactRefresh(),
     ],
     root: SRC_DIR,
-    base: 'https://quanly.wow.edu.vn/app2021/',
+    base: '',
     publicDir: PUBLIC_DIR,
     build: {
         outDir: BUILD_DIR,
