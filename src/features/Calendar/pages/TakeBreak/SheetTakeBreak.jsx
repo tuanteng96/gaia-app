@@ -241,12 +241,12 @@ function SheetTakeBreak({ SheetOpened, onHide, defaultValues, onSubmit }) {
                           <DateTake
                             value={
                               values.To
-                                ? moment(values.From).format("DD-MM-YYYY")
+                                ? moment(values.To).format("DD-MM-YYYY")
                                 : ""
                             }
                             onInputClear={() => setFieldValue("To", "", false)}
-                            errorMessage={errors.From}
-                            errorMessageForce={errors.From && touched.From}
+                            errorMessage={errors.To}
+                            errorMessageForce={errors.To && touched.To}
                             name="To"
                             placeholder="DD-MM-YYYY"
                             label="Ngày kết thúc"

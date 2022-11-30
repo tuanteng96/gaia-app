@@ -1,6 +1,11 @@
 import { ListInput } from "framework7-react";
 import React, { useState, Fragment } from "react";
 import DatePickers from "../../../../components/DatePickers/DatePickers";
+import moment from "moment";
+import "moment/dist/locale/vi";
+
+moment.locale("vi");
+
 function DateTake({
   name,
   placeholder,
@@ -31,6 +36,7 @@ function DateTake({
         />
       </div>
       <DatePickers
+        value={value ? new Date(moment(value).format("DD-MM-YYYY")) : new Date()}
         isOpen={OpenDate}
         theme="ios"
         confirmText="Lưu"
