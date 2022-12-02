@@ -79,7 +79,11 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
           ProductLessonID: item?.Teaching?.ProductLessonID,
           SchoolID: item?.SchoolID,
           SchoolTitle: item?.SchoolTitle,
-          ProductLessonTitle: item?.Teaching?.ProductLessonTitle,
+          ProductLessonTitle:
+            item?.ScheduleLessons &&
+            item?.ScheduleLessons.filter((o) => !o.IsDone).length > 0
+              ? item?.ScheduleLessons.filter((o) => !o.IsDone)[0].Title
+              : "",
           isMajor: item?.MajorID > 0,
           dayItemID: item?.ID,
           dayItemIDs:
@@ -175,7 +179,6 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
               {item?.MajorTitle}
             </div>
           )}
-
           <div className="mt-12px fw-600 text-gray-800">
             {item?.MajorItems
               ? item?.MajorItems.map((item) => item.IndexTitle).join(", ")
@@ -298,8 +301,12 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
                           Bài học
                         </div>
                         <div className="fw-600">
-                          {item?.Teaching?.ProductLessonTitle ||
-                            "Chưa có bài học"}
+                          {item?.ScheduleLessons &&
+                          item?.ScheduleLessons.filter((o) => !o.IsDone)
+                            .length > 0
+                            ? item?.ScheduleLessons.filter((o) => !o.IsDone)[0]
+                                .Title
+                            : "Chưa có bài học"}
                         </div>
                       </div>
                       <div className="mt-15px">
