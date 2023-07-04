@@ -21,6 +21,7 @@ moment.locale("vi");
 const TypeLists = [
   { value: "NGHI_THUONG", label: "Nghỉ thường" },
   { value: "NGHI_PHEP", label: "Nghỉ phép" },
+  { value: "NGHI_GIAI_PHEP", label: "Nghỉ giải phép" },
 ];
 
 const TimeTypeLists = [
