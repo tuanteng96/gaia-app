@@ -150,7 +150,11 @@ export default function ItemCalendar({ item, OnCancelBook, onSubmit }) {
     if (!item) return true;
     const dateCurrent = moment().format("YYYY-MM-DD");
     const DayMaps = moment(item.Date).format("YYYY-MM-DD");
-    return moment(dateCurrent).diff(DayMaps, "day") !== 0;
+
+    return (
+      moment(dateCurrent).diff(DayMaps, "day") > (item?.DaysDisabled || 7) ||
+      moment(dateCurrent).diff(DayMaps, "day") < 0
+    );
   };
 
   return (
