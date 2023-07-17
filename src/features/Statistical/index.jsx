@@ -15,13 +15,6 @@ import PromHelpers from "../../helpers/PromHelpers";
 import APPS from "../../js/settings";
 import IframeComm from "react-iframe-comm";
 
-
-window.Info = {
-  User: null,
-  Stocks: [],
-  CrStockID: 0,
-};
-
 function Statistical({ f7router }) {
   const { User } = useStore("Auth");
   const [data, setData] = useState(null);
