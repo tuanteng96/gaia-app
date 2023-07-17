@@ -1,4 +1,5 @@
 import {
+  f7,
   Link,
   Navbar,
   NavLeft,
@@ -6,13 +7,39 @@ import {
   NavTitle,
   Page,
   Toolbar,
+  useStore,
 } from "framework7-react";
-import React from "react";
-import PageEmpty from "../../components/Empty/PageEmpty";
+import React, { useEffect, useState } from "react";
 import ToolbarControls from "../../components/Toolbar/ToolbarControls";
 import PromHelpers from "../../helpers/PromHelpers";
+import APPS from "../../js/settings";
+import IframeComm from "react-iframe-comm";
+
+
+window.Info = {
+  User: null,
+  Stocks: [],
+  CrStockID: 0,
+};
 
 function Statistical({ f7router }) {
+  const { User } = useStore("Auth");
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    f7.dialog.preloader("Đang tải thống kê ... ");
+  }, []);
+
+  useEffect(() => {
+    if (User) {
+      setData({
+        Info: User,
+        Token: User.token,
+        IsApp: true,
+      });
+    }
+  }, [User]);
+
   return (
     <Page
       name="statistical"
@@ -41,7 +68,22 @@ function Statistical({ f7router }) {
         <ToolbarControls f7router={f7router} />
       </Toolbar>
       {/* Page content */}
-      <PageEmpty Title="Chưa có thống kê" />
+      {data && (
+        <IframeComm
+          attributes={{
+            src: `${
+              APPS.DOMAIN_API
+            }/App23/index.html?v=${new Date().valueOf()}`,
+            width: "100%",
+            height: "100%",
+            frameBorder: 0,
+          }}
+          postMessageData={JSON.stringify(data)}
+          handleReady={() => {
+            f7.dialog.close();
+          }}
+        />
+      )}
     </Page>
   );
 }
